@@ -75,7 +75,7 @@ export default function PreviousProjectsSection() {
       <div className="mt-16 text-center">
         <Button size="lg" asChild>
           <Link
-            href="https://example.com"
+            href="https://www.sawsimonlinn.com"
             target="_blank"
             rel="noopener noreferrer"
           >
