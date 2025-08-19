@@ -308,17 +308,18 @@ export default function PricingPage() {
                   </CardContent>
                 </Card>
               </div>
+              {/* use different name and brand and description */}
               <div className="text-center">
                 <Card className="bg-secondary text-secondary-foreground shadow-xl">
                   <CardContent className="p-8">
                     <div className="flex justify-center mb-4">
                       <Avatar className="h-20 w-20 border-4 border-background">
                         <AvatarImage
-                          src="https://placehold.co/100x100.png"
-                          alt="Venus Mawi"
+                          src="/review/review06.png"
+                          alt="MoMo Chan"
                           data-ai-hint="fashion founder"
                         />
-                        <AvatarFallback>VM</AvatarFallback>
+                        <AvatarFallback>MC</AvatarFallback>
                       </Avatar>
                     </div>
                     <div className="flex justify-center mb-2">
@@ -330,15 +331,15 @@ export default function PricingPage() {
                       ))}
                     </div>
                     <blockquote className="text-lg italic">
-                      "They beautifully captured the essence of our vintage
-                      traditional clothing brand. The admin blog page is a
-                      fantastic tool for us to share stories behind our
-                      collections. The team was a dream to work with."
+                      "Code Heaven Studio transformed my portfolio. The
+                      attention to detail and creativity they brought to the
+                      project was exceptional. I couldn't be happier with the
+                      results!"
                     </blockquote>
                     <footer className="mt-4">
-                      <p className="font-semibold">Venus Mawi</p>
+                      <p className="font-semibold">MoMo Chan</p>
                       <p className="text-sm text-muted-foreground">
-                        Founder, J&C Collections
+                        Founder, MoMo Chan Designs
                       </p>
                     </footer>
                   </CardContent>
