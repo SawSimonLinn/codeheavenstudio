@@ -10,22 +10,23 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 
 const testimonials = [
+  // add testimonial for CodeJourney UI/UX design
   {
-    name: "Jar Ja",
-    title: "Owner, Blue Bird Haus Sushi",
+    name: "Susan Lee",
+    title: "CEO, CodeJourney",
     quote:
-      "Code Heaven Studio delivered exactly what we needed. The admin panel for updating our menu and photo gallery is incredibly easy to use, which saves us so much time. Our customers love the new site!",
+      "Working with Code Heaven Studio was a game-changer for our platform. Their attention to detail and user-centric design approach helped us create an intuitive and engaging experience for our users.",
     avatar: "/review/review01.png",
-    aiHint: "asian restaurant owner",
+    aiHint: "female tech CEO",
     rating: 5,
   },
   {
-    name: "Venus Mawi",
-    title: "Founder, J&C Collections",
+    name: "Diana Kim",
+    title: "Owner, Digishop",
     quote:
-      "They beautifully captured the essence of our vintage traditional clothing brand. The admin blog page is a fantastic tool for us to share stories behind our collections. The team was a dream to work with.",
+      "The team at Code Heaven Studio transformed our online store. The admin dashboard is intuitive and powerful, allowing us to manage products effortlessly. Highly recommend!",
     avatar: "/review/review02.png",
-    aiHint: "fashion founder",
+    aiHint: "female online store owner",
     rating: 5,
   },
   {

@@ -15,6 +15,7 @@ const features = [
   { name: "No hidden charges" },
   { name: "No commitments required" },
   { name: "A preview of your future website" },
+  { name: "Free consultation call included" },
 ];
 
 const demoImages = [

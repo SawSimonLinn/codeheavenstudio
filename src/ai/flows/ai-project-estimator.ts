@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 /**
  * @fileOverview Estimates the project cost and timeline based on user input.
@@ -8,32 +8,34 @@
  * - EstimateProjectOutput - The return type for the estimateProject function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from "@/ai/genkit";
+import { z } from "genkit";
 
 const EstimateProjectInputSchema = z.object({
   websiteNeeds: z
     .string()
-    .describe('A description of the website needs and requirements.'),
+    .describe("A description of the website needs and requirements."),
 });
 export type EstimateProjectInput = z.infer<typeof EstimateProjectInputSchema>;
 
 const EstimateProjectOutputSchema = z.object({
-  estimatedCost: z.string().describe('The estimated cost of the project.'),
+  estimatedCost: z.string().describe("The estimated cost of the project."),
   estimatedTimeline: z
     .string()
-    .describe('The estimated timeline for the project.'),
+    .describe("The estimated timeline for the project."),
 });
 export type EstimateProjectOutput = z.infer<typeof EstimateProjectOutputSchema>;
 
-export async function estimateProject(input: EstimateProjectInput): Promise<EstimateProjectOutput> {
+export async function estimateProject(
+  input: EstimateProjectInput
+): Promise<EstimateProjectOutput> {
   return estimateProjectFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'estimateProjectPrompt',
-  input: {schema: EstimateProjectInputSchema},
-  output: {schema: EstimateProjectOutputSchema},
+  name: "estimateProjectPrompt",
+  input: { schema: EstimateProjectInputSchema },
+  output: { schema: EstimateProjectOutputSchema },
   prompt: `You are an expert AI project estimator. Your task is to analyze the user's website needs and provide an estimated cost and timeline based on the pricing structure below.
 
 Analyze the user's request: {{{websiteNeeds}}}
@@ -42,41 +44,60 @@ Carefully match the user's needs to one of the main packages. If they request fe
 
 **Pricing Structure:**
 
-**Starter Package – $1250**
+**🌱 Starter Package – $1,250**
 *For small businesses getting online.*
-- 1–3 Pages (e.g., Landing, About, Contact)
-- Responsive Design
-- Basic SEO Setup
-- Domain + Hosting Setup
+- Modern, responsive website (up to 5 pages)
+- SEO-ready structure (Google-friendly)
+- Mobile & tablet optimized
+- Free SSL security setup
+- Contact form integration
+- Basic on-page SEO setup
+- Google Maps & social links integration
+- Free 2 stock videos + premium hero section (eye-catching homepage intro)
+- 1 round of revisions
 - **Timeline: 1–2 weeks**
 
-**Growth Package – $2,300**
+**🚀 Growth Package – $2,300**
 *For businesses ready to scale.*
-- Up to 8–10 Pages
-- Custom Design + Branding
-- E-Commerce or Booking Integration
-- Advanced SEO Optimization
-- Fast & Secure Hosting
+- Everything in Starter, plus:
+- Up to 10 pages
+- Blog setup for content marketing
+- Advanced SEO optimization
+- Basic e-commerce setup (up to 20 products)
+- Performance & speed optimization
+- Custom animations & interactive sections
+- 2 premium stock videos & images included
+- 2 rounds of revisions
+- Integration with newsletter / email marketing tools
+- Google Analytics & Search Console setup
 - **Timeline: 3–4 weeks**
 
-**Premium Package – $4,500+**
+**👑 Premium Package – $4,500+**
 *For companies needing a full digital presence.*
-- Unlimited Pages + Custom Features
-- Advanced UI/UX + Animations
-- Full E-Commerce Store or Web App
-- Advanced SEO Strategy + Performance
-- Hosting Setup Best Practices
+- Everything in Growth, plus:
+- Unlimited pages & custom layouts
+- Full e-commerce system (products, cart, checkout, payments)
+- AI-powered features (chatbot, smart search, etc.)
+- Branding package (logo, colors, typography guide)
+- Copywriting assistance for web pages
+- Advanced SEO + keyword research strategy
+- Multi-language support (if needed)
+- Priority support & training sessions
+- 1 month of free maintenance after launch
+- Custom video/animation integration in multiple sections
+- 3 rounds of revisions
 - **Timeline: 6–8 weeks**
 
-**⚡ Add-Ons (Custom Upgrades)**
-- Extra Pages: $150 each
-- Full SEO Setup: $500
-- Logo & Brand Kit: $400
-- Blog Integration: $300
-- E-Commerce Store (add-on): $700
-- Booking System (add-on): $400
-- Custom Features / Animations: from $250
-- Analytics Setup: $200
+**🛠️ Custom Upgrades (Available with any package)**
+- Custom Logo & Branding – $450+
+- E-commerce Expansion – $600+
+- Multi-language Support – $350+
+- Speed & Performance Boost – $250
+- AI Features – $500+
+- Copywriting Services – $300+
+- Ongoing SEO & Marketing – $400/month
+- Website Maintenance & Support – $200/month
+- Custom Video / Animation – $500+
 
 When providing the estimate, be direct. For example: "Based on your request for a 5-page site with a blog, I recommend the Growth Package with a blog add-on. The estimated cost would be around $2,600 and would take 3-4 weeks."
 `,
@@ -84,12 +105,12 @@ When providing the estimate, be direct. For example: "Based on your request for 
 
 const estimateProjectFlow = ai.defineFlow(
   {
-    name: 'estimateProjectFlow',
+    name: "estimateProjectFlow",
     inputSchema: EstimateProjectInputSchema,
     outputSchema: EstimateProjectOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
+  async (input) => {
+    const { output } = await prompt(input);
     return output!;
   }
 );
