@@ -30,11 +30,31 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { href: "#", icon: <Linkedin className="h-5 w-5" />, name: "LinkedIn" },
-  { href: "#", icon: <Facebook className="h-5 w-5" />, name: "Facebook" },
-  { href: "#", icon: <Instagram className="h-5 w-5" />, name: "Instagram" },
-  { href: "#", icon: <Github className="h-5 w-5" />, name: "GitHub" },
-  { href: "#", icon: <Globe className="h-5 w-5" />, name: "Portfolio" },
+  {
+    href: "https://www.linkedin.com/in/sawsimonlinn/",
+    icon: <Linkedin className="h-5 w-5" />,
+    name: "LinkedIn",
+  },
+  {
+    href: "https://www.facebook.com/sawsimonlinn/",
+    icon: <Facebook className="h-5 w-5" />,
+    name: "Facebook",
+  },
+  {
+    href: "https://www.instagram.com/sawsimonlinn",
+    icon: <Instagram className="h-5 w-5" />,
+    name: "Instagram",
+  },
+  {
+    href: "https://github.com/SawSimonLinn",
+    icon: <Github className="h-5 w-5" />,
+    name: "GitHub",
+  },
+  {
+    href: "https://www.sawsimonlinn.com/",
+    icon: <Globe className="h-5 w-5" />,
+    name: "Portfolio",
+  },
 ];
 
 export default function Header() {

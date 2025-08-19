@@ -5,11 +5,31 @@ import { Github, Linkedin, Facebook, Instagram, Globe } from "lucide-react";
 import Image from "next/image";
 
 const socialLinks = [
-  { href: "#", icon: <Linkedin className="h-5 w-5" />, name: "LinkedIn" },
-  { href: "#", icon: <Facebook className="h-5 w-5" />, name: "Facebook" },
-  { href: "#", icon: <Instagram className="h-5 w-5" />, name: "Instagram" },
-  { href: "#", icon: <Github className="h-5 w-5" />, name: "GitHub" },
-  { href: "#", icon: <Globe className="h-5 w-5" />, name: "Portfolio" },
+  {
+    href: "https://www.linkedin.com/in/sawsimonlinn/",
+    icon: <Linkedin className="h-5 w-5" />,
+    name: "LinkedIn",
+  },
+  {
+    href: "https://www.facebook.com/sawsimonlinn/",
+    icon: <Facebook className="h-5 w-5" />,
+    name: "Facebook",
+  },
+  {
+    href: "https://www.instagram.com/sawsimonlinn",
+    icon: <Instagram className="h-5 w-5" />,
+    name: "Instagram",
+  },
+  {
+    href: "https://github.com/SawSimonLinn",
+    icon: <Github className="h-5 w-5" />,
+    name: "GitHub",
+  },
+  {
+    href: "https://www.sawsimonlinn.com/",
+    icon: <Globe className="h-5 w-5" />,
+    name: "Portfolio",
+  },
 ];
 
 export default function Footer() {
@@ -39,11 +59,11 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-2 order-first md:order-none md:w-1/3 justify-center">
             <Image
-              src="/logo.png" // path relative to /public
+              src="/logo.png"
               alt="Code Heaven Studio Logo"
-              width={20} // adjust size
+              width={20}
               height={20}
-              priority // preloads for faster render
+              priority
             />
 
             <p className="text-sm font-semibold">Code Heaven Studio</p>
