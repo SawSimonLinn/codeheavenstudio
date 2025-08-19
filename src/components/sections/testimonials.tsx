@@ -15,7 +15,7 @@ const testimonials = [
     title: "Owner, Blue Bird Haus Sushi",
     quote:
       "Code Heaven Studio delivered exactly what we needed. The admin panel for updating our menu and photo gallery is incredibly easy to use, which saves us so much time. Our customers love the new site!",
-    avatar: "/review01.png",
+    avatar: "/review/review01.png",
     aiHint: "asian restaurant owner",
     rating: 5,
   },
@@ -24,7 +24,7 @@ const testimonials = [
     title: "Founder, J&C Collections",
     quote:
       "They beautifully captured the essence of our vintage traditional clothing brand. The admin blog page is a fantastic tool for us to share stories behind our collections. The team was a dream to work with.",
-    avatar: "/review02.png",
+    avatar: "/review/review02.png",
     aiHint: "fashion founder",
     rating: 5,
   },
@@ -33,7 +33,7 @@ const testimonials = [
     title: "Artistic Director, Jindallae Choir & Orchestra",
     quote:
       "Our new website has made it so much easier for our community to buy tickets and stay updated. The blog and member sections have brought our orchestra closer to our audience. Exceptional work!",
-    avatar: "/review03.png",
+    avatar: "/review/review03.png",
     aiHint: "korean music director",
     rating: 5,
   },
@@ -42,7 +42,7 @@ const testimonials = [
     title: "Administrator, Hope Private High School",
     quote:
       "The admin dashboard Code Heaven built for us is powerful and intuitive. It has streamlined our school's operations significantly. Their professionalism and technical skill are top-notch.",
-    avatar: "/review04.png",
+    avatar: "/review/review04.png",
     aiHint: "korean school administrator",
     rating: 5,
   },
@@ -51,7 +51,7 @@ const testimonials = [
     title: "Owner, The Daily Grind Coffee",
     quote:
       "I needed a simple, clean, and fast website for my coffee shop, and they delivered perfectly. The process was straightforward, and the final result looks fantastic. I'm getting more foot traffic already!",
-    avatar: "/review05.png",
+    avatar: "/review/review05.png",
     aiHint: "male coffee shop owner",
     rating: 5,
   },

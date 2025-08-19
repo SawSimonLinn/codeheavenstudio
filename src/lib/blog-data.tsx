@@ -5,7 +5,7 @@ export const blogPosts = [
     title: "The Future of Web Development with AI",
     description:
       "Explore how artificial intelligence is revolutionizing the way we build websites and applications.",
-    imageUrl: "/blogData_01.png",
+    imageUrl: "/blogData/blogData_01.png",
     aiHint: "AI web development",
     date: "October 26, 2023",
     slug: "/blog/future-of-web-dev",
@@ -66,7 +66,7 @@ export const blogPosts = [
     title: "10 SEO Tips to Boost Your Ranking",
     description:
       "Learn simple yet effective SEO strategies to improve your website's visibility on search engines.",
-    imageUrl: "/blogData_02.png",
+    imageUrl: "/blogData/blogData_02.png",
     aiHint: "SEO strategy",
     date: "October 20, 2023",
     slug: "/blog/seo-tips",
@@ -139,7 +139,7 @@ export const blogPosts = [
     title: "Why Your Small Business Needs a Website",
     description:
       "Discover the importance of having an online presence and how a website can help your business grow.",
-    imageUrl: "/blogData_03.png",
+    imageUrl: "/blogData/blogData_03.png",
     aiHint: "small business website",
     date: "October 15, 2023",
     slug: "/blog/small-business-website",

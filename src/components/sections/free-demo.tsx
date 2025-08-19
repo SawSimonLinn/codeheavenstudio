@@ -19,32 +19,32 @@ const features = [
 
 const demoImages = [
   {
-    src: "/screenshot_01.png",
+    src: "/freeDemo/screenshot_01.png",
     alt: "Project Demo 1",
     aiHint: "website mockup dark",
   },
   {
-    src: "/screenshot_02.png",
+    src: "/freeDemo/screenshot_02.png",
     alt: "Project Demo 2",
     aiHint: "website mockup light",
   },
   {
-    src: "/screenshot_03.png",
+    src: "/freeDemo/screenshot_03.png",
     alt: "Project Demo 3",
     aiHint: "dashboard mockup",
   },
   {
-    src: "/screenshot_04.png",
+    src: "/freeDemo/screenshot_04.png",
     alt: "Project Demo 4",
     aiHint: "mobile app mockup",
   },
   {
-    src: "/screenshot_05.png",
+    src: "/freeDemo/screenshot_05.png",
     alt: "Project Demo 5",
     aiHint: "mobile app mockup",
   },
   {
-    src: "/screenshot_06.png",
+    src: "/freeDemo/screenshot_06.png",
     alt: "Project Demo 6",
     aiHint: "mobile app mockup",
   },

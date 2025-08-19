@@ -9,21 +9,21 @@ const projects = [
     title: "Blue Bird Haus Sushi",
     description:
       "Blue Bird Haus Sushi – A modern sushi restaurant website with an easy-to-use online menu, vibrant photo gallery, and admin panel for adding, editing, and managing menu items.",
-    imageUrl: "/previous-work_02.png",
+    imageUrl: "/previousWorks/previous-work_02.png",
     aiHint: "corporate website",
   },
   {
     title: "Crypto Dashboard",
     description:
       "Crypto Dashboard – A modern dashboard for tracking cryptocurrency prices, with real-time updates and a sleek user interface.",
-    imageUrl: "/previous-work_01.png",
+    imageUrl: "/previousWorks/previous-work_01.png",
     aiHint: "dashboard website",
   },
   {
     title: "Booking System",
     description:
       "An integrated booking system for a restaurant agency. This system allows users to easily book tables, manage reservations, and receive real-time updates.",
-    imageUrl: "/previous-work_03.png",
+    imageUrl: "/previousWorks/previous-work_03.png",
     aiHint: "booking app",
   },
 ];
