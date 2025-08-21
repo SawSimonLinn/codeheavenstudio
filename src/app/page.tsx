@@ -33,7 +33,9 @@ export default function Home() {
               asChild
               className="ml-2 p-0 h-auto text-primary-foreground"
             >
-              <Link href="/pricing">Learn More</Link>
+              <Link href="https://wa.me/message/57WKZCOUS5YWE1" target="_blank">
+                Learn More
+              </Link>
             </Button>
           </div>
           <Button
