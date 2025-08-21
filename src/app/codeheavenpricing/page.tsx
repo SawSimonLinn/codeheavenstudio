@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
@@ -17,6 +20,7 @@ import {
   BadgeCent,
   MessageCircle,
   ArrowRight,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -24,7 +28,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const packages = [
   {
     name: "Starter Package",
-    price: "$1250",
+    originalPrice: "$1250",
+    price: "$938",
     description:
       "For small businesses getting online. Features can be added or removed.",
     features: [
@@ -42,7 +47,8 @@ const packages = [
   },
   {
     name: "Growth Package",
-    price: "$2300",
+    originalPrice: "$2300",
+    price: "$1725",
     description:
       "For businesses ready to scale. Features can be added or removed.",
     features: [
@@ -58,11 +64,12 @@ const packages = [
     ],
     cta: "Choose Growth",
     popular: true,
-    badge: "Save $500",
+    badge: "Save $575",
   },
   {
     name: "Premium Package",
-    price: "$4,500+",
+    originalPrice: "$4,500+",
+    price: "$3,375+",
     description:
       "For companies needing a full digital presence. Features can be added or removed.",
     features: [
@@ -145,16 +152,72 @@ const addOns = [
   },
 ];
 
+const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
+  <div className="flex flex-col items-center">
+    <span className="text-3xl sm:text-4xl font-bold">
+      {String(value).padStart(2, "0")}
+    </span>
+    <span className="text-xs sm:text-sm uppercase text-muted-foreground">
+      {label}
+    </span>
+  </div>
+);
+
 export default function PricingPage() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const endDate = new Date(year, 8, 30, 23, 59, 59); // September is month 8 (0-indexed)
+
+      const difference = +endDate - +now;
+      let newTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+      if (difference > 0) {
+        newTimeLeft = {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        };
+      }
+      return newTimeLeft;
+    };
+
+    setTimeLeft(calculateTimeLeft());
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header />
       <main className="flex-1">
         <section className="container mx-auto px-4 py-16 sm:py-24">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-              Packages & Pricing
-            </h1>
+            <div className="relative inline-block">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                Packages & Pricing
+              </h1>
+              <div className="absolute -top-4 -right-12 transform rotate-12">
+                <div className="relative">
+                  <Zap className="absolute h-10 w-10 text-yellow-400/50 animate-ping" />
+                  <div className="relative flex items-center justify-center rounded-full bg-red-500 px-3 py-1.5 text-base font-bold text-white shadow-lg animate-pulse">
+                    25% OFF
+                  </div>
+                </div>
+              </div>
+            </div>
             <p className="mt-4 text-lg leading-8 text-muted-foreground">
               Transparent pricing for every stage of your business. Choose the
               plan that's right for you.
@@ -182,13 +245,12 @@ export default function PricingPage() {
                   <CardTitle>{pkg.name}</CardTitle>
                   <CardDescription>{pkg.description}</CardDescription>
                   <div className="pt-4 flex items-baseline gap-x-2">
-                    <span className="text-4xl font-bold">{pkg.price}</span>
-                    {pkg.badge && (
-                      <div className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-3 py-1 text-sm font-semibold text-accent">
-                        <BadgeCent className="h-4 w-4" />
-                        {pkg.badge}
-                      </div>
-                    )}
+                    <span className="text-4xl font-bold text-primary">
+                      {pkg.price}
+                    </span>
+                    <span className="text-xl font-medium text-muted-foreground line-through">
+                      {pkg.originalPrice}
+                    </span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
                     One-time payment
@@ -218,6 +280,39 @@ export default function PricingPage() {
                 </div>
               </Card>
             ))}
+          </div>
+        </section>
+
+        <section className="bg-primary/5 py-16 sm:py-24">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                Limited Time: 25% Off All Packages!
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                Until the end of September, enjoy a 25% discount on any of our
+                web design packages. Don't miss out on this opportunity to
+                launch your project at an unbeatable price.
+              </p>
+            </div>
+            <div className="mt-12 mx-auto max-w-sm">
+              <Card className="shadow-lg">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-primary">Offer Ends In</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex justify-around">
+                    <CountdownUnit value={timeLeft.days} label="Days" />
+                    <CountdownUnit value={timeLeft.hours} label="Hours" />
+                    <CountdownUnit value={timeLeft.minutes} label="Minutes" />
+                    <CountdownUnit value={timeLeft.seconds} label="Seconds" />
+                  </div>
+                  <Button asChild size="lg" className="w-full mt-8">
+                    <Link href="/contact">Claim Your Discount</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 
@@ -308,7 +403,6 @@ export default function PricingPage() {
                   </CardContent>
                 </Card>
               </div>
-              {/* use different name and brand and description */}
               <div className="text-center">
                 <Card className="bg-secondary text-secondary-foreground shadow-xl">
                   <CardContent className="p-8">
@@ -317,7 +411,7 @@ export default function PricingPage() {
                         <AvatarImage
                           src="/review/review06.png"
                           alt="MoMo Chan"
-                          data-ai-hint="fashion founder"
+                          data-ai-hint="design founder"
                         />
                         <AvatarFallback>MC</AvatarFallback>
                       </Avatar>

@@ -42,64 +42,62 @@ Analyze the user's request: {{{websiteNeeds}}}
 
 Carefully match the user's needs to one of the main packages. If they request features not included in the base package, add the relevant Add-On costs. Provide a final price and an estimated timeline. Be clear and concise.
 
-**Pricing Structure:**
+**Pricing Structure (Note: Prices are currently 25% off until September 30th):**
 
-**🌱 Starter Package – $1,250**
+**💼 Starter Package – $938 (Usually $1,250)**
 *For small businesses getting online.*
-- Modern, responsive website (up to 5 pages)
-- SEO-ready structure (Google-friendly)
-- Mobile & tablet optimized
-- Free SSL security setup
-- Contact form integration
-- Basic on-page SEO setup
-- Google Maps & social links integration
-- Free 2 stock videos + premium hero section (eye-catching homepage intro)
+*One-time payment. (Adjustable — features can be added or removed.)*
+- 5-page responsive website (Home, About, Services, Blog, Contact)
+- Mobile-friendly + SEO-ready design
+- Custom design with brand colors & typography
+- Free 2 stock videos + premium hero section
 - 1 round of revisions
+- Basic contact form setup
+- Google Analytics setup
+- 2 weeks of support after launch
 - **Timeline: 1–2 weeks**
 
-**🚀 Growth Package – $2,300**
+**🚀 Growth Package – $1,725 (Usually $2,300)**
 *For businesses ready to scale.*
-- Everything in Starter, plus:
-- Up to 10 pages
-- Blog setup for content marketing
-- Advanced SEO optimization
-- Basic e-commerce setup (up to 20 products)
-- Performance & speed optimization
-- Custom animations & interactive sections
-- 2 premium stock videos & images included
+*One-time payment. (Adjustable — features can be added or removed.)*
+- Everything in Starter Package plus:
+- Up to 12 custom-designed pages
+- Blog setup with categories & tags
+- Advanced SEO optimization (keywords, on-page SEO, schema setup)
+- Premium stock images & icons included
+- Performance optimization (speed + Core Web Vitals)
 - 2 rounds of revisions
-- Integration with newsletter / email marketing tools
-- Google Analytics & Search Console setup
+- 1-month post-launch support
 - **Timeline: 3–4 weeks**
 
-**👑 Premium Package – $4,500+**
+**🌐 Premium Package – $3,375+ (Usually $4,500+)**
 *For companies needing a full digital presence.*
-- Everything in Growth, plus:
-- Unlimited pages & custom layouts
-- Full e-commerce system (products, cart, checkout, payments)
-- AI-powered features (chatbot, smart search, etc.)
-- Branding package (logo, colors, typography guide)
-- Copywriting assistance for web pages
-- Advanced SEO + keyword research strategy
-- Multi-language support (if needed)
-- Priority support & training sessions
-- 1 month of free maintenance after launch
-- Custom video/animation integration in multiple sections
+*One-time payment. (Adjustable — features can be added or removed.)*
+- Everything in Growth Package plus:
+- Unlimited pages + advanced layouts
+- Custom animations & video integration
+- AI-powered features (chatbots, recommendations, or workflows)
+- Marketing landing pages + conversion-focused design
+- Custom blog / CMS integration
+- Priority support + maintenance options
 - 3 rounds of revisions
+- 2 months post-launch support
 - **Timeline: 6–8 weeks**
 
-**🛠️ Custom Upgrades (Available with any package)**
-- Custom Logo & Branding – $450+
-- E-commerce Expansion – $600+
-- Multi-language Support – $350+
-- Speed & Performance Boost – $250
-- AI Features – $500+
-- Copywriting Services – $300+
-- Ongoing SEO & Marketing – $400/month
-- Website Maintenance & Support – $200/month
-- Custom Video / Animation – $500+
+**🛠️ Custom Upgrades (Optional Add-ons for Any Package)**
+- Custom Logo & Branding — $450+
+- Extra Pages - $150/page
+- Full SEO Setup - $500
+- Blog Integration - $300
+- Multi-language Support — $350+
+- Speed & Performance Boost — $250
+- SEO Copywriting — $300+
+- Ongoing SEO & Marketing — $400/month
+- Website Maintenance & Support — $200/month
+- Custom Video / Animation — $500+
+- AI Features (chatbot, automation) — $500+
 
-When providing the estimate, be direct. For example: "Based on your request for a 5-page site with a blog, I recommend the Growth Package with a blog add-on. The estimated cost would be around $2,600 and would take 3-4 weeks."
+When providing the estimate, be direct. For example: "Based on your request for a 5-page site with a blog, I recommend the Starter Package. The estimated promotional cost would be around $938 and would take 1-2 weeks."
 `,
 });
 
