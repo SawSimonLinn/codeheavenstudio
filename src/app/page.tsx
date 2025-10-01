@@ -27,7 +27,7 @@ export default function Home() {
           <div className="container mx-auto px-4 text-sm sm:text-base">
             <Zap className="inline-block h-5 w-5 mr-2 animate-pulse" />
             <strong>Limited Time Offer:</strong> Get <strong>25% OFF</strong>{" "}
-            all packages until September 30th!
+            all packages until October 31st!
             <Button
               variant="link"
               asChild
