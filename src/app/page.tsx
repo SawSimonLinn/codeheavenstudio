@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header />
-      {isBannerVisible && (
+      {/* {isBannerVisible && (
         <div className="relative bg-primary text-primary-foreground text-center py-3 animate-in fade-in slide-in-from-top-2 duration-500">
           <div className="container mx-auto px-4 text-sm sm:text-base">
             <Zap className="inline-block h-5 w-5 mr-2 animate-pulse" />
@@ -48,7 +48,7 @@ export default function Home() {
             <span className="sr-only">Close banner</span>
           </Button>
         </div>
-      )}
+      )} */}
       <main className="flex-1">
         <HeroSection />
         <FreeDemoSection />
