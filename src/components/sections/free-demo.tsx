@@ -65,7 +65,7 @@ export default function FreeDemoSection() {
         <div className="grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2">
           <div>
             <div className="text-base font-semibold leading-7 text-primary">
-              🎁 Free Demo First
+              Free Demo First
             </div>
             <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl font-headline">
               Free Demo Before You Commit

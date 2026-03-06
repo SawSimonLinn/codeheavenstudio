@@ -91,9 +91,7 @@ export default function ContactSection() {
               <div>
                 {submitted ? (
                   <div className="p-6 text-center">
-                    <h2 className="text-2xl font-semibold mb-2">
-                      🎉 Thank You!
-                    </h2>
+                    <h2 className="text-2xl font-semibold mb-2">Thank You!</h2>
                     <p className="text-muted-foreground">
                       Your message has been sent successfully. We’ll get back to
                       you soon.

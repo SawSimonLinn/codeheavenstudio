@@ -44,9 +44,9 @@ Carefully match the user's needs to one of the main packages. If they request fe
 
 **Pricing Structure (Note: Prices are currently 25% off until September 30th):**
 
-**💼 Starter Package – $938 (Usually $1,250)**
+**Starter Package - $938 (Usually $1,250)**
 *For small businesses getting online.*
-*One-time payment. (Adjustable — features can be added or removed.)*
+*One-time payment. (Adjustable - features can be added or removed.)*
 - 5-page responsive website (Home, About, Services, Blog, Contact)
 - Mobile-friendly + SEO-ready design
 - Custom design with brand colors & typography
@@ -57,9 +57,9 @@ Carefully match the user's needs to one of the main packages. If they request fe
 - 2 weeks of support after launch
 - **Timeline: 1–2 weeks**
 
-**🚀 Growth Package – $1,725 (Usually $2,300)**
+**Growth Package - $1,725 (Usually $2,300)**
 *For businesses ready to scale.*
-*One-time payment. (Adjustable — features can be added or removed.)*
+*One-time payment. (Adjustable - features can be added or removed.)*
 - Everything in Starter Package plus:
 - Up to 12 custom-designed pages
 - Blog setup with categories & tags
@@ -70,9 +70,9 @@ Carefully match the user's needs to one of the main packages. If they request fe
 - 1-month post-launch support
 - **Timeline: 3–4 weeks**
 
-**🌐 Premium Package – $3,375+ (Usually $4,500+)**
+**Premium Package - $3,375+ (Usually $4,500+)**
 *For companies needing a full digital presence.*
-*One-time payment. (Adjustable — features can be added or removed.)*
+*One-time payment. (Adjustable - features can be added or removed.)*
 - Everything in Growth Package plus:
 - Unlimited pages + advanced layouts
 - Custom animations & video integration
@@ -84,18 +84,18 @@ Carefully match the user's needs to one of the main packages. If they request fe
 - 2 months post-launch support
 - **Timeline: 6–8 weeks**
 
-**🛠️ Custom Upgrades (Optional Add-ons for Any Package)**
-- Custom Logo & Branding — $450+
+**Custom Upgrades (Optional Add-ons for Any Package)**
+- Custom Logo & Branding - $450+
 - Extra Pages - $150/page
 - Full SEO Setup - $500
 - Blog Integration - $300
-- Multi-language Support — $350+
-- Speed & Performance Boost — $250
-- SEO Copywriting — $300+
-- Ongoing SEO & Marketing — $400/month
-- Website Maintenance & Support — $200/month
-- Custom Video / Animation — $500+
-- AI Features (chatbot, automation) — $500+
+- Multi-language Support - $350+
+- Speed & Performance Boost - $250
+- SEO Copywriting - $300+
+- Ongoing SEO & Marketing - $400/month
+- Website Maintenance & Support - $200/month
+- Custom Video / Animation - $500+
+- AI Features (chatbot, automation) - $500+
 
 When providing the estimate, be direct. For example: "Based on your request for a 5-page site with a blog, I recommend the Starter Package. The estimated promotional cost would be around $938 and would take 1-2 weeks."
 `,

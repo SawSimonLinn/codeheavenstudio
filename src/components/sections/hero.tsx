@@ -47,7 +47,7 @@ export default function HeroSection() {
           </p>
           <p className="mt-6 text-base leading-7 text-muted-foreground sm:text-lg">
             You run your business while we grow your business. We craft modern,
-            responsive, and SEO-friendly websites — powered by creativity and AI
+            responsive, and SEO-friendly websites - powered by creativity and AI
             innovation.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">

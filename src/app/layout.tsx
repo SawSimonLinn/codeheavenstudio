@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Code Heaven Studio AI",
   description:
-    "Heaven for Your Digital Growth. We craft modern, responsive, and SEO-friendly websites — powered by creativity and AI innovation.",
+    "Heaven for Your Digital Growth. We craft modern, responsive, and SEO-friendly websites - powered by creativity and AI innovation.",
   alternates: {
     canonical: "https://www.codeheavenstudio.com/",
   },
