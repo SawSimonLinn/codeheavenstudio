@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -47,8 +46,8 @@ export default function HeroSection() {
           </p>
           <p className="mt-6 text-base leading-7 text-muted-foreground sm:text-lg">
             You run your business while we grow your business. We craft modern,
-            responsive, and SEO-friendly websites - powered by creativity and AI
-            innovation.
+            responsive, and SEO-friendly websites powered by creativity and
+            strategy.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
             <Button
@@ -59,9 +58,7 @@ export default function HeroSection() {
               <Link href="#free-demo">Get Your Free Demo</Link>
             </Button>
             <Button size="lg" variant="ghost" asChild>
-              <Link href="#ai-features">
-                Explore AI Features <Sparkles className="ml-2 h-4 w-4" />
-              </Link>
+              <Link href="/projects">Explore Projects</Link>
             </Button>
           </div>
         </div>

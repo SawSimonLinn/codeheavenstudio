@@ -15,8 +15,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find((p) => p.slug === `/blog/${params.slug}`);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === `/blog/${slug}`);
 
   if (!post) {
     notFound();
@@ -29,8 +34,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <article className="container mx-auto px-4 py-16 sm:py-24">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8">
-              <Button variant="ghost" asChild>
-                <Link href="/blog">
+              <Button
+                variant="ghost"
+                asChild
+                className="px-0 hover:bg-transparent hover:text-foreground"
+              >
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center transition-transform duration-200 hover:translate-x-0.5 hover:underline"
+                >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Blog
                 </Link>

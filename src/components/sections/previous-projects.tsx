@@ -3,30 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const projects = [
-  {
-    title: "Blue Bird Haus Sushi",
-    description:
-      "Blue Bird Haus Sushi – A modern sushi restaurant website with an easy-to-use online menu, vibrant photo gallery, and admin panel for adding, editing, and managing menu items.",
-    imageUrl: "/previousWorks/previous-work_02.png",
-    aiHint: "corporate website",
-  },
-  {
-    title: "Crypto Dashboard",
-    description:
-      "Crypto Dashboard – A modern dashboard for tracking cryptocurrency prices, with real-time updates and a sleek user interface.",
-    imageUrl: "/previousWorks/previous-work_01.png",
-    aiHint: "dashboard website",
-  },
-  {
-    title: "Booking System",
-    description:
-      "An integrated booking system for a restaurant agency. This system allows users to easily book tables, manage reservations, and receive real-time updates.",
-    imageUrl: "/previousWorks/previous-work_03.png",
-    aiHint: "booking app",
-  },
-];
+import { projects } from "@/lib/projects-data";
 
 export default function PreviousProjectsSection() {
   return (
@@ -45,10 +22,10 @@ export default function PreviousProjectsSection() {
       </div>
 
       <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <Card
-            key={index}
-            className="overflow-hidden transition-transform hover:scale-105 hover:shadow-xl"
+            key={project.slug}
+            className="overflow-hidden transition-transform md:hover:scale-105 md:hover:shadow-xl"
           >
             <CardHeader className="p-0">
               <Image
@@ -56,7 +33,7 @@ export default function PreviousProjectsSection() {
                 alt={project.title}
                 width={600}
                 height={400}
-                data-ai-hint={project.aiHint}
+                data-ai-hint={project.imageHint}
                 className="object-cover"
               />
             </CardHeader>
@@ -65,8 +42,13 @@ export default function PreviousProjectsSection() {
                 {project.title}
               </CardTitle>
               <p className="mt-2 text-muted-foreground">
-                {project.description}
+                {project.shortDescription}
               </p>
+              <Button variant="link" asChild className="mt-4 h-auto p-0">
+                <Link href={`/projects/${project.slug}`}>
+                  View Details <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </CardContent>
           </Card>
         ))}
@@ -74,12 +56,8 @@ export default function PreviousProjectsSection() {
 
       <div className="mt-16 text-center">
         <Button size="lg" asChild>
-          <Link
-            href="https://www.sawsimonlinn.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
+          <Link href="/projects">
+            View All Projects <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>
       </div>

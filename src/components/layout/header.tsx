@@ -23,8 +23,7 @@ import {
 import Image from "next/image";
 
 const navItems = [
-  { href: "/#previous-work", label: "Previous Work" },
-  { href: "/#ai-features", label: "AI Features" },
+  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About Us" },
   { href: "/blog", label: "Blog" },
 ];

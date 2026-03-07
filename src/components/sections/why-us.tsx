@@ -1,7 +1,6 @@
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { DollarSign, Award, Sparkles, Gift } from 'lucide-react';
-import Image from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { DollarSign, Award, Gauge, Gift } from 'lucide-react';
 
 const benefits = [
   {
@@ -15,9 +14,9 @@ const benefits = [
     icon: <Award className="h-6 w-6" />,
   },
   {
-    title: 'AI-Powered Solutions',
-    description: 'We integrate smart, AI-powered features to make your website more intelligent and efficient.',
-    icon: <Sparkles className="h-6 w-6" />,
+    title: 'Performance-Driven Builds',
+    description: 'We prioritize speed, responsiveness, and clear user flows so your website performs in real-world use.',
+    icon: <Gauge className="h-6 w-6" />,
   },
   {
     title: 'Free Demo Before Commitment',
