@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +8,11 @@ import { Button } from "@/components/ui/button";
 import { projects } from "@/lib/projects-data";
 
 export default function PreviousProjectsSection() {
-  const [featured, ...rest] = projects;
+  const allProjects = projects.slice(0, 5);
+  const [showAll, setShowAll] = useState(false);
+
+  const [featured, ...rest] = allProjects;
+  const visibleRest = showAll ? rest : rest.slice(0, 1);
 
   return (
     <section
@@ -44,7 +51,7 @@ export default function PreviousProjectsSection() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary bg-primary/20 rounded-full px-3 py-1 mb-3">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-white bg-primary rounded-full px-3 py-1 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {featured.category}
             </span>
             <h3 className="text-2xl font-bold text-white mb-1">
@@ -62,11 +69,13 @@ export default function PreviousProjectsSection() {
           </div>
         </div>
 
-        {/* Smaller projects */}
-        {rest.map((project) => (
+        {/* Smaller projects — on mobile show 1 by default (2 total with featured), all on lg+ */}
+        {rest.map((project, i) => (
           <div
             key={project.slug}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card"
+            className={`group relative overflow-hidden rounded-2xl border border-border bg-card ${
+              i >= 1 && !showAll ? "hidden lg:block" : ""
+            }`}
           >
             <Image
               src={project.imageUrl}
@@ -77,7 +86,7 @@ export default function PreviousProjectsSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest text-primary bg-primary/20 rounded-full px-3 py-1 mb-2">
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest text-white bg-primary rounded-full px-3 py-1 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {project.category}
               </span>
               <h3 className="text-lg font-bold text-white mb-3">
@@ -93,6 +102,19 @@ export default function PreviousProjectsSection() {
           </div>
         ))}
       </div>
+
+      {/* See More button — mobile only */}
+      {!showAll && (
+        <div className="flex justify-center mt-6 lg:hidden">
+          <Button
+            variant="outline"
+            className="rounded-full"
+            onClick={() => setShowAll(true)}
+          >
+            See More <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </section>
   );
 }

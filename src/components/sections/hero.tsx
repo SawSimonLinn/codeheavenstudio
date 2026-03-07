@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Star } from "lucide-react";
+import { heroContent, heroStats } from "@/lib/hero-data";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden flex items-center min-h-screen">
+    <section className="relative overflow-hidden flex items-center min-h-[85vh]">
       <video
         autoPlay
         loop
@@ -28,23 +29,21 @@ export default function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
-              Open for new projects
+              {heroContent.badge}
             </div>
 
             <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
-              Websites that
+              {heroContent.headingLine1}
               <br />
               <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
-                work as hard
+                {heroContent.headingHighlight}
               </span>
               <br />
-              as you do.
+              {heroContent.headingLine3}
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-md mb-8 leading-relaxed">
-              Code Heaven Studio builds fast, modern, and SEO-optimized
-              websites. You focus on your business. We handle the digital
-              growth.
+              {heroContent.description}
             </p>
 
             <div className="flex flex-wrap gap-3 mb-14">
@@ -53,8 +52,9 @@ export default function HeroSection() {
                 asChild
                 className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
               >
-                <Link href="#free-demo">
-                  Get a Free Demo <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href={heroContent.primaryCta.href}>
+                  {heroContent.primaryCta.label}{" "}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -63,29 +63,26 @@ export default function HeroSection() {
                 asChild
                 className="rounded-full px-8"
               >
-                <Link href="/projects">See Our Work</Link>
+                <Link href={heroContent.secondaryCta.href}>
+                  {heroContent.secondaryCta.label}
+                </Link>
               </Button>
             </div>
 
             <div className="flex items-center gap-8 pt-8 border-t border-border/60">
-              <div>
-                <p className="text-3xl font-extrabold text-foreground">50+</p>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  Projects
-                </p>
-              </div>
-              <div className="h-10 w-px bg-border" />
-              <div>
-                <p className="text-3xl font-extrabold text-foreground">5.0★</p>
-                <p className="text-sm text-muted-foreground mt-0.5">Rating</p>
-              </div>
-              <div className="h-10 w-px bg-border" />
-              <div>
-                <p className="text-3xl font-extrabold text-foreground">100%</p>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  Site Ownership
-                </p>
-              </div>
+              {heroStats.map((stat, i) => (
+                <div key={stat.label} className="flex items-center gap-8">
+                  {i > 0 && <div className="h-10 w-px bg-border" />}
+                  <div>
+                    <p className="text-3xl font-extrabold text-foreground">
+                      {stat.value}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-0.5">
+                      {stat.label}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -99,11 +96,11 @@ export default function HeroSection() {
                   <div className="h-3 w-3 rounded-full bg-green-400/80" />
                 </div>
                 <div className="ml-3 flex-1 text-center text-xs text-muted-foreground bg-background/60 rounded py-0.5 px-2">
-                  bluebirdhaussushi.com
+                  {heroContent.mockupUrl}
                 </div>
               </div>
               <Image
-                src="/previousWorks/previous-work_02.png"
+                src={heroContent.mockupImage}
                 alt="Website Preview"
                 width={800}
                 height={500}
@@ -123,16 +120,16 @@ export default function HeroSection() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground italic leading-relaxed">
-                "Already getting more foot traffic. Fantastic work!"
+                &ldquo;{heroContent.testimonial.quote}&rdquo;
               </p>
               <p className="text-xs font-bold text-foreground mt-2">
-               Ja Ja., Blue Bird Haus Sushi
+                {heroContent.testimonial.author}
               </p>
             </div>
 
             {/* Floating badge */}
             <div className="absolute -top-5 -right-4 bg-gradient-to-r from-primary to-purple-500 text-white rounded-2xl px-5 py-3 shadow-lg text-sm font-bold whitespace-nowrap">
-              Free Demo First
+              {heroContent.floatingBadge}
             </div>
           </div>
         </div>

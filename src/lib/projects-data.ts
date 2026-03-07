@@ -41,50 +41,33 @@ export const projects: Project[] = [
     liveUrl: "https://bluebirdhaussushi.com",
   },
   {
-    slug: "crypto-dashboard",
-    title: "Crypto Dashboard",
+    slug: "dunedin-sd",
+    title: "Dunedin SD",
     shortDescription:
-      "A data-focused dashboard for tracking cryptocurrency prices and market movement in real time.",
+      "A New Zealand-rooted burger bar in North Park, San Diego — featuring full menus for diner, brunch, happy hour, and dessert, plus online ordering, reservations, and private events.",
     overview:
-      "The goal was to create a fast, readable interface for users who monitor multiple crypto assets throughout the day.",
+      "Dunedin SD is a casual, dog-friendly New Zealand-inspired restaurant in North Park with a full bar, rotating craft beers, and a menu spanning breakfast through dinner. They needed a site that matched their laid-back atmosphere while handling all the logistics — reservations, online orders, private events, and a Burger of the Month Club.",
     challenge:
-      "Users needed quick access to high-signal data without visual clutter or slow page interactions.",
+      "The restaurant offers a wide range of dining experiences and services but had no unified online presence to showcase their menus, handle bookings, and drive online orders from a single destination.",
     solution:
-      "We designed a clean dashboard layout with clear hierarchy, optimized loading states, and responsive charts for desktop and mobile.",
-    imageUrl: "/previousWorks/previous-work_01.png",
-    imageHint: "dashboard website",
-    category: "Fintech Dashboard",
+      "We built a warm, visually rich restaurant website with dedicated sections for diner, brunch, happy hour, and dessert menus, integrated online ordering, a reservation system, private event inquiries, gift cards, and a photo gallery that captures the patio, bar, and signature dishes.",
+    imageUrl: "/previousWorks/previous-work_06.png",
+    imageHint: "burger restaurant website",
+    category: "Restaurant Website",
     timeline: "5 weeks",
-    services: ["Product UI", "Dashboard Development", "Performance Tuning"],
-    techStack: ["React", "TypeScript", "Tailwind CSS"],
-    outcomes: [
-      "Faster scanability of key market metrics",
-      "Smooth experience across device sizes",
-      "Improved retention through clearer data presentation",
+    services: [
+      "UI/UX Design",
+      "Frontend Development",
+      "Online Ordering Integration",
+      "Reservation System",
     ],
-  },
-  {
-    slug: "restaurant-booking-system",
-    title: "Booking System",
-    shortDescription:
-      "A reservation platform for restaurant operations, including table booking and booking management.",
-    overview:
-      "This project focused on reducing friction for both customers making reservations and internal staff managing availability.",
-    challenge:
-      "The team was handling bookings manually, which caused mistakes and inconsistent communication with customers.",
-    solution:
-      "We built an integrated booking flow with clear time-slot selection, booking confirmations, and an operational view for reservation management.",
-    imageUrl: "/previousWorks/previous-work_03.png",
-    imageHint: "booking app",
-    category: "Booking Platform",
-    timeline: "6 weeks",
-    services: ["UX Flow Design", "Web App Development", "Operational Tools"],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
     outcomes: [
-      "Reduced manual booking errors",
-      "Streamlined reservation handling for staff",
-      "Better booking experience for customers",
+      "Unified online presence covering all menus and services",
+      "Streamlined reservation and private event booking flow",
+      "Online ordering and gift card system driving direct revenue",
     ],
+    liveUrl: "https://www.dunedinsd.com/",
   },
   {
     slug: "ventures-quality-insurance",
@@ -143,6 +126,52 @@ export const projects: Project[] = [
       "Strong visual presence reflecting authentic Thai heritage",
     ],
     liveUrl: "https://bangkoksoulalhambra.vercel.app/",
+  },
+  {
+    slug: "crypto-dashboard",
+    title: "Crypto Dashboard",
+    shortDescription:
+      "A data-focused dashboard for tracking cryptocurrency prices and market movement in real time.",
+    overview:
+      "The goal was to create a fast, readable interface for users who monitor multiple crypto assets throughout the day.",
+    challenge:
+      "Users needed quick access to high-signal data without visual clutter or slow page interactions.",
+    solution:
+      "We designed a clean dashboard layout with clear hierarchy, optimized loading states, and responsive charts for desktop and mobile.",
+    imageUrl: "/previousWorks/previous-work_01.png",
+    imageHint: "dashboard website",
+    category: "Fintech Dashboard",
+    timeline: "5 weeks",
+    services: ["Product UI", "Dashboard Development", "Performance Tuning"],
+    techStack: ["React", "TypeScript", "Tailwind CSS"],
+    outcomes: [
+      "Faster scanability of key market metrics",
+      "Smooth experience across device sizes",
+      "Improved retention through clearer data presentation",
+    ],
+  },
+  {
+    slug: "restaurant-booking-system",
+    title: "Booking System",
+    shortDescription:
+      "A reservation platform for restaurant operations, including table booking and booking management.",
+    overview:
+      "This project focused on reducing friction for both customers making reservations and internal staff managing availability.",
+    challenge:
+      "The team was handling bookings manually, which caused mistakes and inconsistent communication with customers.",
+    solution:
+      "We built an integrated booking flow with clear time-slot selection, booking confirmations, and an operational view for reservation management.",
+    imageUrl: "/previousWorks/previous-work_03.png",
+    imageHint: "booking app",
+    category: "Booking Platform",
+    timeline: "6 weeks",
+    services: ["UX Flow Design", "Web App Development", "Operational Tools"],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    outcomes: [
+      "Reduced manual booking errors",
+      "Streamlined reservation handling for staff",
+      "Better booking experience for customers",
+    ],
   },
 ];
 
