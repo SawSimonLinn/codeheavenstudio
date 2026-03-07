@@ -69,69 +69,6 @@ const packages = [
   },
 ];
 
-const addOns = [
-  {
-    name: "Custom Logo & Branding",
-    price: "$450+",
-    description:
-      "Professional logo design, brand colors, and typography guidelines.",
-  },
-  {
-    name: "Extra Pages",
-    price: "$150/page",
-    description: "Add more pages to your website as your business grows.",
-  },
-  {
-    name: "Full SEO Setup",
-    price: "$500",
-    description:
-      "Comprehensive on-page and technical SEO to boost your ranking.",
-  },
-  {
-    name: "Blog Integration",
-    price: "$300",
-    description:
-      "A fully functional blog to share updates and attract traffic.",
-  },
-  {
-    name: "Multi-language Support",
-    price: "$350+",
-    description: "Translate and localize your site for global audiences.",
-  },
-  {
-    name: "Speed & Performance Boost",
-    price: "$250",
-    description: "Advanced optimization for ultra-fast load times.",
-  },
-  {
-    name: "SEO Copywriting",
-    price: "$300+",
-    description:
-      "SEO-friendly website content for better engagement and ranking.",
-  },
-  {
-    name: "Ongoing SEO & Marketing",
-    price: "$400/month",
-    description:
-      "Continuous optimization, keyword tracking, and marketing strategy.",
-  },
-  {
-    name: "Website Maintenance & Support",
-    price: "$200/month",
-    description: "Updates, backups, bug fixes, and priority support.",
-  },
-  {
-    name: "Custom Video / Animation",
-    price: "$500+",
-    description:
-      "A tailored explainer video or homepage animation for your brand.",
-  },
-  {
-    name: "AI Features (chatbot, automation)",
-    price: "$500+",
-    description: "Integrate a custom AI chatbot or workflow automation tools.",
-  },
-];
 
 const packageBasePrices: Record<string, { original: number; discounted: number }> = {
   "Starter Package": { original: 1250, discounted: 938 },
@@ -186,8 +123,8 @@ export default function PricingPage() {
     const calculateTimeLeft = () => {
       const now = new Date();
       let endDate = new Date(now.getFullYear(), 3, 30, 23, 59, 59);
-      while (endDate <= now) {
-        endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 2, endDate.getDate(), 23, 59, 59);
+      if (endDate <= now) {
+        endDate = new Date(now.getFullYear() + 1, 3, 30, 23, 59, 59);
       }
       const difference = +endDate - +now;
       return {
