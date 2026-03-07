@@ -8,56 +8,69 @@ import {
   Lightbulb,
   Zap,
   Rocket,
-  Code,
-  PenTool,
-  Bot,
-  Megaphone,
-  Palette,
-  Cog,
+  Code2,
+  Layers,
+  Paintbrush,
+  SearchCheck,
+  Database,
+  Smartphone,
 } from "lucide-react";
 
-const teamMembers = [
+const founders = [
   {
-    name: "Simon Linn",
-    role: "Lead Developer",
+    name: "Simon",
+    role: "Co-Founder & Developer",
+    location: "Los Angeles, CA",
     avatar: "/avatar.png",
     aiHint: "male developer",
-    icon: <Code className="h-10 w-10 text-primary" />,
+    bio: "Before writing code, Simon spent years as a sushi chef and worked in the startup world. That mix of precision craft and fast-paced hustle carried right into building software. He trained at TripleTen and now co-runs Code Heaven Studio, turning ideas into polished digital products.",
   },
   {
-    name: "Alfred Lynn",
-    role: "Lead Designer",
+    name: "Mia",
+    role: "Co-Founder & Developer",
+    location: "San Diego, CA",
     avatar: "/avatar.png",
-    aiHint: "female designer",
-    icon: <Palette className="h-10 w-10 text-primary" />,
+    aiHint: "female developer",
+    bio: "Mia comes from a background in beauty artistry and bartending, where reading people and delivering great experiences was everything. After transitioning into tech through TripleTen, she brings that same energy and attention to detail to every project she and Simon take on.",
+  },
+];
+
+const skills = [
+  {
+    title: "Full Stack Engineering",
+    description:
+      "We build end-to-end, from database to UI. Every layer of your product is handled in-house.",
+    icon: <Layers className="h-8 w-8 text-primary" />,
   },
   {
-    name: "Chen Wang",
-    role: "AI Engineer",
-    avatar: "/avatar.png",
-    aiHint: "male engineer",
-    icon: <Bot className="h-10 w-10 text-primary" />,
+    title: "Next.js & React",
+    description:
+      "Our primary stack. Next.js gives your product server-side rendering and 100% SEO out of the box.",
+    icon: <Code2 className="h-8 w-8 text-primary" />,
   },
   {
-    name: "Merina Sui",
-    role: "Project Manager",
-    avatar: "/avatar.png",
-    aiHint: "female project manager",
-    icon: <Megaphone className="h-10 w-10 text-primary" />,
+    title: "Design Eye",
+    description:
+      "With 8+ years of design background between us, we build things that look as good as they perform.",
+    icon: <Paintbrush className="h-8 w-8 text-primary" />,
   },
   {
-    name: "Blessed Johnson",
-    role: "Frontend Developer",
-    avatar: "/avatar.png",
-    aiHint: "developer portrait",
-    icon: <Cog className="h-10 w-10 text-primary" />,
+    title: "SEO Optimized",
+    description:
+      "Every site we ship is structured for search engines from day one, not bolted on as an afterthought.",
+    icon: <SearchCheck className="h-8 w-8 text-primary" />,
   },
   {
-    name: "Priya Patel",
-    role: "UX Researcher",
-    avatar: "/avatar.png",
-    aiHint: "female researcher",
-    icon: <PenTool className="h-10 w-10 text-primary" />,
+    title: "Backend & Databases",
+    description:
+      "APIs, authentication, and data storage built to scale, using Node.js, PostgreSQL, and more.",
+    icon: <Database className="h-8 w-8 text-primary" />,
+  },
+  {
+    title: "Responsive & Mobile-First",
+    description:
+      "Every product we deliver works beautifully across all screen sizes, from mobile to desktop.",
+    icon: <Smartphone className="h-8 w-8 text-primary" />,
   },
 ];
 
@@ -108,14 +121,75 @@ export default function AboutUsPage() {
           <div className="container mx-auto px-4 relative">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-3xl font-bold tracking-tight sm:text-5xl font-headline">
-                We're a Team of Passionate Creators
+                Two Developers, One Vision
               </h1>
               <p className="mt-6 text-lg leading-8 text-secondary-foreground/80">
-                We are a close-knit team of 5-10 developers and designers who
-                thrive on learning new technologies. Our passion is channeling
-                that knowledge into building innovative solutions that make your
-                business better.
+                We are Simon and Mia, two co-founders and developers who
+                built Code Heaven Studio from the ground up. We thrive on
+                learning new technologies and channeling that knowledge into
+                innovative solutions that make your business better.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="bg-muted py-16 sm:py-24">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-2xl text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                Meet the Founders
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                The two co-founders and developers behind Code Heaven Studio.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              {founders.map((founder) => (
+                <Card key={founder.name} className="shadow-lg">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <Avatar className="w-24 h-24 mb-4 border-4 border-background shadow-md">
+                      <AvatarImage
+                        src={founder.avatar}
+                        alt={founder.name}
+                        data-ai-hint={founder.aiHint}
+                      />
+                      <AvatarFallback>{founder.name.slice(0, 2)}</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-semibold text-foreground">{founder.name}</h3>
+                    <p className="text-sm text-primary font-medium mt-1">{founder.role}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{founder.location}</p>
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{founder.bio}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section className="py-16 sm:py-24">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-2xl text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                What We Work With
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                We are full stack engineers who turn ideas into shipped products, with the design instincts to make them shine.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {skills.map((skill) => (
+                <Card key={skill.title} className="shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                      {skill.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{skill.title}</h3>
+                    <p className="text-muted-foreground">{skill.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -147,55 +221,6 @@ export default function AboutUsPage() {
                     <p className="text-muted-foreground">{value.description}</p>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="bg-muted py-16 sm:py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-                Meet the Team
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                The developers, designers, and strategists behind Code Heaven
-                Studio.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 [perspective:1000px]">
-              {teamMembers.map((member) => (
-                <div key={member.name} className="group h-48 w-full">
-                  <div className="relative h-full w-full rounded-lg shadow-md transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                    {/* Front side */}
-                    <div className="absolute flex h-full w-full flex-col items-center justify-center rounded-lg bg-card p-4 [backface-visibility:hidden]">
-                      <div className="mb-2">{member.icon}</div>
-                      <h3 className="font-semibold text-center text-foreground">
-                        {member.role}
-                      </h3>
-                    </div>
-                    {/* Back side */}
-                    <div className="absolute h-full w-full rounded-lg bg-card [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                      <div className="flex flex-col items-center justify-center text-center p-4 h-full">
-                        <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-background shadow-md">
-                          <AvatarImage
-                            src={member.avatar}
-                            alt={member.name}
-                            data-ai-hint={member.aiHint}
-                          />
-                          <AvatarFallback>
-                            {member.name.slice(0, 2)}
-                          </AvatarFallback>
-                        </Avatar>
-                        <h3 className="font-semibold text-foreground">
-                          {member.name}
-                        </h3>
-                        <p className="text-sm text-primary">{member.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               ))}
             </div>
           </div>
