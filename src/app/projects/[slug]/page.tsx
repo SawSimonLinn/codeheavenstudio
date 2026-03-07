@@ -3,7 +3,7 @@ import Header from "@/components/layout/header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug, projects } from "@/lib/projects-data";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -69,8 +69,8 @@ export default async function ProjectDetailsPage({
                   </p>
                 ) : null}
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {project.services.map((service) => (
-                    <Badge key={service} variant="secondary">
+                  {project.services.map((service, index) => (
+                    <Badge key={index} variant="secondary">
                       {service}
                     </Badge>
                   ))}
@@ -108,16 +108,16 @@ export default async function ProjectDetailsPage({
               <div className="rounded-lg border p-6">
                 <h2 className="text-xl font-semibold">Tech Stack</h2>
                 <ul className="mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
-                  {project.techStack.map((item) => (
-                    <li key={item}>{item}</li>
+                  {project.techStack.map((item, index) => (
+                    <li key={index}>{item}</li>
                   ))}
                 </ul>
               </div>
               <div className="rounded-lg border p-6">
                 <h2 className="text-xl font-semibold">Outcomes</h2>
                 <ul className="mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
-                  {project.outcomes.map((outcome) => (
-                    <li key={outcome}>{outcome}</li>
+                  {project.outcomes.map((outcome, index) => (
+                    <li key={index}>{outcome}</li>
                   ))}
                 </ul>
               </div>

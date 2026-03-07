@@ -1,5 +1,3 @@
-"use client";
-
 import Footer from "@/components/layout/footer";
 import FreeDemoSection from "@/components/sections/free-demo";
 import Header from "@/components/layout/header";
