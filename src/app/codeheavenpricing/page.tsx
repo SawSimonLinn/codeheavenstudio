@@ -18,7 +18,6 @@ const packages = [
       "3-page responsive website (Home, Privacy Policy, Terms & Conditions)",
       "Mobile-friendly + SEO-ready design",
       "Custom design with brand colors & typography",
-      "Free 2 stock videos + premium hero section",
       "1 round of revisions",
       "Basic contact form setup",
       "Google Analytics setup",
@@ -57,7 +56,7 @@ const packages = [
     features: [
       "Everything in Growth Package plus:",
       "Unlimited pages + advanced layouts",
-      "Custom animations & video integration",
+      "Custom UI/UX design with interactive elements",
       "AI-powered features (chatbots, recommendations, or workflows)",
       "Marketing landing pages + conversion-focused design",
       "Custom blog / CMS integration",
