@@ -113,7 +113,7 @@ export default function ProjectsPage() {
         <section className="border-t border-border bg-foreground text-background">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
-              { value: `${projects.length}+`, label: "Projects delivered" },
+              { value: "20+", label: "Projects delivered" },
               { value: "100%", label: "Client satisfaction" },
               { value: "4–6 wk", label: "Avg. launch time" },
               { value: "3 yrs", label: "In business" },

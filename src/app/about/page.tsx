@@ -3,6 +3,7 @@ import Header from "@/components/layout/header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Users,
   Lightbulb,
@@ -14,6 +15,9 @@ import {
   SearchCheck,
   Database,
   Smartphone,
+  Linkedin,
+  Github,
+  Globe,
 } from "lucide-react";
 
 const founders = [
@@ -24,6 +28,9 @@ const founders = [
     avatar: "/avatars/simon.jpg",
     aiHint: "male developer",
     bio: "Before writing code, Simon spent years as a sushi chef and worked in the startup world. That mix of precision craft and fast-paced hustle carried right into building software. He trained at TripleTen and now co-runs Code Heaven Studio, turning ideas into polished digital products.",
+    linkedin: "https://www.linkedin.com/in/sawsimonlinn/",
+    github: "https://github.com/SawSimonLinn",
+    portfolio: "https://simonlinn.dev/",
   },
   {
     name: "Mia",
@@ -32,6 +39,9 @@ const founders = [
     avatar: "/avatars/mia.jpg",
     aiHint: "female developer",
     bio: "Mia comes from a background in beauty artistry and bartending, where reading people and delivering great experiences was everything. After transitioning into tech through TripleTen, she brings that same energy and attention to detail to every project she and Simon take on.",
+    linkedin: "https://www.linkedin.com/in/trangmtruong/",
+    github: "https://github.com/trangmtruong",
+    portfolio: "https://www.miatruong.com/",
   },
 ];
 
@@ -160,6 +170,17 @@ export default function AboutUsPage() {
                     <p className="text-sm text-primary font-medium mt-1">{founder.role}</p>
                     <p className="text-xs text-muted-foreground mt-1">{founder.location}</p>
                     <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{founder.bio}</p>
+                    <div className="flex gap-4 mt-5">
+                      <Link href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Linkedin className="h-5 w-5" />
+                      </Link>
+                      <Link href={founder.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Github className="h-5 w-5" />
+                      </Link>
+                      <Link href={founder.portfolio} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Globe className="h-5 w-5" />
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -218,6 +239,24 @@ export default function AboutUsPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+        {/* Stats strip */}
+        <section className="border-t border-border bg-foreground text-background">
+          <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "2", label: "Co-founders" },
+              { value: "20+", label: "Projects delivered" },
+              { value: "3 yrs", label: "In business" },
+              { value: "100%", label: "Client satisfaction" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
+                <p className="text-sm text-background/60 uppercase tracking-widest">
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
       </main>
