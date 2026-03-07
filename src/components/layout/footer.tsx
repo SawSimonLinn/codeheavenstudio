@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Facebook, Instagram, Globe } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Globe } from "lucide-react";
 import Image from "next/image";
 
 const socialLinks = [
   {
-    href: "https://www.linkedin.com/in/sawsimonlinn/",
+    href: "https://www.linkedin.com/company/codeheavenstudio",
     icon: <Linkedin className="h-5 w-5" />,
     name: "LinkedIn",
   },
@@ -19,11 +19,6 @@ const socialLinks = [
     href: "https://www.instagram.com/sawsimonlinn",
     icon: <Instagram className="h-5 w-5" />,
     name: "Instagram",
-  },
-  {
-    href: "https://github.com/SawSimonLinn",
-    icon: <Github className="h-5 w-5" />,
-    name: "GitHub",
   },
   {
     href: "https://www.sawsimonlinn.com/",

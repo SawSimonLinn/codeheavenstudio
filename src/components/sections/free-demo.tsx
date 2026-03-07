@@ -4,6 +4,8 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -12,10 +14,10 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const features = [
-  { name: "No hidden charges" },
-  { name: "No commitments required" },
-  { name: "A preview of your future website" },
-  { name: "Free consultation call included" },
+  "No hidden charges",
+  "No commitment required",
+  "Preview of your future site",
+  "Free consultation call",
 ];
 
 const demoImages = [
@@ -59,69 +61,78 @@ export default function FreeDemoSection() {
   return (
     <section
       id="free-demo"
-      className="relative overflow-hidden bg-secondary py-16 sm:py-24 text-secondary-foreground"
+      className="bg-secondary text-secondary-foreground py-20 sm:py-32 overflow-hidden"
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2">
-          <div>
-            <div className="text-base font-semibold leading-7 text-primary">
-              Free Demo First
-            </div>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl font-headline">
-              Free Demo Before You Commit
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              At Code Heaven Studio, we believe in proving our value first.
-              That’s why we design a free demo template layout for your business
-              before you pay anything.
-            </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
-              {features.map((feature) => (
-                <div key={feature.name} className="relative pl-9">
-                  <dt className="inline font-semibold">
-                    <CheckCircle2
-                      className="absolute left-1 top-1 h-5 w-5 text-green-500"
-                      aria-hidden="true"
+        {/* Header */}
+        <div className="max-w-4xl mb-16">
+          <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">
+            Free Demo First
+          </p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
+            See it before
+            <br />
+            you pay for it.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-xl leading-relaxed mb-10">
+            We design a free demo layout for your business before you pay a
+            single dollar. No pressure, no commitment. Just proof of our
+            quality.
+          </p>
+
+          {/* Feature pills */}
+          <div className="flex flex-wrap gap-3">
+            {features.map((f) => (
+              <div
+                key={f}
+                className="inline-flex items-center gap-2 rounded-full bg-background/10 border border-white/10 px-4 py-2 text-sm font-medium"
+              >
+                <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0" />
+                {f}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Full-width carousel */}
+        <Carousel
+          plugins={[plugin.current]}
+          className="w-full"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+          opts={{ loop: true }}
+        >
+          <CarouselContent className="-ml-4">
+            {demoImages.map((image, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
+              >
+                <Card className="overflow-hidden border-0 rounded-2xl">
+                  <CardContent className="p-0">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      data-ai-hint={image.aiHint}
+                      width={800}
+                      height={600}
+                      className="aspect-[4/3] object-cover w-full"
                     />
-                    {feature.name}
-                  </dt>
-                </div>
-              ))}
-            </dl>
-            <p className="mt-8 border-l-4 border-primary pl-4 italic text-muted-foreground">
-              "Your satisfaction is our happiness."
-            </p>
-          </div>
-          <div className="relative flex items-center justify-center">
-            <Carousel
-              plugins={[plugin.current]}
-              className="w-full max-w-md"
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
-              opts={{
-                loop: true,
-              }}
-            >
-              <CarouselContent>
-                {demoImages.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="overflow-hidden">
-                      <CardContent className="p-0">
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          data-ai-hint={image.aiHint}
-                          width={800}
-                          height={600}
-                          className="aspect-[4/3] object-cover"
-                        />
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        <div className="mt-10 text-center">
+          <Button
+            size="lg"
+            asChild
+            className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
+          >
+            <Link href="/contact">Request Your Free Demo</Link>
+          </Button>
         </div>
       </div>
     </section>
