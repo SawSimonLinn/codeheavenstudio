@@ -124,6 +124,7 @@ export default function Header() {
                 <button
                   aria-label="Open Menu"
                   className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                  suppressHydrationWarning
                 >
                   <Menu className="h-5 w-5" />
                 </button>
