@@ -248,7 +248,7 @@ export default function AboutUsPage() {
               { value: "2", label: "Co-founders" },
               { value: "20+", label: "Projects delivered" },
               { value: "3 yrs", label: "In business" },
-              { value: "100%", label: "Client satisfaction" },
+              { value: "5★", label: "Average client rating" },
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
