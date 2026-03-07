@@ -197,7 +197,7 @@ export default function AboutUsPage() {
         {/* Values Section */}
         <section className="py-16 sm:py-24">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center mb-12">
+            <div className="mx-auto max-w-2xl text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
                 Our Core Values
               </h2>
@@ -205,22 +205,17 @@ export default function AboutUsPage() {
                 The principles that drive our work every day.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {values.map((value) => (
-                <Card
-                  key={value.title}
-                  className="text-center shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <CardContent className="p-6">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                      {value.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      {value.title}
-                    </h3>
-                    <p className="text-muted-foreground">{value.description}</p>
-                  </CardContent>
-                </Card>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 max-w-4xl mx-auto">
+              {values.map((value, i) => (
+                <div key={value.title} className="flex gap-6 p-8 border-t border-border last:border-b sm:[&:nth-child(odd)]:border-r">
+                  <span className="text-5xl font-bold text-primary/20 leading-none flex-shrink-0 select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{value.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
