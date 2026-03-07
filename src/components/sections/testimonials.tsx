@@ -59,9 +59,11 @@ const testimonials = [
 
 const StarRating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1">
+    <span className="sr-only">{rating} out of 5 stars</span>
     {[...Array(5)].map((_, i) => (
       <Star
         key={i}
+        aria-hidden="true"
         className={`h-4 w-4 ${
           i < rating ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
         }`}
@@ -104,9 +106,9 @@ export default function TestimonialsSection() {
                 <Card className="h-full flex flex-col justify-between rounded-2xl border border-border shadow-none bg-muted/40 hover:bg-muted/60 transition-colors">
                   <CardContent className="p-8 flex flex-col gap-6 h-full">
                     <Quote className="h-8 w-8 text-primary/30" />
-                    <p className="text-foreground/80 leading-relaxed flex-1">
+                    <blockquote className="text-foreground/80 leading-relaxed flex-1">
                       {testimonial.quote}
-                    </p>
+                    </blockquote>
                     <div>
                       <StarRating rating={testimonial.rating} />
                       <div className="flex items-center gap-3 mt-4">

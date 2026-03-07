@@ -72,6 +72,7 @@ export default function ProjectsPage() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
+                  aria-pressed={activeCategory === cat}
                   className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200 border ${
                     activeCategory === cat
                       ? "bg-foreground text-background border-foreground"
@@ -151,7 +152,12 @@ function ProjectCard({
       role="link"
       tabIndex={0}
       onClick={() => router.push(`/projects/${project.slug}`)}
-      onKeyDown={(e) => e.key === "Enter" && router.push(`/projects/${project.slug}`)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          if ((e.target as HTMLElement).closest("a")) return;
+          router.push(`/projects/${project.slug}`);
+        }
+      }}
       className="group relative overflow-hidden rounded-2xl bg-card border border-border flex flex-col sm:flex-row sm:h-[300px] transition-all duration-500 hover:border-foreground/30 hover:shadow-2xl cursor-pointer"
     >
       {/* Image panel */}
@@ -160,6 +166,7 @@ function ProjectCard({
           src={project.imageUrl}
           alt={project.title}
           fill
+          sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"
           data-ai-hint={project.imageHint}
         />

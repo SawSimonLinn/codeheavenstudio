@@ -87,7 +87,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right — browser mockup */}
-          <div className="relative hidden lg:block">
+          <div className="relative hidden lg:block px-8 py-6">
             <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-[0_25px_80px_-15px_rgba(59,130,246,0.25)]">
               <div className="flex items-center gap-2 px-4 py-3 bg-muted/60 border-b border-border/50">
                 <div className="flex gap-1.5">

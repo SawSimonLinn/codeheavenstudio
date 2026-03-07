@@ -30,10 +30,11 @@ export default function Home() {
 
         {/* Marquee strip */}
         <div className="bg-secondary text-secondary-foreground py-4 overflow-hidden border-y border-white/5">
-          <div className="flex animate-marquee whitespace-nowrap">
+          <div className="inline-flex animate-marquee whitespace-nowrap w-max">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
               <span
                 key={i}
+                aria-hidden={i >= marqueeItems.length ? "true" : undefined}
                 className="inline-flex items-center gap-3 mx-8 text-sm font-semibold tracking-wide"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-primary inline-block shrink-0" />

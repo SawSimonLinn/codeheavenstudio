@@ -69,7 +69,7 @@ const contactChannels = [
     title: "WhatsApp Us",
     description: "Quick questions? Drop us a message and we'll reply fast.",
     cta: "Open WhatsApp",
-    href: "https://wa.me/4143436893",
+    href: "https://wa.me/14143436893",
     gradient: "from-green-500/20 to-emerald-500/10",
     iconColor: "text-green-400",
     borderColor: "border-green-500/20",
@@ -98,27 +98,37 @@ export default function ContactSection() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setSubmitting(true);
 
-    const payload = {
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-      name: values.name,
-      email: values.email,
-      business: values.business,
-      subject: subjects.find((s) => s.value === values.subject)?.label ?? values.subject,
-      message: values.message,
-    };
+    try {
+      const payload = {
+        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+        name: values.name,
+        email: values.email,
+        business: values.business,
+        subject: subjects.find((s) => s.value === values.subject)?.label ?? values.subject,
+        message: values.message,
+      };
 
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      setSubmitted(true);
-      form.reset();
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        throw new Error(data.message ?? "Submission failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Contact form error:", err);
+      alert(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   }
 
   return (
