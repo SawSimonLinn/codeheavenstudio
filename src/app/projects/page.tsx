@@ -103,6 +103,7 @@ export default function ProjectsPage() {
                   project={project}
                   index={projects.indexOf(project)}
                   wide={isWide}
+                  priority={i === 0}
                 />
               );
             })}
@@ -139,10 +140,12 @@ function ProjectCard({
   project,
   index,
   wide,
+  priority = false,
 }: {
   project: (typeof projects)[number];
   index: number;
   wide: boolean;
+  priority?: boolean;
 }) {
   const num = String(index + 1).padStart(2, "0");
   const router = useRouter();
@@ -169,6 +172,7 @@ function ProjectCard({
           sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"
           data-ai-hint={project.imageHint}
+          priority={priority}
         />
         {/* Index watermark over image */}
         <span
