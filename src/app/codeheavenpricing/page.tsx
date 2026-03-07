@@ -386,7 +386,7 @@ export default function PricingPage() {
         </section>
 
         {/* Countdown */}
-        {isPromotionActive && <section className="bg-secondary text-secondary-foreground py-16 sm:py-20">
+        {isPromotionActive && <section className="bg-muted/40 text-secondary py-16 sm:py-20">
           <div className="container mx-auto px-4 text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
               Limited Time Offer
@@ -394,10 +394,10 @@ export default function PricingPage() {
             <h2 className="text-3xl font-bold sm:text-4xl font-headline">
               25% Off · Offer Ends In
             </h2>
-            <p className="mt-3 text-secondary-foreground/60 max-w-lg mx-auto">
+            <p className="mt-3 text-secondary/60 max-w-lg mx-auto">
               Until the end of April, enjoy a 25% discount on any of our web design packages.
             </p>
-            <div className="mt-10 flex justify-center gap-8 sm:gap-16">
+            <div className="mt-10  flex justify-center gap-8 sm:gap-16">
               {[
                 { value: timeLeft.days, label: "Days" },
                 { value: timeLeft.hours, label: "Hours" },
@@ -408,7 +408,7 @@ export default function PricingPage() {
                   <span className="text-5xl sm:text-6xl font-bold tabular-nums">
                     {String(value).padStart(2, "0")}
                   </span>
-                  <span className="mt-2 text-xs uppercase tracking-widest text-secondary-foreground/50">
+                  <span className="mt-2 text-xs uppercase tracking-widest text-secondary/60">
                     {label}
                   </span>
                 </div>
@@ -436,6 +436,25 @@ export default function PricingPage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Stats strip */}
+        <section className="border-t border-border bg-foreground text-background">
+          <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "3", label: "Packages available" },
+              { value: "25%", label: "Launch discount" },
+              { value: "$938", label: "Starting at" },
+              { value: "Free", label: "Consultation" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
+                <p className="text-sm text-background/60 uppercase tracking-widest">
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

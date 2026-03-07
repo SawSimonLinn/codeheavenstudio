@@ -165,7 +165,7 @@ export default function BlogPage() {
             {[
               { value: `${blogPosts.length}+`, label: "Articles published" },
               { value: allTags.length - 1 + "+", label: "Topics covered" },
-              { value: "Weekly", label: "New content" },
+              { value: "Always", label: "New content" },
               { value: "Free", label: "Always" },
             ].map(({ value, label }) => (
               <div key={label}>

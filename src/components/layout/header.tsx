@@ -39,12 +39,12 @@ const socialLinks = [
     name: "Facebook",
   },
   {
-    href: "https://www.instagram.com/sawsimonlinn",
+    href: "https://www.instagram.com/simonlinn.codes",
     icon: <Instagram className="h-5 w-5" />,
     name: "Instagram",
   },
   {
-    href: "https://www.sawsimonlinn.com/",
+    href: "https://www.simonlinn.dev/",
     icon: <Globe className="h-5 w-5" />,
     name: "Portfolio",
   },
