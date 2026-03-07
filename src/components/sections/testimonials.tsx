@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -7,15 +7,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 const testimonials = [
-  // add testimonial for CodeJourney UI/UX design
   {
     name: "Susan Lee",
     title: "CEO, CodeJourney",
     quote:
-      "Working with Code Heaven Studio was a game-changer for our platform. Their attention to detail and user-centric design approach helped us create an intuitive and engaging experience for our users.",
+      "Working with Code Heaven Studio was a game-changer for our platform. Their attention to detail and user-centric design approach helped us create an intuitive and engaging experience.",
     avatar: "/review/review01.png",
     aiHint: "female tech CEO",
     rating: 5,
@@ -33,7 +32,7 @@ const testimonials = [
     name: "Mr. Kim",
     title: "Artistic Director, Jindallae Choir & Orchestra",
     quote:
-      "Our new website has made it so much easier for our community to buy tickets and stay updated. The blog and member sections have brought our orchestra closer to our audience. Exceptional work!",
+      "Our new website made it so much easier for our community to buy tickets and stay updated. The blog and member sections brought our orchestra closer to our audience.",
     avatar: "/review/review03.png",
     aiHint: "korean music director",
     rating: 5,
@@ -42,7 +41,7 @@ const testimonials = [
     name: "Mrs. Park",
     title: "Administrator, Hope Private High School",
     quote:
-      "The admin dashboard Code Heaven built for us is powerful and intuitive. It has streamlined our school's operations significantly. Their professionalism and technical skill are top-notch.",
+      "The admin dashboard Code Heaven built is powerful and intuitive. It has streamlined our school's operations significantly. Their professionalism and technical skill are top-notch.",
     avatar: "/review/review04.png",
     aiHint: "korean school administrator",
     rating: 5,
@@ -51,7 +50,7 @@ const testimonials = [
     name: "John Smith",
     title: "Owner, The Daily Grind Coffee",
     quote:
-      "I needed a simple, clean, and fast website for my coffee shop, and they delivered perfectly. The process was straightforward, and the final result looks fantastic. I'm getting more foot traffic already!",
+      "I needed a simple, clean, and fast website for my coffee shop, and they delivered perfectly. The process was straightforward and the final result looks fantastic!",
     avatar: "/review/review05.png",
     aiHint: "male coffee shop owner",
     rating: 5,
@@ -63,80 +62,89 @@ const StarRating = ({ rating }: { rating: number }) => (
     {[...Array(5)].map((_, i) => (
       <Star
         key={i}
-        className={`h-5 w-5 ${
-          i < rating
-            ? "text-yellow-400 fill-yellow-400"
-            : "text-muted-foreground"
+        className={`h-4 w-4 ${
+          i < rating ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
         }`}
       />
     ))}
   </div>
 );
 
+/**
+ * Render the testimonials section with a responsive carousel of client quotes.
+ *
+ * @returns A React element containing the testimonials section, including the section header, a looping carousel of testimonial cards (quote, star rating, avatar, name, title), and previous/next navigation controls.
+ */
 export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="container mx-auto py-16 sm:py-24 px-4"
+      className="py-20 sm:py-32 overflow-hidden"
     >
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-          What Our Clients Say
-        </h2>
-        <p className="mt-4 text-lg leading-8 text-muted-foreground">
-          Real stories from businesses we've helped to grow and succeed.
-        </p>
-      </div>
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          <div>
+            <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">
+              Testimonials
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+              What our
+              <br />
+              clients say.
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
+            Real stories from businesses we&apos;ve helped grow and succeed
+            online.
+          </p>
+        </div>
 
-      <div className="mt-12">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full max-w-4xl mx-auto"
-        >
-          <CarouselContent>
+        <Carousel opts={{ align: "start", loop: true }} className="w-full">
+          <CarouselContent className="-ml-6">
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 h-full">
-                  <Card className="flex flex-col justify-between h-full shadow-lg">
-                    <CardHeader>
+              <CarouselItem
+                key={index}
+                className="pl-6 basis-full md:basis-1/2 lg:basis-1/3"
+              >
+                <Card className="h-full flex flex-col justify-between rounded-2xl border border-border shadow-none bg-muted/40 hover:bg-muted/60 transition-colors">
+                  <CardContent className="p-8 flex flex-col gap-6 h-full">
+                    <Quote className="h-8 w-8 text-primary/30" />
+                    <p className="text-foreground/80 leading-relaxed flex-1">
+                      {testimonial.quote}
+                    </p>
+                    <div>
                       <StarRating rating={testimonial.rating} />
-                    </CardHeader>
-                    <CardContent className="flex-1">
-                      <p className="text-muted-foreground italic">
-                        "{testimonial.quote}"
-                      </p>
-                    </CardContent>
-                    <div className="flex items-center gap-4 p-6 pt-0">
-                      <Avatar>
-                        <AvatarImage
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          data-ai-hint={testimonial.aiHint}
-                          className="object-cover"
-                        />
-                        <AvatarFallback>
-                          {testimonial.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-semibold text-foreground">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.title}
-                        </p>
+                      <div className="flex items-center gap-3 mt-4">
+                        <Avatar className="h-10 w-10">
+                          <AvatarImage
+                            src={testimonial.avatar}
+                            alt={testimonial.name}
+                            data-ai-hint={testimonial.aiHint}
+                            className="object-cover"
+                          />
+                          <AvatarFallback>
+                            {testimonial.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold text-sm text-foreground">
+                            {testimonial.name}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {testimonial.title}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </Card>
-                </div>
+                  </CardContent>
+                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
+          <div className="flex gap-3 mt-8">
+            <CarouselPrevious className="relative translate-x-0 translate-y-0 top-0 left-0" />
+            <CarouselNext className="relative translate-x-0 translate-y-0 top-0 left-0" />
+          </div>
         </Carousel>
       </div>
     </section>
