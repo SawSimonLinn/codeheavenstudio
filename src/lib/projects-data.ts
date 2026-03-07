@@ -86,6 +86,64 @@ export const projects: Project[] = [
       "Better booking experience for customers",
     ],
   },
+  {
+    slug: "ventures-quality-insurance",
+    title: "Ventures Quality Insurance",
+    shortDescription:
+      "A full-service insurance platform with online application forms for multiple insurance types and an admin panel for managing user information.",
+    overview:
+      "Ventures Quality Insurance needed a professional web presence that lets customers apply for insurance policies online and gives staff a centralized admin panel to review and manage applicant data.",
+    challenge:
+      "Customers had no way to apply for insurance online, and internal staff were managing applicant information manually with no unified system.",
+    solution:
+      "We built a multi-policy insurance platform with streamlined online application forms for each insurance type, plus a secure admin panel for viewing, filtering, and managing all user submissions.",
+    imageUrl: "/previousWorks/previous-work_04.png",
+    imageHint: "insurance website",
+    category: "Insurance Platform",
+    timeline: "6 weeks",
+    services: [
+      "UI/UX Design",
+      "Full-Stack Development",
+      "Admin Panel",
+      "Form System",
+    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    outcomes: [
+      "Online application flow for all insurance types",
+      "Secure admin panel for managing applicant records",
+      "Reduced manual workload for insurance staff",
+    ],
+    liveUrl: "https://www.venturesqualityinsurance.com/",
+  },
+  {
+    slug: "bangkok-soul-alhambra",
+    title: "Bangkok Soul Alhambra",
+    shortDescription:
+      "A Thai restaurant website bringing authentic Thai culture to the USA, featuring an editable menu via CMS and a dedicated culture page.",
+    overview:
+      "Bangkok Soul Alhambra wanted a website that goes beyond a typical restaurant site — one that reflects Thai heritage, tells the story behind the food, and gives staff full control over menu content without needing a developer.",
+    challenge:
+      "The restaurant needed a site that balanced cultural storytelling with practical functionality, while keeping menu updates simple for non-technical staff.",
+    solution:
+      "We built a visually rich restaurant website with a dedicated culture page celebrating Thai traditions, a CMS-powered editable menu system, and a seamless browsing experience across all devices.",
+    imageUrl: "/previousWorks/previous-work_05.png",
+    imageHint: "thai restaurant website",
+    category: "Restaurant Website",
+    timeline: "5 weeks",
+    services: [
+      "UI/UX Design",
+      "Frontend Development",
+      "CMS Integration",
+      "Content Strategy",
+    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS"],
+    outcomes: [
+      "Staff can update menus independently without developer help",
+      "Culture page deepens brand identity and guest connection",
+      "Strong visual presence reflecting authentic Thai heritage",
+    ],
+    liveUrl: "https://bangkoksoulalhambra.vercel.app/",
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

@@ -1,66 +1,73 @@
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Telescope, LayoutTemplate, CodeXml, Rocket } from 'lucide-react';
-import React from 'react';
+import { Telescope, LayoutTemplate, CodeXml, Rocket } from "lucide-react";
+import React from "react";
 
 const processSteps = [
   {
-    step: 1,
-    title: 'Discovery',
-    description: 'We start by understanding your business, goals, target audience, and content requirements to build a solid foundation.',
-    icon: <Telescope className="h-8 w-8" />,
+    step: "01",
+    title: "Discovery",
+    description:
+      "We understand your business, goals, and audience to build a solid foundation.",
+    icon: <Telescope className="h-6 w-6" />,
   },
   {
-    step: 2,
-    title: 'Design',
-    description: 'Next, we create wireframes and visual layouts. You\'ll see a mockup of your site, ensuring the design aligns with your vision.',
-    icon: <LayoutTemplate className="h-8 w-8" />,
+    step: "02",
+    title: "Design",
+    description:
+      "We create mockups and visual layouts so you see the site before it's built.",
+    icon: <LayoutTemplate className="h-6 w-6" />,
   },
   {
-    step: 3,
-    title: 'Development',
-    description: 'Our team writes clean, modern, and responsive code to bring the designs to life, focusing on performance and scalability.',
-    icon: <CodeXml className="h-8 w-8" />,
+    step: "03",
+    title: "Development",
+    description:
+      "Clean, modern, responsive code that brings your design to life with speed.",
+    icon: <CodeXml className="h-6 w-6" />,
   },
   {
-    step: 4,
-    title: 'Launch',
-    description: 'After final approval, we handle the deployment, hosting setup, and domain handoff, launching your new website to the world.',
-    icon: <Rocket className="h-8 w-8" />,
+    step: "04",
+    title: "Launch",
+    description:
+      "We handle deployment, hosting, and domain handoff. Ready to go live.",
+    icon: <Rocket className="h-6 w-6" />,
   },
 ];
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="container mx-auto px-4 py-16 sm:py-24">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-          Our Streamlined Process
-        </h2>
-        <p className="mt-4 text-lg leading-8 text-muted-foreground">
-          From concept to launch, we follow a clear and collaborative path to ensure your project's success.
-        </p>
-      </div>
+    <section id="process" className="bg-muted/40 py-20 sm:py-32">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mb-16">
+          <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">
+            How We Work
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1]">
+            Four steps.
+            <br />
+            Zero guesswork.
+          </h2>
+        </div>
 
-      <div className="relative mt-12">
-        {/* Decorative line */}
-        <div className="absolute left-1/2 top-4 hidden h-full w-px -translate-x-1/2 bg-border md:block" />
-
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((item, index) => (
-            <Card key={item.step} className="text-center transition-transform hover:scale-105 hover:shadow-lg">
-              <CardHeader>
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  {item.icon}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
+          {processSteps.map((step) => (
+            <div
+              key={step.step}
+              className="bg-background p-8 flex flex-col gap-6"
+            >
+              <div className="flex items-start justify-between">
+                <span className="text-7xl font-black text-muted-foreground/15 leading-none">
+                  {step.step}
+                </span>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                  {step.icon}
                 </div>
-                <CardTitle className="flex items-center justify-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                        {item.step}
-                    </span>
-                    {item.title}
-                </CardTitle>
-                <CardDescription className="pt-2">{item.description}</CardDescription>
-              </CardHeader>
-            </Card>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
