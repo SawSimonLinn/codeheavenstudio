@@ -147,8 +147,8 @@ const featureOptions = [
   { name: "Multi-language Support", price: 350, display: "$350+", description: "Translate and localize your site for global audiences." },
   { name: "Speed & Performance Boost", price: 250, display: "$250", description: "Advanced optimization for ultra-fast load times." },
   { name: "SEO Copywriting", price: 300, display: "$300+", description: "SEO-friendly website content for better engagement and ranking." },
-  { name: "Ongoing SEO & Marketing", price: 400, display: "$400/mo", description: "Continuous optimization, keyword tracking, and marketing strategy." },
-  { name: "Website Maintenance & Support", price: 200, display: "$200/mo", description: "Updates, backups, bug fixes, and priority support." },
+  { name: "Ongoing SEO & Marketing", price: 400, display: "$400/mo", description: "Continuous optimization, keyword tracking, and marketing strategy.", recurring: true },
+  { name: "Website Maintenance & Support", price: 200, display: "$200/mo", description: "Updates, backups, bug fixes, and priority support.", recurring: true },
   { name: "Custom Video / Animation", price: 500, display: "$500+", description: "A tailored explainer video or homepage animation for your brand." },
   { name: "AI Features (chatbot, automation)", price: 500, display: "$500+", description: "Integrate a custom AI chatbot or workflow automation tools." },
 ];
@@ -166,11 +166,13 @@ export default function PricingPage() {
     });
   };
 
-  const estimatedTotal =
+  const selectedFeatureItems = featureOptions.filter((f) => selectedFeatures.has(f.name));
+  const oneTimeTotal =
     (selectedPackage ? packageBasePrices[selectedPackage].discounted : 0) +
-    featureOptions
-      .filter((f) => selectedFeatures.has(f.name))
-      .reduce((sum, f) => sum + f.price, 0);
+    selectedFeatureItems.filter((f) => !f.recurring).reduce((sum, f) => sum + f.price, 0);
+  const recurringMonthlyTotal = selectedFeatureItems
+    .filter((f) => f.recurring)
+    .reduce((sum, f) => sum + f.price, 0);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -178,23 +180,33 @@ export default function PricingPage() {
     minutes: 0,
     seconds: 0,
   });
+  const [isPromotionActive, setIsPromotionActive] = useState(true);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date();
-      const endDate = new Date(now.getFullYear(), 3, 30, 23, 59, 59);
+      let endDate = new Date(now.getFullYear(), 3, 30, 23, 59, 59);
+      while (endDate <= now) {
+        endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 2, endDate.getDate(), 23, 59, 59);
+      }
       const difference = +endDate - +now;
-      if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
       return {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
+        isActive: true,
       };
     };
 
-    setTimeLeft(calculateTimeLeft());
-    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
+    const update = () => {
+      const { isActive, ...time } = calculateTimeLeft();
+      setTimeLeft(time);
+      setIsPromotionActive(isActive);
+    };
+
+    update();
+    const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -382,7 +394,7 @@ export default function PricingPage() {
                       <p className="text-sm text-muted-foreground italic">No base package selected</p>
                     )}
 
-                    {featureOptions.filter((f) => selectedFeatures.has(f.name)).map((f) => (
+                    {selectedFeatureItems.filter((f) => !f.recurring).map((f) => (
                       <div key={f.name} className="flex justify-between text-sm">
                         <span className="text-muted-foreground">{f.name}</span>
                         <span className="font-semibold">{f.display}</span>
@@ -398,10 +410,25 @@ export default function PricingPage() {
                       </div>
                     )}
 
+                    {selectedFeatureItems.filter((f) => f.recurring).map((f) => (
+                      <div key={f.name} className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">{f.name}</span>
+                        <span className="font-semibold text-blue-600 dark:text-blue-400">{f.display}</span>
+                      </div>
+                    ))}
+
                     {(selectedPackage || selectedFeatures.size > 0) ? (
-                      <div className="border-t pt-3 flex justify-between text-lg font-bold text-primary">
-                        <span>Estimated Total</span>
-                        <span>${estimatedTotal.toLocaleString()}+</span>
+                      <div className="border-t pt-3 space-y-1">
+                        <div className="flex justify-between text-lg font-bold text-primary">
+                          <span>One-time</span>
+                          <span>${oneTimeTotal.toLocaleString()}+</span>
+                        </div>
+                        {recurringMonthlyTotal > 0 && (
+                          <div className="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400">
+                            <span>Recurring</span>
+                            <span>${recurringMonthlyTotal.toLocaleString()}/mo</span>
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <div className="py-8 text-center text-muted-foreground text-sm">
@@ -422,7 +449,7 @@ export default function PricingPage() {
         </section>
 
         {/* Countdown */}
-        <section className="bg-secondary text-secondary-foreground py-16 sm:py-20">
+        {isPromotionActive && <section className="bg-secondary text-secondary-foreground py-16 sm:py-20">
           <div className="container mx-auto px-4 text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
               Limited Time Offer
@@ -454,7 +481,7 @@ export default function PricingPage() {
               <Link href="/contact">Claim Your Discount</Link>
             </Button>
           </div>
-        </section>
+        </section>}
 
         {/* CTA */}
         <section className="border-t">
