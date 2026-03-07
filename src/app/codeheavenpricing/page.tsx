@@ -13,17 +13,12 @@ import {
 } from "@/components/ui/card";
 import {
   Check,
-  PlusCircle,
   Calculator,
   ShieldCheck,
-  Star,
-  BadgeCent,
-  MessageCircle,
   ArrowRight,
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const packages = [
   {
@@ -33,7 +28,7 @@ const packages = [
     description:
       "For small businesses getting online. Features can be added or removed.",
     features: [
-      "5-page responsive website (Home, About, Services, Blog, Contact)",
+      "3-page responsive website (Home, Privacy Policy, Terms & Conditions)",
       "Mobile-friendly + SEO-ready design",
       "Custom design with brand colors & typography",
       "Free 2 stock videos + premium hero section",
@@ -53,7 +48,7 @@ const packages = [
       "For businesses ready to scale. Features can be added or removed.",
     features: [
       "Everything in Starter Package plus:",
-      "Up to 12 custom-designed pages",
+      "Up to 7 custom-designed pages",
       "Blog setup with categories & tags",
       "Advanced SEO optimization (keywords, on-page SEO, schema setup)",
       "Premium stock images & icons included",
@@ -152,6 +147,26 @@ const addOns = [
   },
 ];
 
+const packageBasePrices: Record<string, { original: number; discounted: number }> = {
+  "Starter Package": { original: 1250, discounted: 938 },
+  "Growth Package": { original: 2300, discounted: 1725 },
+  "Premium Package": { original: 4500, discounted: 3375 },
+};
+
+const featureOptions = [
+  { name: "Custom Logo & Branding", price: 450, display: "$450+", description: "Professional logo design, brand colors, and typography guidelines." },
+  { name: "Extra Pages", price: 150, display: "$150/page", description: "Add more pages to your website as your business grows." },
+  { name: "Full SEO Setup", price: 500, display: "$500", description: "Comprehensive on-page and technical SEO to boost your ranking." },
+  { name: "Blog Integration", price: 300, display: "$300", description: "A fully functional blog to share updates and attract traffic." },
+  { name: "Multi-language Support", price: 350, display: "$350+", description: "Translate and localize your site for global audiences." },
+  { name: "Speed & Performance Boost", price: 250, display: "$250", description: "Advanced optimization for ultra-fast load times." },
+  { name: "SEO Copywriting", price: 300, display: "$300+", description: "SEO-friendly website content for better engagement and ranking." },
+  { name: "Ongoing SEO & Marketing", price: 400, display: "$400/mo", description: "Continuous optimization, keyword tracking, and marketing strategy." },
+  { name: "Website Maintenance & Support", price: 200, display: "$200/mo", description: "Updates, backups, bug fixes, and priority support." },
+  { name: "Custom Video / Animation", price: 500, display: "$500+", description: "A tailored explainer video or homepage animation for your brand." },
+  { name: "AI Features (chatbot, automation)", price: 500, display: "$500+", description: "Integrate a custom AI chatbot or workflow automation tools." },
+];
+
 const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
     <span className="text-3xl sm:text-4xl font-bold">
@@ -164,6 +179,24 @@ const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
 );
 
 export default function PricingPage() {
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+  const [selectedFeatures, setSelectedFeatures] = useState<Set<string>>(new Set());
+
+  const toggleFeature = (name: string) => {
+    setSelectedFeatures((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  };
+
+  const estimatedTotal =
+    (selectedPackage ? packageBasePrices[selectedPackage].discounted : 0) +
+    featureOptions
+      .filter((f) => selectedFeatures.has(f.name))
+      .reduce((sum, f) => sum + f.price, 0);
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -175,7 +208,7 @@ export default function PricingPage() {
     const calculateTimeLeft = () => {
       const now = new Date();
       const year = now.getFullYear();
-      const endDate = new Date(year, 8, 30, 23, 59, 59); // September is month 8 (0-indexed)
+      const endDate = new Date(year, 3, 30, 23, 59, 59); // April is month 3 (0-indexed)
 
       const difference = +endDate - +now;
       let newTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -283,6 +316,175 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* Feature Builder Section */}
+        <section className="bg-muted/40 py-16 sm:py-24 border-t">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                Build Your Own Package
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                Select a base package and pick the features you need. See your
+                estimated total instantly.
+              </p>
+            </div>
+
+            <div className="mt-12 mx-auto max-w-4xl grid md:grid-cols-2 gap-10">
+              {/* Left: selectors */}
+              <div className="space-y-8">
+                {/* Package picker */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">
+                    1. Choose a Base Package
+                  </h3>
+                  <div className="space-y-3">
+                    {packages.map((pkg) => (
+                      <button
+                        key={pkg.name}
+                        onClick={() =>
+                          setSelectedPackage(
+                            selectedPackage === pkg.name ? null : pkg.name
+                          )
+                        }
+                        className={`w-full flex items-center justify-between rounded-lg border px-4 py-3 text-left transition-colors ${
+                          selectedPackage === pkg.name
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background hover:border-primary/50"
+                        }`}
+                      >
+                        <span className="font-medium">{pkg.name}</span>
+                        <span className="font-semibold">{pkg.price}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Feature picker */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">
+                    2. Add Features
+                  </h3>
+                  <div className="space-y-2">
+                    {featureOptions.map((feature) => (
+                      <label
+                        key={feature.name}
+                        className={`flex items-center justify-between rounded-lg border px-4 py-3 cursor-pointer transition-colors ${
+                          selectedFeatures.has(feature.name)
+                            ? "border-primary bg-primary/10"
+                            : "border-border bg-background hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <input
+                            type="checkbox"
+                            checked={selectedFeatures.has(feature.name)}
+                            onChange={() => toggleFeature(feature.name)}
+                            className="h-4 w-4 accent-primary flex-shrink-0"
+                          />
+                          <div>
+                            <span className="text-sm">{feature.name}</span>
+                            {selectedFeatures.has(feature.name) && (
+                              <p className="text-xs text-muted-foreground mt-0.5">
+                                {feature.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <span className="text-sm font-semibold text-primary whitespace-nowrap ml-4">
+                          {feature.display}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: summary */}
+              <div className="md:sticky md:top-24 self-start">
+                <Card className="shadow-lg">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <Calculator className="h-6 w-6 text-primary" />
+                      <CardTitle>Your Estimate</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Prices shown are base rates. Final quote confirmed on
+                      your consultation call.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {selectedPackage ? (
+                      <div className="flex justify-between text-sm">
+                        <span>{selectedPackage}</span>
+                        <div className="text-right">
+                          <span className="line-through text-muted-foreground mr-2">
+                            ${packageBasePrices[selectedPackage].original.toLocaleString()}
+                          </span>
+                          <span className="font-semibold">
+                            ${packageBasePrices[selectedPackage].discounted.toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-muted-foreground italic">
+                        No base package selected
+                      </p>
+                    )}
+
+                    {featureOptions
+                      .filter((f) => selectedFeatures.has(f.name))
+                      .map((f) => (
+                        <div
+                          key={f.name}
+                          className="flex justify-between text-sm"
+                        >
+                          <span className="text-muted-foreground">
+                            {f.name}
+                          </span>
+                          <span className="font-semibold">{f.display}</span>
+                        </div>
+                      ))}
+
+                    {(selectedPackage || selectedFeatures.size > 0) && (
+                      <>
+                        {selectedPackage && (
+                          <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
+                            <span>You save (25% off)</span>
+                            <span className="font-semibold">
+                              -$
+                              {(
+                                packageBasePrices[selectedPackage].original -
+                                packageBasePrices[selectedPackage].discounted
+                              ).toLocaleString()}
+                            </span>
+                          </div>
+                        )}
+                        <div className="border-t pt-3 mt-3 flex justify-between text-lg font-bold text-primary">
+                          <span>Estimated Total</span>
+                          <span>${estimatedTotal.toLocaleString()}+</span>
+                        </div>
+                      </>
+                    )}
+
+                    {!selectedPackage && selectedFeatures.size === 0 && (
+                      <div className="py-6 text-center text-muted-foreground text-sm">
+                        Select a package and features to see your estimate
+                      </div>
+                    )}
+
+                    <Button asChild className="w-full mt-4">
+                      <Link href="/contact">
+                        Get a Free Quote{" "}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-primary/5 py-16 sm:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-2xl text-center">
@@ -312,133 +514,6 @@ export default function PricingPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-muted py-16 sm:py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-                Custom Upgrades
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                Enhance your package with our powerful add-ons. Final price will
-                adjust accordingly.
-              </p>
-            </div>
-            <div className="mt-12 mx-auto max-w-4xl grid gap-8 md:grid-cols-2">
-              {addOns.map((addOn) => (
-                <Card
-                  key={addOn.name}
-                  className="shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="flex-shrink-0">
-                        <PlusCircle className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold">{addOn.name}</h3>
-                        <p className="text-muted-foreground">
-                          {addOn.description}
-                        </p>
-                      </div>
-                      <div className="ml-auto text-right">
-                        <p className="text-lg font-semibold text-primary whitespace-nowrap">
-                          {addOn.price}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl grid md:grid-cols-2 gap-12 items-center">
-              <div className="text-center md:text-left">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
-                  Example Pricing
-                </h2>
-                <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                  Here's how our flexible pricing works in practice.
-                </p>
-                <Card className="shadow-lg mt-6 text-left">
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <Calculator className="h-8 w-8 text-primary" />
-                      <CardTitle>Sample Project Calculation</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <p>Starter Package</p>
-                      <p className="font-semibold">$1250</p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <p>2 Extra Pages (2 x $150)</p>
-                      <p className="font-semibold">$300</p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <p>Full SEO Setup</p>
-                      <p className="font-semibold">$500</p>
-                    </div>
-                    <div className="border-t my-2"></div>
-                    <div className="flex justify-between items-center text-lg font-bold text-primary">
-                      <p>Final Price</p>
-                      <p>$2050</p>
-                    </div>
-                    <div className="text-sm text-muted-foreground text-center pt-2">
-                      <p>
-                        <span className="font-semibold">
-                          Estimated Timeline:
-                        </span>{" "}
-                        1–2 weeks + add-ons (~3 weeks total)
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="text-center">
-                <Card className="bg-secondary text-secondary-foreground shadow-xl">
-                  <CardContent className="p-8">
-                    <div className="flex justify-center mb-4">
-                      <Avatar className="h-20 w-20 border-4 border-background">
-                        <AvatarImage
-                          src="/review/review06.png"
-                          alt="MoMo Chan"
-                          data-ai-hint="design founder"
-                        />
-                        <AvatarFallback>MC</AvatarFallback>
-                      </Avatar>
-                    </div>
-                    <div className="flex justify-center mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-5 w-5 text-yellow-400 fill-yellow-400"
-                        />
-                      ))}
-                    </div>
-                    <blockquote className="text-lg italic">
-                      "Code Heaven Studio transformed my portfolio. The
-                      attention to detail and creativity they brought to the
-                      project was exceptional. I couldn't be happier with the
-                      results!"
-                    </blockquote>
-                    <footer className="mt-4">
-                      <p className="font-semibold">MoMo Chan</p>
-                      <p className="text-sm text-muted-foreground">
-                        Founder, MoMo Chan Designs
-                      </p>
-                    </footer>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
           </div>
         </section>
