@@ -1,5 +1,7 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import { LegalContactInfo } from '@/components/legal/contact-info';
+import { EFFECTIVE_DATE, LAST_UPDATED_DATE } from '@/lib/legal-metadata';
 
 export default function TermsAndConditionsPage() {
   return (
@@ -18,8 +20,8 @@ export default function TermsAndConditionsPage() {
             </div>
             <div className="prose dark:prose-invert max-w-none text-muted-foreground space-y-8">
               <p className="text-sm">
-                <strong>Effective Date:</strong> March 7, 2026<br />
-                <strong>Last Updated:</strong> March 7, 2026
+                <strong>Effective Date:</strong> {EFFECTIVE_DATE}<br />
+                <strong>Last Updated:</strong> {LAST_UPDATED_DATE}
               </p>
 
               <section>
@@ -190,12 +192,7 @@ export default function TermsAndConditionsPage() {
               <section>
                 <h2 className="text-xl font-semibold text-foreground mb-3">17. Contact Us</h2>
                 <p>If you have any questions about these Terms and Conditions, please contact us:</p>
-                <div className="mt-3 pl-4 border-l-2 border-border space-y-1">
-                  <p><strong>Code Heaven Studio</strong></p>
-                  <p>Los Angeles, CA &amp; San Diego, CA</p>
-                  <p>Email: <a href="mailto:codeheavenstudio@gmail.com" className="text-primary underline underline-offset-4 hover:opacity-80">codeheavenstudio@gmail.com</a></p>
-                  <p>Website: <a href="https://www.codeheavenstudio.com/contact" className="text-primary underline underline-offset-4 hover:opacity-80">codeheavenstudio.com/contact</a></p>
-                </div>
+                <LegalContactInfo />
               </section>
             </div>
           </div>

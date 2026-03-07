@@ -21,7 +21,7 @@ const founders = [
     name: "Simon",
     role: "Co-Founder & Developer",
     location: "Los Angeles, CA",
-    avatar: "https://media.licdn.com/dms/image/v2/D5603AQG_2dNqr6bpiQ/profile-displayphoto-scale_400_400/B56Zj0pfTdHIAk-/0/1756451174599?e=1774483200&v=beta&t=5_C7iPLqh4Q1Vj3MNmuAH21omx48ch_dUO27IRtn-CQ",
+    avatar: "/avatars/simon.jpg",
     aiHint: "male developer",
     bio: "Before writing code, Simon spent years as a sushi chef and worked in the startup world. That mix of precision craft and fast-paced hustle carried right into building software. He trained at TripleTen and now co-runs Code Heaven Studio, turning ideas into polished digital products.",
   },
@@ -29,7 +29,7 @@ const founders = [
     name: "Mia",
     role: "Co-Founder & Developer",
     location: "San Diego, CA",
-    avatar: "https://media.licdn.com/dms/image/v2/D5603AQE2GIfAR9cq_A/profile-displayphoto-shrink_800_800/B56ZWojThvHEAg-/0/1742289594360?e=1774483200&v=beta&t=kHrW4uxUtHKXO977E-7Nwo76FzV2WbnOgF8RVJWJmaI",
+    avatar: "/avatars/mia.jpg",
     aiHint: "female developer",
     bio: "Mia comes from a background in beauty artistry and bartending, where reading people and delivering great experiences was everything. After transitioning into tech through TripleTen, she brings that same energy and attention to detail to every project she and Simon take on.",
   },
@@ -110,8 +110,8 @@ export default function AboutUsPage() {
         <section className="relative bg-secondary py-20 sm:py-32 text-secondary-foreground">
           <div className="absolute inset-0">
             <Image
-              src="https://placehold.co/1920x1080.png"
-              alt="Team working collaboratively"
+              src="/about/team-collaboration.jpg"
+              alt="Code Heaven Studio team collaborating on a project"
               data-ai-hint="team collaboration office"
               fill
               className="object-cover opacity-10"

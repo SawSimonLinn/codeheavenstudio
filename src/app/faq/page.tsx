@@ -1,6 +1,7 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import Link from 'next/link';
 
 const faqItems = [
   {
@@ -50,7 +51,7 @@ const faqItems = [
     items: [
       {
         question: 'Do I own the website once it\'s finished?',
-        answer: 'Yes, 100%. Once the project is complete and the final payment is received, you own all rights to the website code, design, and assets. We retain the right to feature the completed work in our portfolio, but you are the sole owner of your product.',
+        answer: 'Upon final payment, you own the custom code, design, and assets created specifically for your project. Third-party components (including open-source libraries, fonts, stock media, and other licensed materials) are excluded and remain subject to their original licenses. We retain the right to feature completed work in our portfolio unless otherwise agreed in writing.',
       },
       {
         question: 'What kind of support do you offer after launch?',
@@ -97,9 +98,9 @@ export default function FaqPage() {
             </h1>
             <p className="mt-4 text-lg leading-8 text-muted-foreground">
               Everything you need to know about working with Code Heaven Studio. Can&apos;t find your answer?{' '}
-              <a href="/contact" className="text-primary underline underline-offset-4 hover:opacity-80">
+              <Link href="/contact" className="text-primary underline underline-offset-4 hover:opacity-80">
                 Reach out to us directly.
-              </a>
+              </Link>
             </p>
           </div>
 
