@@ -23,6 +23,8 @@ const packages = [
       "Google Analytics setup",
       "2 weeks of support after launch",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "Hosting setup & deployment",
     ],
     cta: "Get Started",
   },
@@ -42,6 +44,8 @@ const packages = [
       "2 rounds of revisions",
       "1-month post-launch support",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "Hosting setup with SSL & CDN configuration",
     ],
     cta: "Choose Growth",
     popular: true,
@@ -64,6 +68,8 @@ const packages = [
       "3 rounds of revisions",
       "2 months post-launch support",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "High-performance hosting setup with SSL, CDN & daily backups",
     ],
     cta: "Contact Us",
   },
@@ -77,6 +83,8 @@ const packageBasePrices: Record<string, { original: number; discounted: number }
 };
 
 const featureOptions = [
+  { name: "Domain Registration (Additional Year)", price: 20, display: "$20/yr", description: "Register or renew a custom domain name for your business.", recurring: true },
+  { name: "Hosting Renewal", price: 120, display: "$120/yr", description: "Continue hosting your site after the first free year — includes SSL & backups.", recurring: true },
   { name: "Custom Logo & Branding", price: 450, display: "$450+", description: "Professional logo design, brand colors, and typography guidelines." },
   { name: "Extra Pages", price: 150, display: "$150/page", description: "Add more pages to your website as your business grows." },
   { name: "Full SEO Setup", price: 500, display: "$500", description: "Comprehensive on-page and technical SEO to boost your ranking." },

@@ -4,9 +4,46 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Star } from "lucide-react";
-import { heroContent, heroStats } from "@/lib/hero-data";
+import { heroContent, heroMockups, heroStats } from "@/lib/hero-data";
+import { useEffect, useState } from "react";
+
+const rotatingPhrases = [
+  "work as hard",
+  "think as smart",
+  "move as fast",
+  "stand out bold",
+];
 
 export default function HeroSection() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [mockupIndex, setMockupIndex] = useState(0);
+  const [isMockupFading, setIsMockupFading] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsFlipping(true);
+      setTimeout(() => {
+        setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+        setIsFlipping(false);
+      }, 350);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsMockupFading(true);
+      setTimeout(() => {
+        setMockupIndex((prev) => (prev + 1) % heroMockups.length);
+        setIsMockupFading(false);
+      }, 400);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentMockup = heroMockups[mockupIndex];
+
   return (
     <section className="relative overflow-hidden flex items-center min-h-[85vh]">
       <video
@@ -35,8 +72,17 @@ export default function HeroSection() {
             <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
               {heroContent.headingLine1}
               <br />
-              <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
-                {heroContent.headingHighlight}
+              <span
+                className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent inline-block"
+                style={{
+                  transform: isFlipping ? "rotateX(90deg)" : "rotateX(0deg)",
+                  opacity: isFlipping ? 0 : 1,
+                  transition: "transform 0.35s ease, opacity 0.35s ease",
+                  transformOrigin: "center top",
+                  perspective: "600px",
+                }}
+              >
+                {rotatingPhrases[phraseIndex]}
               </span>
               <br />
               {heroContent.headingLine3}
@@ -95,16 +141,19 @@ export default function HeroSection() {
                   <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
                   <div className="h-3 w-3 rounded-full bg-green-400/80" />
                 </div>
-                <div className="ml-3 flex-1 text-center text-xs text-muted-foreground bg-background/60 rounded py-0.5 px-2">
-                  {heroContent.mockupUrl}
+                <div className="ml-3 flex-1 text-center text-xs text-muted-foreground bg-background/60 rounded py-0.5 px-2"
+                style={{ transition: "opacity 0.4s ease", opacity: isMockupFading ? 0 : 1 }}
+              >
+                  {currentMockup.url}
                 </div>
               </div>
               <Image
-                src={heroContent.mockupImage}
+                src={currentMockup.image}
                 alt="Website Preview"
                 width={800}
                 height={500}
                 className="w-full object-cover"
+                style={{ transition: "opacity 0.4s ease", opacity: isMockupFading ? 0 : 1 }}
                 priority
               />
             </div>

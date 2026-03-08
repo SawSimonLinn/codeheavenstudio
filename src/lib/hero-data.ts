@@ -8,13 +8,34 @@ export const heroContent = {
   primaryCta: { label: "Get a Free Demo", href: "#free-demo" },
   secondaryCta: { label: "See Our Work", href: "/projects" },
   floatingBadge: "Free Demo First",
-  mockupUrl: "bluebirdhaussushi.com",
-  mockupImage: "/previousWorks/previous-work_02.png",
   testimonial: {
     quote: "Already getting more foot traffic. Fantastic work!",
-    author: "Ja Ja., Blue Bird Haus Sushi",
+    author: "Owner, Blue Bird Haus Sushi",
   },
 };
+
+export const heroMockups = [
+  {
+    url: "bluebirdhaussushi.com",
+    image: "/previousWorks/previous-work_02.png",
+    label: "Restaurant",
+  },
+  {
+    url: "bangkoksoulalhambra.com",
+    image: "/previousWorks/previous-work_05.png",
+    label: "Restaurant",
+  },
+  {
+    url: "dunedinsd.com",
+    image: "/previousWorks/previous-work_06.png",
+    label: "Restaurant",
+  },
+  {
+    url: "venturesqualityinsurance.com",
+    image: "/previousWorks/previous-work_04.png",
+    label: "Insurance",
+  },
+];
 
 export const heroStats = [
   { value: "50+", label: "Projects" },
