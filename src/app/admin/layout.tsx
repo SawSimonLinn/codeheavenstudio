@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { LayoutDashboard, Receipt, PlusCircle, Menu, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -24,7 +25,7 @@ const navItems = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   if (pathname === '/admin/login') {
     return children;
@@ -36,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.refresh();
   };
 
-  const navContent = (
+  const navContent = (onItemClick?: () => void) => (
     <>
       <nav className="flex-1 p-4 space-y-1">
         {navItems.map(({ href, label, icon: Icon, exact }) => {
@@ -47,6 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               key={href}
               href={href}
+              onClick={onItemClick}
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors',
                 isActive
@@ -68,6 +70,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </Button>
           <Link
             href="/"
+            onClick={onItemClick}
             className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
           >
             ← Back to Website
@@ -89,7 +92,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
           </Link>
         </div>
-        {navContent}
+        {navContent()}
       </aside>
 
       <main className="flex-1 min-w-0 overflow-auto">
@@ -99,7 +102,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span className="text-sm font-semibold text-gray-900">Admin Portal</span>
           </Link>
 
-          <Sheet>
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button size="icon" variant="outline" aria-label="Open navigation menu">
                 <Menu className="h-4 w-4" />
@@ -110,7 +113,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <SheetTitle>Admin Navigation</SheetTitle>
                 <SheetDescription>Manage dashboard and receipts</SheetDescription>
               </SheetHeader>
-              <div className="flex h-[calc(100%-84px)] flex-col">{navContent}</div>
+              <div className="flex h-[calc(100%-84px)] flex-col">{navContent(() => setSheetOpen(false))}</div>
             </SheetContent>
           </Sheet>
         </header>

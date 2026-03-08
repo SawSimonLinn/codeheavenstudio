@@ -30,9 +30,19 @@ const sitemapSections = [
     ],
   },
   {
+    title: "Services",
+    links: [
+      { label: "All Services", href: "/services" },
+      { label: "Restaurant Websites", href: "/services/restaurant-websites" },
+      { label: "Small Business Websites", href: "/services/small-business-websites" },
+      { label: "Website Redesign", href: "/services/website-redesign" },
+      { label: "SEO Optimization", href: "/services/seo-optimization" },
+      { label: "Website Maintenance", href: "/services/website-maintenance" },
+    ],
+  },
+  {
     title: "Explore",
     links: [
-      { label: "Services", href: "/services" },
       { label: "Industries", href: "/industries" },
       { label: "Pricing", href: "/codeheavenpricing" },
       { label: "FAQ", href: "/faq" },
