@@ -68,7 +68,7 @@ export default function SeoOptimizationPage() {
                 size="lg"
                 className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
               >
-                <Link href="/request-website">Get a Free SEO Audit</Link>
+                <Link href="/free-audit">Get a Free SEO Audit</Link>
               </Button>
               <Button
                 asChild
@@ -143,7 +143,7 @@ export default function SeoOptimizationPage() {
               size="lg"
               className="rounded-full px-10 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
             >
-              <Link href="/request-website" className="flex items-center gap-2">
+              <Link href="/free-audit" className="flex items-center gap-2">
                 Request Free Audit <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

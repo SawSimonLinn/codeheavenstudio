@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
@@ -71,6 +72,12 @@ const stats = [
   { value: "2–4 wks", label: "Average Launch Time" },
   { value: "100%", label: "Client Ownership" },
 ];
+
+export const metadata: Metadata = {
+  title: "Why Choose Us | Code Heaven Studio",
+  description:
+    "Discover why businesses choose Code Heaven Studio — transparent pricing, full code ownership, performance-driven development, and a free demo before you commit.",
+};
 
 export default function WhyChooseUsPage() {
   return (

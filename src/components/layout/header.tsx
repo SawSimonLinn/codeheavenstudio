@@ -130,6 +130,8 @@ export default function Header() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setServicesOpen((prev) => !prev)}
+                aria-expanded={servicesOpen}
+                aria-controls="services-menu"
                 className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
                 Services
@@ -138,7 +140,7 @@ export default function Header() {
                 />
               </button>
               {servicesOpen && (
-                <div className="absolute left-0 top-full mt-2 w-52 rounded-xl border border-border bg-background shadow-lg py-1.5 z-50">
+                <div id="services-menu" role="menu" className="absolute left-0 top-full mt-2 w-52 rounded-xl border border-border bg-background shadow-lg py-1.5 z-50">
                   {services.map((s) => (
                     <Link
                       key={s.href}
@@ -175,7 +177,7 @@ export default function Header() {
 
           {/* Mobile Hamburger */}
           <div className="flex items-center md:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <Sheet open={isOpen} onOpenChange={(open) => { setIsOpen(open); if (!open) setMobileServicesOpen(false); }}>
               <SheetTrigger asChild>
                 <button
                   aria-label="Open Menu"
@@ -213,6 +215,8 @@ export default function Header() {
                     <div>
                       <button
                         onClick={() => setMobileServicesOpen((prev) => !prev)}
+                        aria-expanded={mobileServicesOpen}
+                        aria-controls="mobile-services-menu"
                         className="flex w-full items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                       >
                         Services
@@ -221,7 +225,7 @@ export default function Header() {
                         />
                       </button>
                       {mobileServicesOpen && (
-                        <div className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-border pl-3">
+                        <div id="mobile-services-menu" role="menu" className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-border pl-3">
                           {services.map((s) => (
                             <SheetClose key={s.href} asChild>
                               <Link

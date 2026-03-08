@@ -26,6 +26,7 @@ const pages = [
   { url: "/privacy-policy", priority: "0.3", changefreq: "yearly" },
   { url: "/terms-and-conditions", priority: "0.3", changefreq: "yearly" },
   { url: "/accessibility", priority: "0.3", changefreq: "yearly" },
+  { url: "/why-choose-us", priority: "0.8", changefreq: "monthly" },
 ];
 
 export function GET() {
