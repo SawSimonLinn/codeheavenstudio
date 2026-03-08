@@ -36,7 +36,10 @@ function LoginForm() {
         return;
       }
 
-      const next = searchParams.get('next') ?? '/admin';
+      const raw = searchParams.get('next') ?? '';
+      const next = raw.startsWith('/') && !raw.startsWith('//') && !/^\/[a-zA-Z][a-zA-Z\d+\-.]*:/.test(raw)
+        ? raw
+        : '/admin';
       router.replace(next);
       router.refresh();
     } catch {
@@ -118,7 +121,7 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <Suspense>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-gray-900" /></div>}>
       <LoginForm />
     </Suspense>
   );
