@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
+import ScrollButtons from "@/components/layout/scroll-buttons";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <Toaster />
+        <ScrollButtons />
       </body>
     </html>
   );

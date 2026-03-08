@@ -67,10 +67,13 @@ export default function Header() {
               <Sparkles className="h-3 w-3 shrink-0 hidden sm:block" />
               <span>
                 Limited offer: Get a{" "}
-                <Link href="/contact" className="underline underline-offset-2 font-bold hover:opacity-80">
+                <Link href="/free-audit" className="underline underline-offset-2 font-bold hover:opacity-80">
                   free website audit
                 </Link>{" "}
-                + 10% off your first project. Book now!
+                + 10% off your first project.{" "}
+                <Link href="/free-audit" className="underline underline-offset-2 font-bold hover:opacity-80">
+                  Book now!
+                </Link>
               </span>
             </div>
             <button

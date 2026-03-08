@@ -85,7 +85,16 @@ export default function Footer() {
                   Careers
                 </Link>
               </li>
-
+              <li>
+                <Link href="/testimonials" className="hover:text-primary">
+                  Testimonials
+                </Link>
+              </li>
+              <li>
+                <Link href="/press" className="hover:text-primary">
+                  Press
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -94,8 +103,13 @@ export default function Footer() {
             <h4 className="text-sm font-semibold mb-3">Resources</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/services" className="hover:text-primary">
-                  Services
+                <Link href="/blog" className="hover:text-primary">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="hover:text-primary">
+                  Case Studies
                 </Link>
               </li>
               <li>
@@ -113,11 +127,6 @@ export default function Footer() {
                   How It Works
                 </Link>
               </li>
-              <li>
-                <Link href="/case-studies" className="hover:text-primary">
-                  Case Studies
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -126,13 +135,13 @@ export default function Footer() {
             <h4 className="text-sm font-semibold mb-3">Explore</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/industries" className="hover:text-primary">
-                  Industries
+                <Link href="/services" className="hover:text-primary">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-primary">
-                  Blog
+                <Link href="/industries" className="hover:text-primary">
+                  Industries
                 </Link>
               </li>
               <li>
@@ -165,15 +174,31 @@ export default function Footer() {
                   Terms of Service
                 </Link>
               </li>
+              <li>
+                <Link href="/accessibility" className="hover:text-primary">
+                  Accessibility
+                </Link>
+              </li>
+              <li>
+                <Link href="/sitemap" className="hover:text-primary">
+                  Sitemap
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border pt-6 text-center text-sm text-muted-foreground">
+        <div className="border-t border-border pt-6 text-center text-sm text-muted-foreground space-y-1">
           <Link href="/admin/login" style={{ cursor: "text" }}>
-            © {new Date().getFullYear()} Code Heaven Studio. All rights reserved.
+            © {new Date().getFullYear()} Code Heaven Studio LLC. All rights reserved.
           </Link>
+          <p>Los Angeles, California</p>
+          <p>
+            <a href="mailto:codeheavenstudio@gmail.com" className="hover:text-primary">
+              codeheavenstudio@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </footer>
