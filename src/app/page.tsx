@@ -4,7 +4,6 @@ import Header from "@/components/layout/header";
 import HeroSection from "@/components/sections/hero";
 import ProcessSection from "@/components/sections/process";
 import PreviousProjectsSection from "@/components/sections/previous-projects";
-import TestimonialsSection from "@/components/sections/testimonials";
 import WhyUsSection from "@/components/sections/why-us";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -48,10 +47,9 @@ export default function Home() {
         <PreviousProjectsSection />
         <ProcessSection />
         <WhyUsSection />
-        <TestimonialsSection />
 
         {/* Final CTA */}
-        <section className="relative overflow-hidden bg-secondary text-secondary-foreground py-24 sm:py-36">
+        <section className="relative overflow-hidden bg-background text-foreground py-24 sm:py-36">
           {/* Gradient orbs */}
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
           <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />

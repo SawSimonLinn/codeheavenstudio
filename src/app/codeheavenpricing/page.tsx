@@ -23,6 +23,8 @@ const packages = [
       "Google Analytics setup",
       "2 weeks of support after launch",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "Hosting setup & deployment",
     ],
     cta: "Get Started",
   },
@@ -42,6 +44,8 @@ const packages = [
       "2 rounds of revisions",
       "1-month post-launch support",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "Hosting setup with SSL & CDN configuration",
     ],
     cta: "Choose Growth",
     popular: true,
@@ -64,6 +68,8 @@ const packages = [
       "3 rounds of revisions",
       "2 months post-launch support",
       "Free consultation call included",
+      "Domain connection & DNS setup",
+      "High-performance hosting setup with SSL, CDN & daily backups",
     ],
     cta: "Contact Us",
   },
@@ -84,10 +90,12 @@ const featureOptions = [
   { name: "Multi-language Support", price: 350, display: "$350+", description: "Translate and localize your site for global audiences." },
   { name: "Speed & Performance Boost", price: 250, display: "$250", description: "Advanced optimization for ultra-fast load times." },
   { name: "SEO Copywriting", price: 300, display: "$300+", description: "SEO-friendly website content for better engagement and ranking." },
-  { name: "Ongoing SEO & Marketing", price: 400, display: "$400/mo", description: "Continuous optimization, keyword tracking, and marketing strategy.", recurring: true },
-  { name: "Website Maintenance & Support", price: 200, display: "$200/mo", description: "Updates, backups, bug fixes, and priority support.", recurring: true },
+  { name: "Ongoing SEO & Marketing", price: 400, display: "$400/mo", description: "Continuous optimization, keyword tracking, and marketing strategy.", interval: "month" as const },
+  { name: "Website Maintenance & Support", price: 200, display: "$200/mo", description: "Updates, backups, bug fixes, and priority support.", interval: "month" as const },
   { name: "Custom Video / Animation", price: 500, display: "$500+", description: "A tailored explainer video or homepage animation for your brand." },
   { name: "AI Features (chatbot, automation)", price: 500, display: "$500+", description: "Integrate a custom AI chatbot or workflow automation tools." },
+  { name: "Domain Registration (Additional Year)", price: 40, display: "$40+/yr", description: "Register or renew a custom domain name for your business.", interval: "year" as const },
+  { name: "Hosting Renewal", price: 120, display: "$120/yr", description: "Continue hosting your site after the first free year — includes SSL & backups.", interval: "year" as const },
 ];
 
 export default function PricingPage() {
@@ -106,9 +114,12 @@ export default function PricingPage() {
   const selectedFeatureItems = featureOptions.filter((f) => selectedFeatures.has(f.name));
   const oneTimeTotal =
     (selectedPackage ? packageBasePrices[selectedPackage].discounted : 0) +
-    selectedFeatureItems.filter((f) => !f.recurring).reduce((sum, f) => sum + f.price, 0);
+    selectedFeatureItems.filter((f) => !f.interval).reduce((sum, f) => sum + f.price, 0);
   const recurringMonthlyTotal = selectedFeatureItems
-    .filter((f) => f.recurring)
+    .filter((f) => f.interval === "month")
+    .reduce((sum, f) => sum + f.price, 0);
+  const recurringYearlyTotal = selectedFeatureItems
+    .filter((f) => f.interval === "year")
     .reduce((sum, f) => sum + f.price, 0);
 
   const [timeLeft, setTimeLeft] = useState({
@@ -332,7 +343,7 @@ export default function PricingPage() {
                       <p className="text-sm text-muted-foreground italic">No base package selected</p>
                     )}
 
-                    {selectedFeatureItems.filter((f) => !f.recurring).map((f) => (
+                    {selectedFeatureItems.filter((f) => !f.interval).map((f) => (
                       <div key={f.name} className="flex justify-between text-sm">
                         <span className="text-muted-foreground">{f.name}</span>
                         <span className="font-semibold">{f.display}</span>
@@ -348,7 +359,7 @@ export default function PricingPage() {
                       </div>
                     )}
 
-                    {selectedFeatureItems.filter((f) => f.recurring).map((f) => (
+                    {selectedFeatureItems.filter((f) => f.interval).map((f) => (
                       <div key={f.name} className="flex justify-between text-sm">
                         <span className="text-muted-foreground">{f.name}</span>
                         <span className="font-semibold text-blue-600 dark:text-blue-400">{f.display}</span>
@@ -365,6 +376,12 @@ export default function PricingPage() {
                           <div className="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400">
                             <span>Recurring</span>
                             <span>${recurringMonthlyTotal.toLocaleString()}/mo</span>
+                          </div>
+                        )}
+                        {recurringYearlyTotal > 0 && (
+                          <div className="flex justify-between text-sm font-semibold text-blue-600 dark:text-blue-400">
+                            <span>Recurring</span>
+                            <span>${recurringYearlyTotal.toLocaleString()}/yr</span>
                           </div>
                         )}
                       </div>

@@ -155,7 +155,7 @@ export default function ReceiptPreview({ data, receiptNumber, receiptId }: Props
           <div className="mb-6 p-3 bg-gray-50 rounded-lg">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">From</p>
             <p className="text-sm font-medium text-gray-800">Code Heaven Studio</p>
-            <p className="text-xs text-gray-500">hello@codeheavenstudio.com · codeheavenstudio.com</p>
+            <p className="text-xs text-gray-500">codeheavenstudio@gmail.com · codeheavenstudio.com</p>
           </div>
 
           {/* Items Table */}

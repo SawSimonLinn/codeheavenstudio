@@ -6,53 +6,71 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Quote, Star } from "lucide-react";
+import {
+  Quote,
+  Star,
+  UtensilsCrossed,
+  Beef,
+  ShieldCheck,
+  Soup,
+  TrendingUp,
+  CalendarCheck,
+  type LucideIcon,
+} from "lucide-react";
 
-const testimonials = [
+const testimonials: {
+  name: string;
+  title: string;
+  quote: string;
+  icon: LucideIcon;
+  rating: number;
+}[] = [
   {
-    name: "Susan Lee",
-    title: "CEO, CodeJourney",
+    name: "Blue Bird Haus Sushi",
+    title: "Owner, Blue Bird Haus Sushi",
     quote:
-      "Working with Code Heaven Studio was a game-changer for our platform. Their attention to detail and user-centric design approach helped us create an intuitive and engaging experience.",
-    avatar: "/review/review01.png",
-    aiHint: "female tech CEO",
+      "Our new website perfectly captures our restaurant's style and makes it effortless for customers to browse the menu on mobile. Updating content is so simple now — we don't need a developer for every small change.",
+    icon: UtensilsCrossed,
     rating: 5,
   },
   {
-    name: "Diana Kim",
-    title: "Owner, Digishop",
+    name: "Dunedin SD",
+    title: "Owner, Dunedin SD — North Park, San Diego",
     quote:
-      "The team at Code Heaven Studio transformed our online store. The admin dashboard is intuitive and powerful, allowing us to manage products effortlessly. Highly recommend!",
-    avatar: "/review/review02.png",
-    aiHint: "female online store owner",
+      "Code Heaven built us a site that finally brings everything together — our menus, reservations, online ordering, and private events all in one place. It feels like us, and our guests love it.",
+    icon: Beef,
     rating: 5,
   },
   {
-    name: "Mr. Kim",
-    title: "Artistic Director, Jindallae Choir & Orchestra",
+    name: "Ventures Quality Insurance",
+    title: "Director, Ventures Quality Insurance",
     quote:
-      "Our new website made it so much easier for our community to buy tickets and stay updated. The blog and member sections brought our orchestra closer to our audience.",
-    avatar: "/review/review03.png",
-    aiHint: "korean music director",
+      "Before this platform, we handled every application manually. Now customers apply online and our team manages everything from a clean admin panel. It's saved us hours every week.",
+    icon: ShieldCheck,
     rating: 5,
   },
   {
-    name: "Mrs. Park",
-    title: "Administrator, Hope Private High School",
+    name: "Bangkok Soul Alhambra",
+    title: "Owner, Bangkok Soul Alhambra",
     quote:
-      "The admin dashboard Code Heaven built is powerful and intuitive. It has streamlined our school's operations significantly. Their professionalism and technical skill are top-notch.",
-    avatar: "/review/review04.png",
-    aiHint: "korean school administrator",
+      "They didn't just build a website — they told our story. The culture page, the editable menu, the whole feel of the site reflects who we are. Our customers keep complimenting it.",
+    icon: Soup,
     rating: 5,
   },
   {
-    name: "John Smith",
-    title: "Owner, The Daily Grind Coffee",
+    name: "Crypto Dashboard Client",
+    title: "Fintech User, Crypto Dashboard",
     quote:
-      "I needed a simple, clean, and fast website for my coffee shop, and they delivered perfectly. The process was straightforward and the final result looks fantastic!",
-    avatar: "/review/review05.png",
-    aiHint: "male coffee shop owner",
+      "The dashboard is clean, fast, and shows exactly what I need without any clutter. Switching between assets and reading charts is smooth on both my desktop and phone.",
+    icon: TrendingUp,
+    rating: 5,
+  },
+  {
+    name: "Booking System Client",
+    title: "Restaurant Manager, Booking System",
+    quote:
+      "We used to take reservations over the phone and things would fall through the cracks. Now guests book online, we get notified instantly, and managing availability is completely stress-free.",
+    icon: CalendarCheck,
     rating: 5,
   },
 ];
@@ -112,17 +130,9 @@ export default function TestimonialsSection() {
                     <div>
                       <StarRating rating={testimonial.rating} />
                       <div className="flex items-center gap-3 mt-4">
-                        <Avatar className="h-10 w-10">
-                          <AvatarImage
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
-                            data-ai-hint={testimonial.aiHint}
-                            className="object-cover"
-                          />
-                          <AvatarFallback>
-                            {testimonial.name.charAt(0)}
-                          </AvatarFallback>
-                        </Avatar>
+                        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <testimonial.icon className="h-5 w-5 text-primary" />
+                        </div>
                         <div>
                           <p className="font-semibold text-sm text-foreground">
                             {testimonial.name}
