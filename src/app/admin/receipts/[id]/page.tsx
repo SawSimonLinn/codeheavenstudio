@@ -1,0 +1,218 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft, Download, Edit2, Send, Trash2 } from 'lucide-react';
+import ReceiptPreview from '@/components/admin/receipt-preview';
+import ReceiptForm, { ReceiptFormValues } from '@/components/admin/receipt-form';
+import { apiDeleteReceipt, apiGetReceipt, apiUpdateReceipt } from '@/lib/receipts-client';
+import type { Receipt, CreateReceiptData } from '@/types/receipt';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+
+export default function ReceiptDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const [receipt, setReceipt] = useState<Receipt | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [sendDialogOpen, setSendDialogOpen] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [previewData, setPreviewData] = useState<Partial<ReceiptFormValues>>({});
+
+  useEffect(() => {
+    apiGetReceipt(id)
+      .then((r) => {
+        setReceipt(r);
+        if (r) setPreviewData(r as unknown as ReceiptFormValues);
+      })
+      .catch(() => toast({ title: 'Failed to load receipt', variant: 'destructive' }))
+      .finally(() => setLoading(false));
+  }, [id, toast]);
+
+  const handleUpdate = async (data: CreateReceiptData) => {
+    if (!receipt) return;
+    setSaving(true);
+    try {
+      const updated = await apiUpdateReceipt(receipt.id, data as Partial<Receipt>);
+      setReceipt(updated);
+      if (updated) setPreviewData(updated as unknown as ReceiptFormValues);
+      setEditing(false);
+      toast({ title: 'Receipt updated!' });
+    } catch {
+      toast({ title: 'Failed to update receipt', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!receipt || !confirm(`Delete ${receipt.receiptNumber}? This cannot be undone.`)) return;
+    try {
+      await apiDeleteReceipt(receipt.id);
+      toast({ title: 'Receipt deleted' });
+      router.push('/admin/receipts');
+    } catch {
+      toast({ title: 'Failed to delete receipt', variant: 'destructive' });
+    }
+  };
+
+  const handleSendEmail = async () => {
+    if (!receipt) return;
+    setSending(true);
+    try {
+      const res = await fetch(`/api/receipts/${receipt.id}/send-email`, { method: 'POST' });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? 'Failed to send');
+      }
+      toast({ title: `Receipt sent to ${receipt.clientEmail}` });
+      const updated = await apiGetReceipt(receipt.id);
+      setReceipt(updated);
+      setSendDialogOpen(false);
+    } catch (err: unknown) {
+      toast({
+        title: 'Failed to send email',
+        description: err instanceof Error ? err.message : undefined,
+        variant: 'destructive',
+      });
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="p-8 text-center text-sm text-gray-400 animate-pulse">
+        Loading receipt...
+      </div>
+    );
+  }
+
+  if (!receipt) {
+    return (
+      <div className="p-8 text-center">
+        <p className="text-gray-500">Receipt not found.</p>
+        <Button asChild className="mt-4" variant="outline">
+          <Link href="/admin/receipts">Back to Receipts</Link>
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8">
+      {/* Header */}
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <Link
+            href="/admin/receipts"
+            className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-2 w-fit"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Receipts
+          </Link>
+          <h1 className="text-2xl font-bold text-gray-900">{receipt.receiptNumber}</h1>
+          <p className="text-sm text-gray-500 mt-0.5">
+            {receipt.clientName} · {receipt.clientEmail}
+          </p>
+        </div>
+        <div className="flex items-center gap-2 print:hidden">
+          <Button asChild variant="outline" size="sm">
+            <a href={`/api/receipts/${receipt.id}/pdf`}>
+              <Download className="h-3.5 w-3.5" />
+              Download PDF
+            </a>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setEditing(!editing)}
+          >
+            <Edit2 className="h-3.5 w-3.5" />
+            {editing ? 'Cancel Edit' : 'Edit'}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-blue-600 border-blue-200 hover:bg-blue-50"
+            onClick={() => setSendDialogOpen(true)}
+          >
+            <Send className="h-3.5 w-3.5" />
+            Send Email
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-red-500 border-red-200 hover:bg-red-50"
+            onClick={handleDelete}
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+            Delete
+          </Button>
+        </div>
+      </div>
+
+      {editing ? (
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div>
+            <ReceiptForm
+              defaultValues={receipt}
+              onSubmit={handleUpdate}
+              onChange={setPreviewData}
+              loading={saving}
+              submitLabel="Save Changes"
+            />
+          </div>
+          <div className="xl:sticky xl:top-8 xl:self-start">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Live Preview</p>
+            <ReceiptPreview
+              data={previewData}
+              receiptNumber={receipt.receiptNumber}
+              receiptId={receipt.id}
+            />
+          </div>
+        </div>
+      ) : (
+        <ReceiptPreview
+          data={receipt}
+          receiptNumber={receipt.receiptNumber}
+          receiptId={receipt.id}
+        />
+      )}
+
+      {/* Send Email Dialog */}
+      <Dialog open={sendDialogOpen} onOpenChange={(open) => !open && setSendDialogOpen(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Send className="h-5 w-5 text-blue-500" />
+              Send Receipt via Email
+            </DialogTitle>
+            <DialogDescription>
+              This will send <span className="font-mono font-semibold">{receipt.receiptNumber}</span> to{' '}
+              <span className="font-semibold">{receipt.clientEmail}</span>.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end gap-3 pt-2">
+            <Button variant="outline" onClick={() => setSendDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleSendEmail} disabled={sending}>
+              {sending ? 'Sending...' : 'Send Email'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

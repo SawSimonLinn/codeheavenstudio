@@ -58,6 +58,27 @@
   }
 }
 
+@media print {
+  /* Hide everything except the receipt */
+  body > * {
+    display: none !important;
+  }
+  /* Show only the receipt preview inside main */
+  #receipt-print {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

@@ -38,8 +38,6 @@ import {
 const subjects = [
   { value: "pricing", label: "Pricing & Packages" },
   { value: "demo", label: "Request a Demo" },
-  { value: "new-project", label: "Start a New Project" },
-  { value: "redesign", label: "Website Redesign" },
   { value: "support", label: "Support / Bug Fix" },
   { value: "partnership", label: "Partnership / Collab" },
   { value: "other", label: "Something Else" },
@@ -143,17 +141,16 @@ export default function ContactSection() {
         <div className="mx-auto max-w-2xl text-center mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
             <Sparkles className="h-3.5 w-3.5" />
-            Let&apos;s Work Together
+            We&apos;d Love to Hear from You
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5">
-            Start Your{" "}
+            Get in{" "}
             <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Next Project
+              Touch
             </span>
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Tell us what you&apos;re building. We&apos;ll get back to you within 24 hours
-            with a clear plan and honest pricing.
+            Have a question, feedback, or just want to say hi? We&apos;ll get back to you within 24 hours.
           </p>
         </div>
 
@@ -188,7 +185,7 @@ export default function ContactSection() {
                   <>
                     <div className="mb-8">
                       <h2 className="text-2xl font-bold text-foreground mb-1">
-                        Tell us about your project
+                        Send us a message
                       </h2>
                       <p className="text-sm text-muted-foreground">
                         Fill in a few details and we&apos;ll be in touch shortly.
@@ -315,7 +312,7 @@ export default function ContactSection() {
                               </FormLabel>
                               <FormControl>
                                 <Textarea
-                                  placeholder="Tell us about your project, goals, and timeline..."
+                                  placeholder="How can we help you?"
                                   className="min-h-[140px] resize-none bg-background/50 border-border/60 focus:border-primary/60"
                                   {...field}
                                 />

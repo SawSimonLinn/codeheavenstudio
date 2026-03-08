@@ -38,7 +38,7 @@ const founders = [
     location: "San Diego, CA",
     avatar: "/avatars/mia.jpg",
     aiHint: "female developer",
-    bio: "Mia comes from a background in beauty artistry and bartending, where reading people and delivering great experiences was everything. After transitioning into tech through TripleTen, she brings that same energy and attention to detail to every project she and Simon take on.",
+    bio: "Mia spent years in beauty and hospitality before making the switch to tech. That background gave her a sharp eye for detail and a natural instinct for what makes an experience feel right. She brings that same care to every line of code, and co-runs Code Heaven Studio with a focus on building things people actually enjoy using.",
     linkedin: "https://www.linkedin.com/in/trangmtruong/",
     github: "https://github.com/trangmtruong",
     portfolio: "https://www.miatruong.com/",

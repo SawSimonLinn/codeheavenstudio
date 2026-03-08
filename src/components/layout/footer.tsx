@@ -30,40 +30,21 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-secondary text-secondary-foreground">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="flex gap-4 text-sm md:w-1/3 justify-start">
-            <Link
-              href="/faq"
-              className="text-muted-foreground hover:text-primary"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/privacy-policy"
-              className="text-muted-foreground hover:text-primary"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-and-conditions"
-              className="text-muted-foreground hover:text-primary"
-            >
-              Terms & Conditions
-            </Link>
-          </div>
-          <div className="flex items-center gap-2 order-first md:order-none md:w-1/3 justify-center">
-            <Image
-              src="/logo.png"
-              alt="Code Heaven Studio Logo"
-              width={20}
-              height={20}
-              priority
-            />
-
-            <p className="text-sm font-semibold">Code Heaven Studio</p>
-          </div>
-          <div className="flex items-center gap-2 md:w-1/3 justify-end">
+      <div className="container mx-auto px-4 py-12">
+        {/* Top section: logo + columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-3">
+              <Image
+                src="/logo.png"
+                alt="Code Heaven Studio Logo"
+                width={24}
+                height={24}
+                priority
+              />
+              <span className="text-sm font-semibold">Code Heaven Studio</span>
+            </div>
             <div className="flex gap-1">
               {socialLinks.map((social) => (
                 <Button key={social.name} variant="ghost" size="icon" asChild>
@@ -79,10 +60,96 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3">Company</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/referral" className="hover:text-primary">
+                  Referral Partner Program
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-primary">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers" className="hover:text-primary">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/login" className="hover:text-primary">
+                  Admin Panel
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3">Resources</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/services" className="hover:text-primary">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/how-it-works" className="hover:text-primary">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-primary">
+                  Industries
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-primary">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-primary">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-primary">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3">Legal</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/privacy-policy" className="hover:text-primary">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-and-conditions"
+                  className="hover:text-primary"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <p className="mt-6 text-center text-sm text-muted-foreground">
+
+        {/* Bottom bar */}
+        <div className="border-t border-border pt-6 text-center text-sm text-muted-foreground">
           © {new Date().getFullYear()} Code Heaven Studio. All rights reserved.
-        </p>
+        </div>
       </div>
     </footer>
   );

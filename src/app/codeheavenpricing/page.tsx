@@ -300,6 +300,7 @@ export default function PricingPage() {
                       </label>
                     ))}
                   </div>
+
                 </div>
               </div>
 
