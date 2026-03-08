@@ -168,7 +168,7 @@ export default function RequestWebsitePage() {
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Fill in a few details about your business and we&apos;ll send you a custom
-                quote — no pressure, no commitment.
+                quote, no pressure, no commitment.
               </p>
             </div>
 

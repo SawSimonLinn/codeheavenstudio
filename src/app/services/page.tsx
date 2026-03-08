@@ -27,7 +27,7 @@ const services = [
     title: "Restaurant Websites",
     tagline: "Hungry customers deserve a great first impression",
     description:
-      "We specialize in websites for restaurants—menus, reservations, Google Maps integration, and photo galleries that make people want to visit before they even walk in the door.",
+      "We specialize in websites for restaurants: menus, reservations, Google Maps integration, and photo galleries that make people want to visit before they even walk in the door.",
     features: ["Online menu display", "Reservation links", "Google Maps embed", "Mobile optimized"],
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "E-commerce Websites",
     tagline: "Sell more with a store that works",
     description:
-      "From product listings to checkout, we build e-commerce experiences that are simple to manage and easy for your customers to use—so you can focus on running your business.",
+      "From product listings to checkout, we build e-commerce experiences that are simple to manage and easy for your customers to use, so you can focus on running your business.",
     features: ["Product management", "Secure checkout", "Inventory tracking", "Payment integration"],
   },
   {

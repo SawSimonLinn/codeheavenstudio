@@ -55,7 +55,7 @@ const contactChannels = [
   {
     icon: Calendar,
     title: "Book a Free Call",
-    description: "30 minutes to talk through your project — no pressure.",
+    description: "30 minutes to talk through your project, no pressure.",
     cta: "Schedule on Calendly",
     href: "https://calendly.com/sawsimonlinn/30min",
     gradient: "from-blue-500/20 to-primary/10",

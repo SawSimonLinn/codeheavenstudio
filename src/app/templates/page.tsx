@@ -93,7 +93,7 @@ export default function TemplatesPage() {
             </h1>
             <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-10">
               Pick a starter template built for your industry. We customize it
-              to match your brand, content, and goals—so you go live faster
+              to match your brand, content, and goals, so you go live faster
               without compromising on quality.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -200,7 +200,7 @@ export default function TemplatesPage() {
                 {
                   step: "02",
                   title: "We Customize It",
-                  desc: "Your colors, content, logo, and copy—fully tailored.",
+                  desc: "Your colors, content, logo, and copy, fully tailored.",
                 },
                 {
                   step: "03",
@@ -253,7 +253,7 @@ export default function TemplatesPage() {
             </h2>
             <p className="text-secondary-foreground/70 text-lg max-w-xl mx-auto mb-10">
               Tell us which template caught your eye and we&apos;ll reach out with
-              next steps—no commitment required.
+              next steps, no commitment required.
             </p>
             <Button
               asChild

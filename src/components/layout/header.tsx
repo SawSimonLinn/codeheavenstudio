@@ -18,16 +18,16 @@ import {
   Instagram,
   Globe,
   Sparkles,
+  Mail,
 } from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
   { href: "/services", label: "Services" },
-  { href: "/templates", label: "Templates" },
-  { href: "/resources", label: "Free Resources" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About Us" },
   { href: "/blog", label: "Blog" },
+  { href: "/request-website", label: "Request Website" },
 ];
 
 const socialLinks = [
@@ -62,9 +62,9 @@ export default function Header() {
       {/* Promo Banner */}
       {showPromo && (
         <div className="w-full bg-gradient-to-r from-primary via-blue-500 to-purple-500 text-white">
-          <div className="container mx-auto max-w-7xl px-4 flex items-center justify-between h-8 text-xs font-medium">
-            <div className="flex-1 flex items-center justify-center gap-2">
-              <Sparkles className="h-3 w-3 shrink-0" />
+          <div className="container mx-auto max-w-7xl px-4 flex items-center justify-between py-1.5 text-xs font-medium">
+            <div className="flex-1 flex items-center justify-center gap-1.5 text-center leading-snug">
+              <Sparkles className="h-3 w-3 shrink-0 hidden sm:block" />
               <span>
                 Limited offer: Get a{" "}
                 <Link href="/contact" className="underline underline-offset-2 font-bold hover:opacity-80">
@@ -96,7 +96,7 @@ export default function Header() {
               priority
               className="transition-transform duration-200 group-hover:scale-110"
             />
-            <span className="hidden font-semibold tracking-tight text-sm sm:inline-block">
+            <span className="font-semibold tracking-tight text-sm">
               Code Heaven Studio
             </span>
           </Link>
@@ -114,9 +114,10 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="rounded-full bg-gradient-to-r from-primary to-purple-500 px-5 py-1.5 text-xs font-semibold text-white hover:opacity-90 transition-opacity"
+              aria-label="Contact Us"
+              className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
             >
-              Contact Us
+              <Mail className="h-5 w-5" />
             </Link>
           </nav>
 
@@ -166,14 +167,6 @@ export default function Header() {
                         </Link>
                       </SheetClose>
                     ))}
-                    <SheetClose asChild>
-                      <Link
-                        href="/contact"
-                        className="mt-3 rounded-full bg-gradient-to-r from-primary to-purple-500 px-5 py-2 text-sm font-semibold text-white text-center hover:opacity-90 transition-opacity"
-                      >
-                        Contact Us
-                      </Link>
-                    </SheetClose>
                   </nav>
                   <div className="p-4 border-t">
                     <div className="flex justify-center gap-1">

@@ -164,7 +164,7 @@ export default async function ResourcePage({
               Want help putting this into practice?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              We build websites that implement every strategy in this guide—fast,
+              We build websites that implement every strategy in this guide, fast,
               professional, and built to generate real results.
             </p>
             <Link

@@ -46,7 +46,7 @@ export default function ResourcesPage() {
             </div>
             <p className="mt-8 max-w-md text-muted-foreground text-base sm:text-lg leading-relaxed">
               Free guides, tips, and strategies to help your business thrive
-              online. No fluff—just practical advice that works.
+              online. No fluff, just practical advice that works.
             </p>
           </div>
         </section>

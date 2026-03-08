@@ -32,7 +32,7 @@ export default function Footer() {
     <footer className="bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 py-12">
         {/* Top section: logo + columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
@@ -76,15 +76,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="hover:text-primary">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
                 <Link href="/careers" className="hover:text-primary">
                   Careers
                 </Link>
               </li>
-              <li>
-                <Link href="/admin/login" className="hover:text-primary">
-                  Admin Panel
-                </Link>
-              </li>
+
             </ul>
           </div>
 
@@ -98,10 +99,27 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/templates" className="hover:text-primary">
+                  Templates
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="hover:text-primary">
+                  Free Resources
+                </Link>
+              </li>
+              <li>
                 <Link href="/how-it-works" className="hover:text-primary">
                   How It Works
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Explore */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3">Explore</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/industries" className="hover:text-primary">
                   Industries
@@ -148,7 +166,9 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Code Heaven Studio. All rights reserved.
+          <Link href="/admin/login" style={{ cursor: "text" }}>
+            © {new Date().getFullYear()} Code Heaven Studio. All rights reserved.
+          </Link>
         </div>
       </div>
     </footer>

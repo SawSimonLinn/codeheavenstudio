@@ -72,7 +72,7 @@ const perks = [
     icon: <Code2 className="h-7 w-7 text-primary" />,
     title: "Modern Stack",
     description:
-      "We use current, industry-standard tools — Next.js, TypeScript, Tailwind, and more.",
+      "We use current, industry-standard tools: Next.js, TypeScript, Tailwind, and more.",
   },
   {
     icon: <Users className="h-7 w-7 text-primary" />,
@@ -108,7 +108,7 @@ export default function CareersPage() {
               <p className="mt-6 text-lg leading-8 text-secondary-foreground/80 max-w-2xl mx-auto">
                 We are a small, passionate studio doing meaningful work. If you
                 love building, care about quality, and want to be part of a team
-                that ships — we want to hear from you.
+                that ships, we want to hear from you.
               </p>
               <div className="mt-8">
                 <Button

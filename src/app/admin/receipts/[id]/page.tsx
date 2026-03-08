@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Download, Edit2, Send, Trash2 } from 'lucide-react';
+import { ArrowLeft, Download, Edit2, Eye, Send, Trash2 } from 'lucide-react';
 import ReceiptPreview from '@/components/admin/receipt-preview';
 import ReceiptForm, { ReceiptFormValues } from '@/components/admin/receipt-form';
 import { apiDeleteReceipt, apiGetReceipt, apiUpdateReceipt } from '@/lib/receipts-client';
@@ -112,9 +112,9 @@ export default function ReceiptDetailPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="mb-6 flex flex-col gap-4">
         <div>
           <Link
             href="/admin/receipts"
@@ -128,9 +128,15 @@ export default function ReceiptDetailPage() {
             {receipt.clientName} · {receipt.clientEmail}
           </p>
         </div>
-        <div className="flex items-center gap-2 print:hidden">
-          <Button asChild variant="outline" size="sm">
-            <a href={`/api/receipts/${receipt.id}/pdf`}>
+        <div className="flex flex-wrap items-center gap-2 print:hidden">
+          <Button asChild variant="outline" size="sm" className="flex-1 sm:flex-none">
+            <a href={`/api/receipts/${receipt.id}/pdf`} target="_blank" rel="noopener noreferrer">
+              <Eye className="h-3.5 w-3.5" />
+              Preview PDF
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="flex-1 sm:flex-none">
+            <a href={`/api/receipts/${receipt.id}/pdf`} download>
               <Download className="h-3.5 w-3.5" />
               Download PDF
             </a>
@@ -138,6 +144,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
+            className="flex-1 sm:flex-none"
             onClick={() => setEditing(!editing)}
           >
             <Edit2 className="h-3.5 w-3.5" />
@@ -146,7 +153,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            className="text-blue-600 border-blue-200 hover:bg-blue-50"
+            className="flex-1 sm:flex-none text-blue-600 border-blue-200 hover:bg-blue-50"
             onClick={() => setSendDialogOpen(true)}
           >
             <Send className="h-3.5 w-3.5" />
@@ -155,7 +162,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            className="text-red-500 border-red-200 hover:bg-red-50"
+            className="flex-1 sm:flex-none text-red-500 border-red-200 hover:bg-red-50"
             onClick={handleDelete}
           >
             <Trash2 className="h-3.5 w-3.5" />

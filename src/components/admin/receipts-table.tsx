@@ -93,8 +93,82 @@ export default function ReceiptsTable({ receipts, onRefresh, onSendEmail }: Prop
         </Select>
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Mobile card view */}
+      <div className="sm:hidden">
+        {filtered.length === 0 ? (
+          <div className="py-16 text-center text-sm text-gray-400">
+            {receipts.length === 0 ? 'No receipts found.' : 'No receipts match your search.'}
+          </div>
+        ) : (
+          <div className="divide-y divide-gray-100">
+            {filtered.map((r) => (
+              <div key={r.id} className="p-4 space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <p className="font-mono text-xs font-medium text-gray-500">{r.receiptNumber}</p>
+                    <p className="font-semibold text-gray-900">{r.clientName}</p>
+                    {r.companyName && <p className="text-xs text-gray-400">{r.companyName}</p>}
+                    <p className="text-xs text-gray-500">{r.clientEmail}</p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className="font-bold text-gray-900">${r.total.toFixed(2)}</p>
+                    <p className="text-xs text-gray-400">{r.issueDate}</p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <Select
+                    value={r.status}
+                    onValueChange={(v) => handleStatusChange(r.id, v as ReceiptStatus)}
+                  >
+                    <SelectTrigger className={`h-7 text-xs w-24 border-0 ${statusColors[r.status]}`}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="draft">Draft</SelectItem>
+                      <SelectItem value="sent">Sent</SelectItem>
+                      <SelectItem value="paid">Paid</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <div className="flex items-center gap-1">
+                    <Button asChild variant="ghost" size="icon" className="h-8 w-8">
+                      <Link href={`/admin/receipts/${r.id}`} title="View">
+                        <Eye className="h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-blue-500 hover:text-blue-700 hover:bg-blue-50"
+                      title="Send Email"
+                      onClick={() => onSendEmail(r)}
+                    >
+                      <Send className="h-3.5 w-3.5" />
+                    </Button>
+                    <Button asChild variant="ghost" size="icon" className="h-8 w-8" title="Download PDF">
+                      <a href={`/api/receipts/${r.id}/pdf`}>
+                        <Download className="h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-red-400 hover:text-red-600 hover:bg-red-50"
+                      title="Delete"
+                      disabled={deletingId === r.id}
+                      onClick={() => handleDelete(r)}
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Desktop table view */}
+      <div className="hidden sm:block overflow-x-auto">
         {filtered.length === 0 ? (
           <div className="py-16 text-center text-sm text-gray-400">
             {receipts.length === 0 ? 'No receipts found.' : 'No receipts match your search.'}
@@ -103,11 +177,9 @@ export default function ReceiptsTable({ receipts, onRefresh, onSendEmail }: Prop
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider">Receipt #</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider whitespace-nowrap">Receipt #</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider">Client</th>
-                <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider hidden md:table-cell">Email</th>
-                <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider hidden sm:table-cell">Date</th>
-                <th className="text-right px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider">Total</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider hidden sm:table-cell whitespace-nowrap">Date</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider">Status</th>
                 <th className="text-right px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wider">Actions</th>
               </tr>
@@ -115,14 +187,12 @@ export default function ReceiptsTable({ receipts, onRefresh, onSendEmail }: Prop
             <tbody className="divide-y divide-gray-100">
               {filtered.map((r) => (
                 <tr key={r.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-3 font-mono text-xs font-medium text-gray-900">{r.receiptNumber}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3 font-mono text-xs font-medium text-gray-900 whitespace-nowrap">{r.receiptNumber}</td>
+                  <td className="px-4 py-3 min-w-[140px]">
                     <p className="font-medium text-gray-900">{r.clientName}</p>
-                    {r.companyName && <p className="text-xs text-gray-400">{r.companyName}</p>}
+                    {r.companyName && <p className="text-xs text-gray-400 truncate max-w-[160px]">{r.companyName}</p>}
                   </td>
-                  <td className="px-4 py-3 text-gray-500 hidden md:table-cell">{r.clientEmail}</td>
-                  <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{r.issueDate}</td>
-                  <td className="px-4 py-3 text-right font-semibold text-gray-900">${r.total.toFixed(2)}</td>
+                  <td className="px-4 py-3 text-gray-500 hidden sm:table-cell whitespace-nowrap">{r.issueDate}</td>
                   <td className="px-4 py-3">
                     <Select
                       value={r.status}

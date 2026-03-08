@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Receipt, PlusCircle, Menu } from 'lucide-react';
+import { LayoutDashboard, Receipt, PlusCircle, Menu, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,21 +18,13 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: '/admin/receipts', label: 'Receipts', icon: Receipt, exact: false },
   { href: '/admin/receipts/new', label: 'New Receipt', icon: PlusCircle, exact: true },
+  { href: '/admin/audit', label: 'Audit Log', icon: ShieldCheck, exact: false },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  useEffect(() => {
-    if (pathname === '/admin/login') return;
-
-    fetch('/api/admin/audit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ path: pathname }),
-    }).catch(() => undefined);
-  }, [pathname]);
 
   if (pathname === '/admin/login') {
     return children;

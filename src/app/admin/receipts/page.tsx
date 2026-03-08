@@ -50,13 +50,13 @@ export default function ReceiptsPage() {
   };
 
   return (
-    <div className="p-8">
-      <div className="mb-8 flex items-center justify-between">
+    <div className="p-4 sm:p-6 md:p-8">
+      <div className="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Receipts</h1>
           <p className="text-sm text-gray-500 mt-1">Manage all client receipts</p>
         </div>
-        <Button asChild>
+        <Button asChild className="w-full sm:w-auto">
           <Link href="/admin/receipts/new">
             <PlusCircle className="h-4 w-4" />
             New Receipt

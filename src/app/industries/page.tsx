@@ -16,7 +16,7 @@ const industries = [
     icon: Utensils,
     title: "Restaurant Websites",
     description:
-      "A great restaurant website does more than look good—it drives reservations, showcases your menu, and gives people a taste of the experience before they arrive.",
+      "A great restaurant website does more than look good. It drives reservations, showcases your menu, and gives people a taste of the experience before they arrive.",
     features: [
       "Online menu with photos",
       "Reservation & booking links",
@@ -64,7 +64,7 @@ const industries = [
     icon: MapPin,
     title: "Local Business SEO",
     description:
-      "If you serve a local area, you need to show up when people search for what you offer nearby. We optimize your site and Google Business profile to put you on the map—literally.",
+      "If you serve a local area, you need to show up when people search for what you offer nearby. We optimize your site and Google Business profile to put you on the map, literally.",
     features: [
       "Google Business Profile setup",
       "Local keyword targeting",
@@ -163,7 +163,7 @@ export default function IndustriesPage() {
             Businesses We&apos;ve Helped
           </h2>
           <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-            Real results for real businesses—here&apos;s a look at some of the clients we&apos;ve worked with.
+            Real results for real businesses. Here&apos;s a look at some of the clients we&apos;ve worked with.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredWork.map((work) => (
@@ -203,7 +203,7 @@ export default function IndustriesPage() {
           </h2>
           <p className="text-secondary-foreground/70 text-lg max-w-xl mx-auto mb-10">
             We work with businesses outside these categories too. If you need a website, let&apos;s
-            talk—we&apos;ll figure out what works for you.
+            talk, we&apos;ll figure out what works for you.
           </p>
           <Button
             asChild

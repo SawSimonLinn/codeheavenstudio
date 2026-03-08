@@ -17,7 +17,7 @@ const steps = [
     icon: MessageSquare,
     title: "Consultation",
     description:
-      "We start with a free call to understand your business, goals, and target audience. No jargon, no pressure—just a real conversation about what you need and how we can help.",
+      "We start with a free call to understand your business, goals, and target audience. No jargon, no pressure, just a real conversation about what you need and how we can help.",
     detail: "Free 30-minute call · Zero commitment",
   },
   {
@@ -33,7 +33,7 @@ const steps = [
     icon: Code2,
     title: "Development",
     description:
-      "Once the design is approved, we build your site with clean, fast, and SEO-ready code. We keep you in the loop throughout—no disappearing acts or radio silence.",
+      "Once the design is approved, we build your site with clean, fast, and SEO-ready code. We keep you in the loop throughout, no disappearing acts or radio silence.",
     detail: "Next.js · Mobile-first · Performance optimized",
   },
   {
@@ -41,7 +41,7 @@ const steps = [
     icon: Rocket,
     title: "Launch",
     description:
-      "We deploy your website, connect your domain, and do a final round of testing across devices and browsers. When everything passes, we hit publish—and your site goes live.",
+      "We deploy your website, connect your domain, and do a final round of testing across devices and browsers. When everything passes, we hit publish and your site goes live.",
     detail: "Domain setup · Cross-device testing · Go live",
   },
   {
@@ -49,7 +49,7 @@ const steps = [
     icon: HeadphonesIcon,
     title: "Support",
     description:
-      "After launch, we don't disappear. We offer ongoing maintenance plans to keep your site updated, secure, and running smoothly. You focus on your business—we handle the tech.",
+      "After launch, we don't disappear. We offer ongoing maintenance plans to keep your site updated, secure, and running smoothly. You focus on your business, we handle the tech.",
     detail: "Monthly plans · Priority support · Content updates",
   },
 ];
@@ -57,11 +57,11 @@ const steps = [
 const faqs = [
   {
     q: "How long does a typical project take?",
-    a: "Most websites are completed within 2–4 weeks from design approval, depending on complexity. Landing pages can be faster—sometimes under a week.",
+    a: "Most websites are completed within 2–4 weeks from design approval, depending on complexity. Landing pages can be faster, sometimes under a week.",
   },
   {
     q: "Do I need to provide content?",
-    a: "Ideally yes—you know your business best. But if you need help with copywriting or photos, we can advise on that too.",
+    a: "Ideally yes, you know your business best. But if you need help with copywriting or photos, we can advise on that too.",
   },
   {
     q: "What if I want changes after launch?",
@@ -69,7 +69,7 @@ const faqs = [
   },
   {
     q: "Will I own my website?",
-    a: "Absolutely. Once the project is complete and final payment is made, the site is 100% yours—code, domain, everything.",
+    a: "Absolutely. Once the project is complete and final payment is made, the site is 100% yours: code, domain, everything.",
   },
 ];
 

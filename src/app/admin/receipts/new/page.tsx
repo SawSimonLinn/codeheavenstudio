@@ -31,7 +31,7 @@ export default function NewReceiptPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="mb-6">
         <Link
           href="/admin/receipts"

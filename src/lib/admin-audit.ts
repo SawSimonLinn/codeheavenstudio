@@ -14,7 +14,6 @@ type AuditDoc = {
   city: string;
   region: string;
   country: string;
-  createdAt: string;
 };
 
 type AuditDocument = Models.Document & AuditDoc;
@@ -119,7 +118,6 @@ export async function logAdminAuditEvent(options: {
     city,
     region,
     country,
-    createdAt: new Date().toISOString(),
   };
 
   try {

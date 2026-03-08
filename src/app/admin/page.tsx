@@ -25,6 +25,13 @@ function formatLocation(log: AuditLog) {
   return [log.city, log.region, log.country].filter(Boolean).join(', ') || 'Unknown location';
 }
 
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good morning';
+  if (hour < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
 export default function AdminDashboard() {
   const [receipts, setReceipts] = useState<ReceiptType[]>([]);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
@@ -37,7 +44,7 @@ export default function AdminDashboard() {
       .catch(console.error)
       .finally(() => setLoading(false));
 
-    fetch('/api/admin/audit?limit=25')
+    fetch('/api/admin/audit?limit=3')
       .then(async (response) => {
         if (!response.ok) throw new Error('Failed to load audit logs.');
         return (await response.json()) as { logs?: AuditLog[] };
@@ -64,6 +71,19 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-4 sm:p-6 md:p-8">
+      <div className="mb-6 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 px-6 py-4 flex items-center gap-4">
+        <div className="flex -space-x-2">
+          <div className="h-9 w-9 rounded-full bg-indigo-500 flex items-center justify-center text-white text-sm font-bold ring-2 ring-white">S</div>
+          <div className="h-9 w-9 rounded-full bg-pink-500 flex items-center justify-center text-white text-sm font-bold ring-2 ring-white">M</div>
+        </div>
+        <div>
+          <p className="text-base font-semibold text-gray-900">
+            {getGreeting()}, Simon &amp; Mia!
+          </p>
+          <p className="text-sm text-gray-500">Welcome back to your admin portal.</p>
+        </div>
+      </div>
+
       <div className="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
@@ -157,9 +177,11 @@ export default function AdminDashboard() {
       </div>
 
       <div className="mt-8 bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="p-4 sm:p-6 border-b border-gray-200">
-          <h2 className="font-semibold text-gray-900">Admin Audit Log</h2>
-          <p className="text-xs sm:text-sm text-gray-500 mt-1">Login, logout, and visited pages with device and location data.</p>
+        <div className="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between gap-3">
+          <h2 className="font-semibold text-gray-900">Recent Activity</h2>
+          <Link href="/admin/audit" className="text-sm text-primary hover:underline">
+            View all
+          </Link>
         </div>
 
         {auditLoading ? (
