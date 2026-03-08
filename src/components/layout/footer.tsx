@@ -91,6 +91,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/why-choose-us" className="hover:text-primary">
+                  Why Choose Us
+                </Link>
+              </li>
+              <li>
                 <Link href="/press" className="hover:text-primary">
                   Press
                 </Link>
