@@ -197,6 +197,103 @@ The best time to build a website was yesterday. The second best time is today.
     `.trim(),
   },
   {
+    slug: "local-seo-guide-for-small-businesses",
+    title: "Local SEO: How to Get Found by Customers in Your Area",
+    description:
+      "A straightforward guide to local SEO for small business owners. Learn how to rank higher on Google and attract more nearby customers without spending a fortune on ads.",
+    category: "Business",
+    date: "March 2025",
+    readTime: "5 min read",
+    content: `
+## What Is Local SEO and Why Does It Matter?
+
+Local SEO (Search Engine Optimization) is the process of making your business show up when people nearby search for what you offer. Think: "dentist near me," "best pizza in [city]," or "affordable web design [town]."
+
+If you run a local business and you're not showing up in those results, you're invisible to potential customers at the exact moment they want to buy.
+
+The good news: local SEO is very achievable, even without a big budget.
+
+---
+
+## 1. Get Your Google Business Profile Right
+
+Your Google Business Profile (formerly Google My Business) is the most important local SEO asset you have. It powers the map listings that appear at the top of Google search results.
+
+**Action steps:**
+- Claim and verify your profile at business.google.com
+- Fill in every field: hours, address, phone, website, and services
+- Choose the most accurate primary business category
+- Upload real photos of your location, team, and work
+- Post updates at least twice a month to stay active
+
+A complete, active profile dramatically increases your chances of appearing in the local "map pack."
+
+---
+
+## 2. Build Local Citations
+
+A citation is any mention of your business name, address, and phone number (NAP) across the web. Consistency matters: if your address appears differently across directories, Google loses confidence in your listing.
+
+**Top places to list your business:**
+- Yelp
+- Apple Maps
+- Bing Places
+- Facebook
+- Industry-specific directories
+
+Make sure your NAP is identical everywhere.
+
+---
+
+## 3. Earn More Reviews
+
+Reviews are a major ranking factor for local search. More positive reviews signal to Google that your business is trustworthy and popular.
+
+**How to get more reviews:**
+- Ask happy customers right after a positive experience
+- Send a follow-up email or text with a direct link to your review page
+- Make it easy: the fewer steps, the more reviews you get
+- Reply to every review, including negative ones, professionally
+
+Aim for a steady stream of reviews over time rather than a sudden spike.
+
+---
+
+## 4. Optimize Your Website for Local Keywords
+
+Your website should signal to Google exactly where you operate and who you serve.
+
+**Simple on-page SEO steps:**
+- Include your city and region in your page title and headings
+- Add a dedicated "Areas We Serve" page if you cover multiple locations
+- Embed a Google Map on your contact page
+- Write your full address in the footer of every page
+- Use keywords like "web design in [city]" naturally in your content
+
+---
+
+## 5. Get Local Backlinks
+
+A backlink is when another website links to yours. Local backlinks carry extra weight for local SEO.
+
+**How to earn local backlinks:**
+- Join your local Chamber of Commerce (they often list members on their site)
+- Sponsor a local event and get listed on their website
+- Get featured in local news or community blogs
+- Partner with complementary local businesses
+
+Even a handful of strong local backlinks can move the needle.
+
+---
+
+## The Payoff
+
+Local SEO is not a one-time task. It is an ongoing process. But the results compound over time: the more consistent and active you are, the higher you rank, and the more customers find you for free.
+
+If you want a website built to rank locally from day one, [get in touch with us](/contact). We build sites with SEO baked in, not bolted on.
+    `.trim(),
+  },
+  {
     slug: "what-makes-a-good-small-business-website",
     title: "What Makes a Good Small Business Website?",
     description:

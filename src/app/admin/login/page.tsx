@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
@@ -36,7 +36,10 @@ export default function AdminLoginPage() {
         return;
       }
 
-      const next = searchParams.get('next') ?? '/admin';
+      const raw = searchParams.get('next') ?? '';
+      const next = raw.startsWith('/') && !raw.startsWith('//') && !/^\/[a-zA-Z][a-zA-Z\d+\-.]*:/.test(raw)
+        ? raw
+        : '/admin';
       router.replace(next);
       router.refresh();
     } catch {
@@ -113,5 +116,13 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-gray-900" /></div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

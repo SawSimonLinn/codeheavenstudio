@@ -6,6 +6,7 @@ import {
   MapPin,
   ArrowRight,
   CheckCircle2,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/header";
@@ -80,10 +81,25 @@ const industries = [
 
 const featuredWork = [
   {
-    name: "Bangkok Soul",
-    type: "Thai Restaurant",
+    name: "Blue Bird Haus Sushi",
+    type: "Sushi Restaurant",
     location: "USA",
-    result: "Professional online presence with menu, gallery, and Google Maps integration.",
+    result: "Modern sushi site with organized menu, high-quality visuals, and mobile-optimized layout.",
+    icon: Utensils,
+  },
+  {
+    name: "Dunedin SD",
+    type: "New Zealand Burger Bar",
+    location: "San Diego, USA",
+    result: "Full restaurant site with diner, brunch, happy hour menus, online ordering, and private event booking.",
+    icon: Utensils,
+  },
+  {
+    name: "Ventures Quality Insurance",
+    type: "Insurance Platform",
+    location: "USA",
+    result: "Multi-policy insurance platform with online applications and a secure admin panel for managing applicant records.",
+    icon: ShieldCheck,
   },
 ];
 
@@ -166,11 +182,13 @@ export default function IndustriesPage() {
             Real results for real businesses. Here&apos;s a look at some of the clients we&apos;ve worked with.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredWork.map((work) => (
+            {featuredWork.map((work) => {
+              const WorkIcon = work.icon;
+              return (
               <div key={work.name} className="rounded-2xl border bg-card p-6 shadow-sm">
                 <div className="flex items-start gap-3 mb-4">
                   <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Utensils className="h-5 w-5 text-primary" />
+                    <WorkIcon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-semibold">{work.name}</p>
@@ -181,7 +199,8 @@ export default function IndustriesPage() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{work.result}</p>
               </div>
-            ))}
+              );
+            })}
             {/* More coming card */}
             <div className="rounded-2xl border border-dashed bg-card/50 p-6 flex flex-col items-center justify-center text-center gap-3">
               <p className="text-sm font-semibold text-muted-foreground">More projects coming soon</p>

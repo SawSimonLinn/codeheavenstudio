@@ -131,7 +131,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:text-primary">
+                <Link href="/codeheavenpricing" className="hover:text-primary">
                   Pricing
                 </Link>
               </li>
