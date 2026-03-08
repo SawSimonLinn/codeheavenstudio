@@ -113,6 +113,11 @@ export default function Footer() {
                   How It Works
                 </Link>
               </li>
+              <li>
+                <Link href="/case-studies" className="hover:text-primary">
+                  Case Studies
+                </Link>
+              </li>
             </ul>
           </div>
 

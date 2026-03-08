@@ -33,6 +33,7 @@ import {
   ArrowRight,
   Sparkles,
   Tag,
+  MapPin,
 } from "lucide-react";
 
 const subjects = [
@@ -387,8 +388,20 @@ export default function ContactSection() {
               );
             })}
 
+            {/* Locations */}
+            <div className="rounded-2xl border border-border/40 bg-muted/30 p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <MapPin className="h-4 w-4 text-primary" />
+                <p className="text-sm font-semibold text-foreground">Our Locations</p>
+              </div>
+              <ul className="space-y-1 text-sm text-muted-foreground">
+                <li>Los Angeles, CA</li>
+                <li>San Diego, CA</li>
+              </ul>
+            </div>
+
             {/* Response time badge */}
-            <div className="mt-2 rounded-2xl border border-border/40 bg-muted/30 p-5 text-center">
+            <div className="rounded-2xl border border-border/40 bg-muted/30 p-5 text-center">
               <div className="flex justify-center mb-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -396,10 +409,10 @@ export default function ContactSection() {
                 </span>
               </div>
               <p className="text-sm font-semibold text-foreground">
-                Avg. response time: &lt; 24 hours
+                Avg. response time: under 24 hours
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                Mon – Fri, 9am – 6pm (EST)
+                Mon to Fri, 9am to 6pm (PST)
               </p>
             </div>
           </div>
