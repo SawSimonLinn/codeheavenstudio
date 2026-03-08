@@ -198,7 +198,17 @@ export default function Footer() {
           <Link href="/admin/login" style={{ cursor: "text" }}>
             © {new Date().getFullYear()} Code Heaven Studio LLC. All rights reserved.
           </Link>
-          <p>Los Angeles, California</p>
+          <p>
+            Founded by{" "}
+            <Link href="/founder/saw-simon-linn" className="hover:text-primary">
+              Saw Simon Linn
+            </Link>{" "}
+            and{" "}
+            <Link href="/founder/mia-truong" className="hover:text-primary">
+              Mia Truong
+            </Link>{" "}
+            in Los Angeles / San Diego, California.
+          </p>
           <p>
             <a href="mailto:codeheavenstudio@gmail.com" className="hover:text-primary">
               codeheavenstudio@gmail.com

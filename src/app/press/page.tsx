@@ -1,7 +1,8 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { Download, Mail, Globe, ArrowRight, ImageIcon, FileText, Palette } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Download, Mail, Globe, ImageIcon, FileText, Palette, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const brandColors = [
@@ -108,6 +109,72 @@ export default function PressPage() {
                     {fact.label}
                   </p>
                   <p className="font-semibold text-sm">{fact.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Founders */}
+        <section className="py-20 sm:py-28 bg-muted/20">
+          <div className="container mx-auto max-w-4xl px-4">
+            <h2 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+              Our Founders
+            </h2>
+            <p className="text-muted-foreground mb-10">
+              Code Heaven Studio was founded by Saw Simon Linn and Mia Truong, based in Los Angeles and San Diego, California.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                {
+                  name: "Saw Simon Linn",
+                  role: "Co-Founder & Software Engineer",
+                  location: "Los Angeles, CA",
+                  avatar: "/avatars/simon.jpg",
+                  hint: "male developer",
+                  initials: "SS",
+                  page: "/founder/saw-simon-linn",
+                  linkedin: "https://www.linkedin.com/in/sawsimonlinn/",
+                  bio: "Saw Simon Linn leads product development at Code Heaven Studio, building modern, SEO-optimized websites for restaurants and small businesses.",
+                },
+                {
+                  name: "Mia Truong",
+                  role: "Co-Founder",
+                  location: "San Diego, CA",
+                  avatar: "/avatars/mia.jpg",
+                  hint: "female developer",
+                  initials: "MT",
+                  page: "/founder/mia-truong",
+                  linkedin: "https://www.linkedin.com/in/trangmtruong/",
+                  bio: "Mia Truong focuses on business development, partnerships, and client success at Code Heaven Studio.",
+                },
+              ].map((founder) => (
+                <div key={founder.name} className="rounded-2xl border bg-card p-8 flex flex-col gap-4">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="w-16 h-16 border-2 border-primary/20">
+                      <AvatarImage src={founder.avatar} alt={founder.name} data-ai-hint={founder.hint} />
+                      <AvatarFallback>{founder.initials}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <Link href={founder.page} className="font-semibold text-lg hover:text-primary transition-colors">
+                        {founder.name}
+                      </Link>
+                      <p className="text-sm text-primary">{founder.role}</p>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
+                        <MapPin className="h-3 w-3" />
+                        {founder.location}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{founder.bio}</p>
+                  <div className="flex gap-3 mt-auto">
+                    <Button asChild size="sm" variant="outline" className="rounded-full text-xs">
+                      <Link href={founder.page}>Full Profile</Link>
+                    </Button>
+                    <Button asChild size="sm" variant="ghost" className="rounded-full text-xs">
+                      <a href={founder.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>

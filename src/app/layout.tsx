@@ -21,8 +21,51 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Code Heaven Studio",
+    url: "https://www.codeheavenstudio.com",
+    logo: "https://www.codeheavenstudio.com/logo.png",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "codeheavenstudio@gmail.com",
+      contactType: "customer service",
+    },
+    founder: [
+      {
+        "@type": "Person",
+        name: "Saw Simon Linn",
+        jobTitle: "Co-Founder & Software Engineer",
+        url: "https://www.codeheavenstudio.com/founder/saw-simon-linn",
+        sameAs: [
+          "https://www.linkedin.com/in/sawsimonlinn/",
+          "https://github.com/SawSimonLinn",
+          "https://simonlinn.dev/",
+        ],
+      },
+      {
+        "@type": "Person",
+        name: "Mia Truong",
+        jobTitle: "Co-Founder",
+        url: "https://www.codeheavenstudio.com/founder/mia-truong",
+        sameAs: [
+          "https://www.linkedin.com/in/trangmtruong/",
+          "https://github.com/trangmtruong",
+          "https://www.miatruong.com/",
+        ],
+      },
+    ],
+  };
+
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} font-body antialiased`}>
         {children}
         <Analytics />
