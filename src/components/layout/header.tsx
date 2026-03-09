@@ -25,6 +25,7 @@ import {
   Wrench,
   Palette,
   PenLine,
+  Layers,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -70,6 +71,12 @@ const services = [
     label: "Content Writing",
     desc: "Copy that connects and converts",
     icon: PenLine,
+  },
+  {
+    href: "/services/fullstack-internal-websites",
+    label: "Fullstack Internal Systems",
+    desc: "Order systems, dashboards & internal tools",
+    icon: Layers,
   },
 ];
 

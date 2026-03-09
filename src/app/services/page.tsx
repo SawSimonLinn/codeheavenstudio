@@ -8,6 +8,7 @@ import {
   Wrench,
   Palette,
   PenLine,
+  Layers,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
@@ -87,6 +88,15 @@ const services = [
       "Great design needs great words. We write clear, engaging content for your website, landing pages, and marketing materials, tailored to your audience and optimized for search engines.",
     features: ["Website copywriting", "Landing page copy", "Blog & article writing", "SEO-friendly content"],
     href: "/services/content-writing",
+  },
+  {
+    icon: Layers,
+    title: "Fullstack Internal Web Systems",
+    tagline: "Custom tools built for your team",
+    description:
+      "We build custom web applications for internal use — order management systems, staff dashboards, booking tools, and more. Built fullstack, tailored to your workflow, and designed for real teams.",
+    features: ["Online order systems", "Admin & staff dashboards", "Role-based access control", "Inventory & reporting tools"],
+    href: "/services/fullstack-internal-websites",
   },
 ];
 
