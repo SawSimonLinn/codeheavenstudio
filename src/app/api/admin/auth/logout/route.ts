@@ -1,15 +1,38 @@
-import { NextResponse } from 'next/server';
-import {
-  ADMIN_SESSION_COOKIE,
-  destroyAdminSession,
-  getAdminUserFromSessionSecret,
-  getCookieFromRequest,
-} from '@/lib/admin-auth';
-import { logAdminAuditEvent } from '@/lib/admin-audit';
+import { NextRequest, NextResponse } from 'next/server';
+import { backendFetch, getClientHeaders, getSessionCookie } from '@/lib/api';
 
-function clearSessionCookie(response: NextResponse) {
+export async function POST(request: NextRequest) {
+  const res = await backendFetch('/api/admin/auth/logout', {
+    method: 'POST',
+    cookie: getSessionCookie(request),
+    headers: getClientHeaders(request),
+  });
+
+  const data = await res.json();
+  const response = NextResponse.json(data, { status: res.status });
+
+  const setCookie = res.headers.get('set-cookie');
+  if (setCookie) {
+    response.headers.set('set-cookie', setCookie);
+  }
+
+  return response;
+}
+
+export async function GET(request: NextRequest) {
+  const url = new URL(request.url);
+  const next = url.searchParams.get('next') || '/';
+
+  await backendFetch('/api/admin/auth/logout', {
+    method: 'POST',
+    cookie: getSessionCookie(request),
+    headers: getClientHeaders(request),
+  });
+
+  const response = NextResponse.redirect(new URL(next, url));
+  // Clear the session cookie client-side as well
   response.cookies.set({
-    name: ADMIN_SESSION_COOKIE,
+    name: 'chs_admin_session',
     value: '',
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -17,55 +40,6 @@ function clearSessionCookie(response: NextResponse) {
     path: '/',
     maxAge: 0,
   });
-}
-
-async function logLogoutIfPossible(request: Request, sessionSecret: string | null) {
-  if (!sessionSecret) return;
-
-  let email = '';
-  try {
-    const user = await getAdminUserFromSessionSecret(sessionSecret);
-    email = user.email;
-  } catch {
-    // Ignore invalid/expired session parse failures for logout logs.
-  }
-
-  await logAdminAuditEvent({
-    request,
-    event: 'logout',
-    email,
-    path: '/admin/logout',
-  });
-}
-
-export async function POST(request: Request) {
-  const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
-
-  await logLogoutIfPossible(request, sessionSecret);
-
-  if (sessionSecret) {
-    await destroyAdminSession(sessionSecret).catch(() => undefined);
-  }
-
-  const response = NextResponse.json({ success: true });
-  clearSessionCookie(response);
-
-  return response;
-}
-
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const next = url.searchParams.get('next') || '/';
-  const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
-
-  await logLogoutIfPossible(request, sessionSecret);
-
-  if (sessionSecret) {
-    await destroyAdminSession(sessionSecret).catch(() => undefined);
-  }
-
-  const response = NextResponse.redirect(new URL(next, url));
-  clearSessionCookie(response);
 
   return response;
 }

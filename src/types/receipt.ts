@@ -26,4 +26,4 @@ export interface Receipt {
   createdAt: string;
 }
 
-export type CreateReceiptData = Omit<Receipt, 'id' | 'receiptNumber' | 'createdAt' | 'subtotal' | 'total'>;
+export type CreateReceiptData = Omit<Receipt, 'id' | 'receiptNumber' | 'createdAt'>;

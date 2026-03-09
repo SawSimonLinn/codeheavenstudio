@@ -1,51 +1,26 @@
-import { NextResponse } from 'next/server';
-import { getReceipt } from '@/lib/receipts-service';
-import { generateReceiptPdf, getReceiptPdfFilename } from '@/lib/receipt-pdf';
-import {
-  ADMIN_SESSION_COOKIE,
-  getAdminUserFromSessionSecret,
-  getCookieFromRequest,
-} from '@/lib/admin-auth';
+import { NextRequest, NextResponse } from 'next/server';
+import { backendFetch, getSessionCookie } from '@/lib/api';
 
-async function ensureAdmin(request: Request) {
-  const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
-  if (!sessionSecret) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    await getAdminUserFromSessionSecret(sessionSecret);
-    return null;
-  } catch {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-}
-
-export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const res = await backendFetch(`/api/receipts/${id}/pdf`, {
+    cookie: getSessionCookie(request),
+  });
 
-  try {
-    const receipt = await getReceipt(id);
-    if (!receipt) {
-      return NextResponse.json({ error: 'Receipt not found' }, { status: 404 });
-    }
-
-    const pdfBytes = await generateReceiptPdf(receipt);
-    const fileName = getReceiptPdfFilename(receipt.receiptNumber);
-
-    return new NextResponse(Buffer.from(pdfBytes), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="${fileName}"`,
-        'Cache-Control': 'no-store',
-      },
-    });
-  } catch (error) {
-    console.error('GET /api/receipts/[id]/pdf:', error);
-    return NextResponse.json({ error: 'Failed to generate PDF' }, { status: 500 });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({ error: 'Failed to generate PDF' }));
+    return NextResponse.json(data, { status: res.status });
   }
+
+  const buffer = await res.arrayBuffer();
+  const contentDisposition = res.headers.get('content-disposition') ?? 'attachment; filename="receipt.pdf"';
+
+  return new NextResponse(buffer, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': contentDisposition,
+      'Cache-Control': 'no-store',
+    },
+  });
 }

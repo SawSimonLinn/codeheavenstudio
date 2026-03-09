@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { X, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const STORAGE_KEY = "chs_promo_dismissed";
 
 export default function PromoModal() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [neverShow, setNeverShow] = useState(false);
 
   useEffect(() => {
+    if (pathname.startsWith("/admin")) return;
     if (localStorage.getItem(STORAGE_KEY) === "true") return;
     // Show after 10-20 seconds so the user has time to browse first
     const delay = Math.floor(Math.random() * 10_000) + 10_000;

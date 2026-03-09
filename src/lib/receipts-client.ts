@@ -16,7 +16,8 @@ async function parseResponse<T>(res: Response): Promise<T> {
 
 export async function apiGetReceipts(): Promise<Receipt[]> {
   const res = await fetch('/api/receipts', { cache: 'no-store' });
-  return parseResponse<Receipt[]>(res);
+  const data = await parseResponse<Receipt[] | { receipts: Receipt[] }>(res);
+  return Array.isArray(data) ? data : (data.receipts ?? []);
 }
 
 export async function apiCreateReceipt(data: CreateReceiptData): Promise<Receipt> {

@@ -1,67 +1,33 @@
-import { NextResponse } from 'next/server';
-import { getReceipt, updateReceipt, deleteReceipt } from '@/lib/receipts-service';
-import type { Receipt } from '@/types/receipt';
-import {
-  ADMIN_SESSION_COOKIE,
-  getAdminUserFromSessionSecret,
-  getCookieFromRequest,
-} from '@/lib/admin-auth';
+import { NextRequest, NextResponse } from 'next/server';
+import { backendFetch, getSessionCookie } from '@/lib/api';
 
-async function ensureAdmin(request: Request) {
-  const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
-  if (!sessionSecret) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    await getAdminUserFromSessionSecret(sessionSecret);
-    return null;
-  } catch {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const res = await backendFetch(`/api/receipts/${id}`, {
+    cookie: getSessionCookie(request),
+  });
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
 }
 
-export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  try {
-    const receipt = await getReceipt(id);
-    if (!receipt) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-    return NextResponse.json(receipt);
-  } catch (error) {
-    console.error('GET /api/receipts/[id]:', error);
-    return NextResponse.json({ error: 'Failed to fetch receipt' }, { status: 500 });
-  }
+  const body = await request.text();
+  const res = await backendFetch(`/api/receipts/${id}`, {
+    method: 'PUT',
+    body,
+    cookie: getSessionCookie(request),
+  });
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
 }
 
-export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  try {
-    const body: Partial<Receipt> = await request.json();
-    await updateReceipt(id, body);
-    const updated = await getReceipt(id);
-    return NextResponse.json(updated);
-  } catch (error) {
-    console.error('PUT /api/receipts/[id]:', error);
-    return NextResponse.json({ error: 'Failed to update receipt' }, { status: 500 });
-  }
-}
-
-export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
-  const { id } = await params;
-  try {
-    await deleteReceipt(id);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('DELETE /api/receipts/[id]:', error);
-    return NextResponse.json({ error: 'Failed to delete receipt' }, { status: 500 });
-  }
+  const res = await backendFetch(`/api/receipts/${id}`, {
+    method: 'DELETE',
+    cookie: getSessionCookie(request),
+  });
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
 }

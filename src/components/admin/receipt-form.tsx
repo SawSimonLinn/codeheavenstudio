@@ -243,7 +243,11 @@ export default function ReceiptForm({
   };
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    await onSubmit(data as CreateReceiptData);
+    const items = data.items ?? [];
+    const subtotal = items.reduce((s, i) => s + asNumber(i?.quantity) * asNumber(i?.price), 0);
+    const taxAmt = (subtotal * asNumber(data.tax)) / 100;
+    const total = subtotal + taxAmt - asNumber(data.discount);
+    await onSubmit({ ...data, subtotal, total } as CreateReceiptData);
   });
 
   return (

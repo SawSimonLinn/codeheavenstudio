@@ -1,49 +1,21 @@
-import { NextResponse } from 'next/server';
-import { getReceipts, createReceipt } from '@/lib/receipts-service';
-import type { CreateReceiptData } from '@/types/receipt';
-import {
-  ADMIN_SESSION_COOKIE,
-  getAdminUserFromSessionSecret,
-  getCookieFromRequest,
-} from '@/lib/admin-auth';
+import { NextRequest, NextResponse } from 'next/server';
+import { backendFetch, getSessionCookie } from '@/lib/api';
 
-async function ensureAdmin(request: Request) {
-  const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
-  if (!sessionSecret) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    await getAdminUserFromSessionSecret(sessionSecret);
-    return null;
-  } catch {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+export async function GET(request: NextRequest) {
+  const res = await backendFetch('/api/receipts', {
+    cookie: getSessionCookie(request),
+  });
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
 }
 
-export async function GET(request: Request) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
-  try {
-    const receipts = await getReceipts();
-    return NextResponse.json(receipts);
-  } catch (error) {
-    console.error('GET /api/receipts:', error);
-    return NextResponse.json({ error: 'Failed to fetch receipts' }, { status: 500 });
-  }
-}
-
-export async function POST(request: Request) {
-  const unauthorized = await ensureAdmin(request);
-  if (unauthorized) return unauthorized;
-
-  try {
-    const body: CreateReceiptData = await request.json();
-    const receipt = await createReceipt(body);
-    return NextResponse.json(receipt, { status: 201 });
-  } catch (error) {
-    console.error('POST /api/receipts:', error);
-    return NextResponse.json({ error: 'Failed to create receipt' }, { status: 500 });
-  }
+export async function POST(request: NextRequest) {
+  const body = await request.text();
+  const res = await backendFetch('/api/receipts', {
+    method: 'POST',
+    body,
+    cookie: getSessionCookie(request),
+  });
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
 }
