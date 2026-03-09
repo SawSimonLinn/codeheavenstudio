@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollButtons from "@/components/layout/scroll-buttons";
+import PromoModal from "@/components/layout/promo-modal";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -71,6 +72,7 @@ export default function RootLayout({
         <Analytics />
         <Toaster />
         <ScrollButtons />
+        <PromoModal />
       </body>
     </html>
   );
