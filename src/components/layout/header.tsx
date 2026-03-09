@@ -19,15 +19,59 @@ import {
   Globe,
   Sparkles,
   ChevronDown,
+  Utensils,
+  Monitor,
+  RefreshCw,
+  Search,
+  Wrench,
+  Palette,
+  PenLine,
 } from "lucide-react";
 import Image from "next/image";
 
 const services = [
-  { href: "/services/restaurant-websites", label: "Restaurant Websites" },
-  { href: "/services/small-business-websites", label: "Small Business Websites" },
-  { href: "/services/website-redesign", label: "Website Redesign" },
-  { href: "/services/seo-optimization", label: "SEO Optimization" },
-  { href: "/services/website-maintenance", label: "Website Maintenance" },
+  {
+    href: "/services/restaurant-websites",
+    label: "Restaurant Websites",
+    desc: "Menus, reservations and more",
+    icon: Utensils,
+  },
+  {
+    href: "/services/small-business-websites",
+    label: "Small Business Websites",
+    desc: "Fast, custom sites built to convert",
+    icon: Monitor,
+  },
+  {
+    href: "/services/website-redesign",
+    label: "Website Redesign",
+    desc: "Modernise and improve your existing site",
+    icon: RefreshCw,
+  },
+  {
+    href: "/services/seo-optimization",
+    label: "SEO Optimization",
+    desc: "Rank higher and get found on Google",
+    icon: Search,
+  },
+  {
+    href: "/services/website-maintenance",
+    label: "Website Maintenance",
+    desc: "Keep your site secure and up to date",
+    icon: Wrench,
+  },
+  {
+    href: "/services/logo-design-business-kit",
+    label: "Logo Design & Business Kit",
+    desc: "Logo, icons, letterhead and business card",
+    icon: Palette,
+  },
+  {
+    href: "/services/content-writing",
+    label: "Content Writing",
+    desc: "Copy that connects and converts",
+    icon: PenLine,
+  },
 ];
 
 const navLinks = [
@@ -140,17 +184,63 @@ export default function Header() {
                 />
               </button>
               {servicesOpen && (
-                <div id="services-menu" role="menu" className="absolute left-0 top-full mt-2 w-52 rounded-xl border border-border bg-background shadow-lg py-1.5 z-50">
-                  {services.map((s) => (
+                <div
+                  id="services-menu"
+                  role="menu"
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[580px] rounded-2xl border border-border bg-background shadow-2xl z-50 overflow-hidden"
+                >
+                  {/* Header strip */}
+                  <div className="px-5 py-3 border-b border-border bg-muted/40 flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Our Services
+                    </p>
                     <Link
-                      key={s.href}
-                      href={s.href}
+                      href="/services"
                       onClick={() => setServicesOpen(false)}
-                      className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                      className="text-xs font-medium text-primary hover:underline"
                     >
-                      {s.label}
+                      View all
                     </Link>
-                  ))}
+                  </div>
+                  {/* 2-column grid */}
+                  <div className="grid grid-cols-2 gap-px bg-border">
+                    {services.map((s) => {
+                      const Icon = s.icon;
+                      return (
+                        <Link
+                          key={s.href}
+                          href={s.href}
+                          onClick={() => setServicesOpen(false)}
+                          className="group flex items-start gap-3 px-5 py-4 bg-background hover:bg-muted/60 transition-colors"
+                        >
+                          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                            <Icon className="h-4 w-4 text-primary" />
+                          </span>
+                          <span>
+                            <span className="block text-sm font-medium text-foreground leading-tight">
+                              {s.label}
+                            </span>
+                            <span className="block text-xs text-muted-foreground mt-0.5 leading-snug">
+                              {s.desc}
+                            </span>
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                  {/* Footer CTA */}
+                  <div className="px-5 py-3 border-t border-border bg-gradient-to-r from-primary/5 to-purple-500/5 flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground">
+                      Not sure what you need?
+                    </p>
+                    <Link
+                      href="/contact"
+                      onClick={() => setServicesOpen(false)}
+                      className="text-xs font-semibold text-primary hover:underline"
+                    >
+                      Talk to us for free
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
