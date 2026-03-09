@@ -94,7 +94,7 @@ const services = [
     title: "Fullstack Internal Web Systems",
     tagline: "Custom tools built for your team",
     description:
-      "We build custom web applications for internal use — order management systems, staff dashboards, booking tools, and more. Built fullstack, tailored to your workflow, and designed for real teams.",
+      "We build custom web applications for internal use: order management systems, staff dashboards, booking tools, and more. Built fullstack, tailored to your workflow, and designed for real teams.",
     features: ["Online order systems", "Admin & staff dashboards", "Role-based access control", "Inventory & reporting tools"],
     href: "/services/fullstack-internal-websites",
   },
