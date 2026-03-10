@@ -116,6 +116,7 @@ export default function FreeDemoSection() {
                       data-ai-hint={image.aiHint}
                       width={800}
                       height={600}
+                      loading="lazy"
                       className="aspect-[4/3] object-cover w-full"
                     />
                   </CardContent>

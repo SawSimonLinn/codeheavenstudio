@@ -1,10 +1,12 @@
-import Footer from "@/components/layout/footer";
-import FreeDemoSection from "@/components/sections/free-demo";
+import dynamic from "next/dynamic";
 import Header from "@/components/layout/header";
 import HeroSection from "@/components/sections/hero";
-import ProcessSection from "@/components/sections/process";
-import PreviousProjectsSection from "@/components/sections/previous-projects";
-import WhyUsSection from "@/components/sections/why-us";
+
+const FreeDemoSection = dynamic(() => import("@/components/sections/free-demo"));
+const PreviousProjectsSection = dynamic(() => import("@/components/sections/previous-projects"));
+const ProcessSection = dynamic(() => import("@/components/sections/process"));
+const WhyUsSection = dynamic(() => import("@/components/sections/why-us"));
+const Footer = dynamic(() => import("@/components/layout/footer"));
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
