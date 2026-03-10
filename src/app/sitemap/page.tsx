@@ -17,6 +17,8 @@ const sitemapSections = [
       { label: "Referral Partner Program", href: "/referral" },
       { label: "Testimonials", href: "/testimonials" },
       { label: "Press", href: "/press" },
+      { label: "Founder: Saw Simon Linn", href: "/founder/saw-simon-linn" },
+      { label: "Founder: Mia Truong", href: "/founder/mia-truong" },
     ],
   },
   {
@@ -38,6 +40,9 @@ const sitemapSections = [
       { label: "Website Redesign", href: "/services/website-redesign" },
       { label: "SEO Optimization", href: "/services/seo-optimization" },
       { label: "Website Maintenance", href: "/services/website-maintenance" },
+      { label: "Logo Design & Business Kit", href: "/services/logo-design-business-kit" },
+      { label: "Content Writing", href: "/services/content-writing" },
+      { label: "Fullstack Internal Websites", href: "/services/fullstack-internal-websites" },
     ],
   },
   {
@@ -47,6 +52,9 @@ const sitemapSections = [
       { label: "Pricing", href: "/codeheavenpricing" },
       { label: "FAQ", href: "/faq" },
       { label: "Projects", href: "/projects" },
+      { label: "Why Choose Us", href: "/why-choose-us" },
+      { label: "Free Audit", href: "/free-audit" },
+      { label: "Request a Website", href: "/request-website" },
     ],
   },
   {
