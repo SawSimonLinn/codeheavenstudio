@@ -114,12 +114,28 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   // Sliding pill indicator state
   const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const navItemRefs = useRef<(HTMLElement | null)[]>([]);
   const navContainerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -153,7 +169,11 @@ export default function Header() {
   }
 
   return (
-    <div className="sticky top-0 z-50 w-full pointer-events-none">
+    <div
+      className={`sticky top-0 z-50 w-full pointer-events-none transition-transform duration-300 ease-in-out ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       {/* ── Three-Island Desktop Topbar ── */}
       <header className="w-full bg-transparent">
         <div className="container mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
