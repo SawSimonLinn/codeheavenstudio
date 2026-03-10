@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { backendFetch, getSessionCookie } from '@/lib/api';
 
+export const maxDuration = 60;
+
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const limit = url.searchParams.get('limit') ?? '50';
@@ -9,8 +11,8 @@ export async function GET(request: NextRequest) {
   });
   const data = await res.json();
   const logs = (data.documents ?? []).map((doc: Record<string, unknown>) => ({
-    id: doc.$id,
-    createdAt: doc.$createdAt,
+    id: doc.id,
+    createdAt: doc.createdAt,
     event: doc.event,
     email: doc.email,
     path: doc.path,

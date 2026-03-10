@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, Receipt, PlusCircle, Menu, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Receipt, PlusCircle, Menu, ShieldCheck, BookOpen, FilePen, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,7 +19,10 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: '/admin/receipts', label: 'Receipts', icon: Receipt, exact: false },
   { href: '/admin/receipts/new', label: 'New Receipt', icon: PlusCircle, exact: true },
+  { href: '/admin/blog', label: 'Blog', icon: BookOpen, exact: false },
+  { href: '/admin/blog/new', label: 'New Post', icon: FilePen, exact: true },
   { href: '/admin/audit', label: 'Audit Log', icon: ShieldCheck, exact: false },
+  { href: '/admin/bin', label: 'Bin', icon: Trash2, exact: false },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

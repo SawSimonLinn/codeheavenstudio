@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { backendFetch, getSessionCookie } from '@/lib/api';
 
+export const maxDuration = 60;
+
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;

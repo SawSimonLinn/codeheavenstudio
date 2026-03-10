@@ -2,28 +2,41 @@
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
-import { blogPosts } from "@/lib/blog-data";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { BlogPost } from "@/types/blog";
 
-const allTags = ["All", ...Array.from(new Set(blogPosts.flatMap((p) => p.tags ?? [])))];
-
-function readTime(post: (typeof blogPosts)[number]) {
-  // rough estimate: 200 wpm
-  const text = typeof post.content === "string" ? post.content : post.description;
-  const words = text.split(/\s+/).length;
+function readTime(content: string) {
+  const words = content.trim().split(/\s+/).length;
   return `${Math.max(1, Math.ceil(words / 200))} min read`;
 }
 
+function formatDate(iso: string | null | undefined) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [activeTag, setActiveTag] = useState("All");
 
+  useEffect(() => {
+    fetch("/api/blog/public", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setPosts(Array.isArray(data) ? data : []))
+      .catch(() => setPosts([]));
+  }, []);
+
+  const allTags = ["All", ...Array.from(new Set(posts.flatMap((p) => p.tags ?? [])))];
+
   const filtered =
-    activeTag === "All"
-      ? blogPosts
-      : blogPosts.filter((p) => p.tags?.includes(activeTag));
+    activeTag === "All" ? posts : posts.filter((p) => p.tags?.includes(activeTag));
 
   const [featured, ...rest] = filtered;
 
@@ -38,7 +51,7 @@ export default function BlogPage() {
             aria-hidden
             className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none text-[22vw] font-black leading-none text-muted/20 pr-4"
           >
-            {String(blogPosts.length).padStart(2, "0")}
+            {String(posts.length).padStart(2, "0")}
           </span>
 
           <div className="container mx-auto px-4 py-20 sm:py-32 relative z-10">
@@ -46,9 +59,7 @@ export default function BlogPage() {
               Insights & Ideas
             </p>
             <div className="overflow-hidden">
-              <h1
-                className="text-[13vw] sm:text-[10vw] lg:text-[8vw] font-black leading-[0.88] tracking-tighter uppercase"
-              >
+              <h1 className="text-[13vw] sm:text-[10vw] lg:text-[8vw] font-black leading-[0.88] tracking-tighter uppercase">
                 <span className="block text-foreground">Our</span>
                 <span
                   className="block"
@@ -98,16 +109,15 @@ export default function BlogPage() {
           {/* ── Featured post ──────────────────────────────────── */}
           {featured && (
             <Link
-              href={featured.slug}
+              href={`/blog/${featured.slug}`}
               className="group relative block overflow-hidden rounded-2xl border border-border mb-6 sm:mb-8 hover:border-foreground/30 hover:shadow-2xl transition-all duration-500"
             >
               <div className="relative h-64 sm:h-[480px] w-full overflow-hidden">
                 <Image
-                  src={featured.imageUrl}
+                  src={featured.imageUrl || "/placeholder.png"}
                   alt={featured.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  data-ai-hint={featured.aiHint}
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -126,7 +136,9 @@ export default function BlogPage() {
                       {t}
                     </span>
                   ))}
-                  <span className="text-xs text-white/50 ml-auto">{featured.date}</span>
+                  <span className="text-xs text-white/50 ml-auto">
+                    {formatDate(featured.publishedAt ?? featured.createdAt)}
+                  </span>
                 </div>
 
                 <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight tracking-tight max-w-3xl">
@@ -143,7 +155,7 @@ export default function BlogPage() {
                       <ArrowUpRight className="h-4 w-4" />
                     </span>
                   </span>
-                  <span className="text-xs text-white/40">{readTime(featured)}</span>
+                  <span className="text-xs text-white/40">{readTime(featured.content)}</span>
                 </div>
               </div>
             </Link>
@@ -153,7 +165,7 @@ export default function BlogPage() {
           {rest.length > 0 && (
             <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {rest.map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
+                <PostCard key={post.id} post={post} index={i} />
               ))}
             </div>
           )}
@@ -163,16 +175,14 @@ export default function BlogPage() {
         <section className="border-t border-border bg-foreground text-background">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
-              { value: `${blogPosts.length}+`, label: "Articles published" },
-              { value: allTags.length - 1 + "+", label: "Topics covered" },
+              { value: `${posts.length}+`, label: "Articles published" },
+              { value: (allTags.length - 1) + "+", label: "Topics covered" },
               { value: "Always", label: "New content" },
               { value: "Free", label: "Always" },
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
-                  {label}
-                </p>
+                <p className="text-sm text-background/60 uppercase tracking-widest">{label}</p>
               </div>
             ))}
           </div>
@@ -185,28 +195,20 @@ export default function BlogPage() {
 }
 
 /* ── Post Card ────────────────────────────────────────────────────── */
-function PostCard({
-  post,
-  index,
-}: {
-  post: (typeof blogPosts)[number];
-  index: number;
-}) {
+function PostCard({ post, index }: { post: BlogPost; index: number }) {
   const num = String(index + 1).padStart(2, "0");
 
   return (
     <Link
-      href={post.slug}
+      href={`/blog/${post.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl bg-card border border-border hover:border-foreground/30 hover:shadow-xl transition-all duration-500"
     >
-      {/* Image */}
       <div className="relative overflow-hidden h-48 shrink-0">
         <Image
-          src={post.imageUrl}
+          src={post.imageUrl || "/placeholder.png"}
           alt={post.title}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
-          data-ai-hint={post.aiHint}
         />
         <span
           aria-hidden
@@ -217,7 +219,6 @@ function PostCard({
         <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
       </div>
 
-      {/* Content */}
       <div className="flex flex-col flex-1 p-5 sm:p-6">
         <div className="flex items-center gap-2 mb-3">
           {post.tags?.slice(0, 1).map((t) => (
@@ -228,7 +229,9 @@ function PostCard({
               {t}
             </span>
           ))}
-          <span className="text-xs text-muted-foreground ml-auto">{post.date}</span>
+          <span className="text-xs text-muted-foreground ml-auto">
+            {formatDate(post.publishedAt ?? post.createdAt)}
+          </span>
         </div>
 
         <h3 className="text-lg font-black tracking-tight text-foreground leading-snug line-clamp-2 mb-2">

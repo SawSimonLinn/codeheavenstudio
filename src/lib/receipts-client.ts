@@ -54,3 +54,29 @@ export async function apiDeleteReceipt(id: string): Promise<void> {
 export async function apiUpdateReceiptStatus(id: string, status: ReceiptStatus): Promise<Receipt> {
   return apiUpdateReceipt(id, { status });
 }
+
+export async function apiSoftDeleteReceipt(id: string): Promise<void> {
+  const res = await fetch('/api/bin', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'receipts', id }),
+  });
+  await parseResponse<{ ok: boolean }>(res);
+}
+
+export async function apiRestoreReceipt(id: string): Promise<void> {
+  const res = await fetch('/api/bin/restore', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'receipts', id }),
+  });
+  await parseResponse<{ ok: boolean }>(res);
+}
+
+export async function apiGetDeletedReceipts(): Promise<Receipt[]> {
+  const res = await fetch('/api/bin', { cache: 'no-store' });
+  const bin = await parseResponse<{ blogs: string[]; receipts: string[] }>(res);
+  if (bin.receipts.length === 0) return [];
+  const receipts = await Promise.all(bin.receipts.map((id) => apiGetReceipt(id)));
+  return receipts.filter((r): r is Receipt => r !== null);
+}

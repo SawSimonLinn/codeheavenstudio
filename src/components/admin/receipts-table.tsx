@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import type { Receipt, ReceiptStatus } from '@/types/receipt';
-import { apiDeleteReceipt, apiUpdateReceiptStatus } from '@/lib/receipts-client';
+import { apiSoftDeleteReceipt, apiUpdateReceiptStatus } from '@/lib/receipts-client';
 import { useToast } from '@/hooks/use-toast';
 
 interface Props {
@@ -54,14 +54,14 @@ export default function ReceiptsTable({ receipts, onRefresh, onSendEmail }: Prop
   };
 
   const handleDelete = async (r: Receipt) => {
-    if (!confirm(`Delete receipt ${r.receiptNumber}? This cannot be undone.`)) return;
+    if (!confirm(`Move receipt ${r.receiptNumber} to bin? You can restore it later.`)) return;
     setDeletingId(r.id);
     try {
-      await apiDeleteReceipt(r.id);
-      toast({ title: `${r.receiptNumber} deleted` });
+      await apiSoftDeleteReceipt(r.id);
+      toast({ title: `${r.receiptNumber} moved to bin` });
       onRefresh();
     } catch {
-      toast({ title: 'Error deleting receipt', variant: 'destructive' });
+      toast({ title: 'Error moving receipt to bin', variant: 'destructive' });
     } finally {
       setDeletingId(null);
     }

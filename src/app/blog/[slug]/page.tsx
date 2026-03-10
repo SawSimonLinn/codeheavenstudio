@@ -1,21 +1,49 @@
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
-import { blogPosts } from "@/lib/blog-data";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { marked } from "marked";
+import { backendFetch, parseBlogPost } from "@/lib/api";
+import type { BlogPost } from "@/types/blog";
 
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug.replace("/blog/", ""),
-  }));
+function readTime(content: string) {
+  const words = content.trim().split(/\s+/).length;
+  return `${Math.max(1, Math.ceil(words / 200))} min read`;
 }
 
-function readTime(post: (typeof blogPosts)[number]) {
-  const text = typeof post.content === "string" ? post.content : post.description;
-  const words = text.split(/\s+/).length;
-  return `${Math.max(1, Math.ceil(words / 200))} min read`;
+function formatDate(iso: string | null | undefined) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+async function getPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const res = await backendFetch(`/api/blogs/slug/${slug}`, {
+      // no auth — public endpoint
+    });
+    if (res.status === 404) return null;
+    if (!res.ok) return null;
+    return parseBlogPost(await res.json());
+  } catch {
+    return null;
+  }
+}
+
+async function getPublishedPosts(): Promise<BlogPost[]> {
+  try {
+    const res = await backendFetch("/api/blogs/public");
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data.map(parseBlogPost) : [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function BlogPostPage({
@@ -24,21 +52,19 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === `/blog/${slug}`);
+  const [post, allPosts] = await Promise.all([getPost(slug), getPublishedPosts()]);
 
   if (!post) notFound();
 
-  const postIndex = blogPosts.indexOf(post);
-  const related = blogPosts
-    .filter(
-      (p) =>
-        p.slug !== post.slug &&
-        p.tags?.some((t) => post.tags?.includes(t))
-    )
+  const postIndex = allPosts.findIndex((p) => p.id === post.id);
+  const related = allPosts
+    .filter((p) => p.id !== post.id && p.tags?.some((t) => post.tags?.includes(t)))
     .slice(0, 3);
 
-  const prevPost = blogPosts[postIndex - 1] ?? null;
-  const nextPost = blogPosts[postIndex + 1] ?? null;
+  const prevPost = postIndex > 0 ? allPosts[postIndex - 1] : null;
+  const nextPost = postIndex < allPosts.length - 1 ? allPosts[postIndex + 1] : null;
+
+  const contentHtml = await marked(post.content ?? "");
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -48,17 +74,14 @@ export default async function BlogPostPage({
         {/* ── Hero image ──────────────────────────────────────── */}
         <section className="relative overflow-hidden h-[55vh] sm:h-[70vh]">
           <Image
-            src={post.imageUrl}
+            src={post.imageUrl || "/placeholder.png"}
             alt={post.title}
             fill
             className="object-cover"
-            data-ai-hint={post.aiHint}
             priority
           />
-          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
 
-          {/* Back button */}
           <div className="absolute top-6 left-0 right-0 z-10 container mx-auto px-4">
             <Link
               href="/blog"
@@ -71,9 +94,7 @@ export default async function BlogPostPage({
             </Link>
           </div>
 
-          {/* Title block */}
           <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 pb-10 sm:pb-14">
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-5">
               {post.tags?.map((tag) => (
                 <span
@@ -89,15 +110,14 @@ export default async function BlogPostPage({
               {post.title}
             </h1>
 
-            {/* Meta row */}
             <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-white/60">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4" />
-                {post.date}
+                {formatDate(post.publishedAt ?? post.createdAt)}
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="h-4 w-4" />
-                {readTime(post)}
+                {readTime(post.content)}
               </span>
               <span className="flex items-center gap-2 ml-auto">
                 <span className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-black text-xs">
@@ -112,24 +132,21 @@ export default async function BlogPostPage({
         {/* ── Article body ─────────────────────────────────────── */}
         <section className="container mx-auto px-4 py-12 sm:py-20">
           <div className="mx-auto max-w-3xl">
-            {/* Description lead */}
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed border-l-4 border-primary pl-5 mb-10 font-medium">
               {post.description}
             </p>
 
-            {/* Content */}
-            <div className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-black prose-headings:tracking-tight
-              prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-              prose-p:text-muted-foreground prose-p:leading-relaxed
-              prose-li:text-muted-foreground prose-li:leading-relaxed
-              prose-strong:text-foreground
-              prose-ol:space-y-2 prose-ul:space-y-2
-            ">
-              {post.content}
-            </div>
+            <div
+              className="prose prose-lg dark:prose-invert max-w-none
+                prose-headings:font-black prose-headings:tracking-tight
+                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+                prose-p:text-muted-foreground prose-p:leading-relaxed
+                prose-li:text-muted-foreground prose-li:leading-relaxed
+                prose-strong:text-foreground
+                prose-ol:space-y-2 prose-ul:space-y-2"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
 
-            {/* Tags footer */}
             <div className="mt-14 pt-8 border-t border-border flex flex-wrap gap-2">
               {post.tags?.map((tag) => (
                 <span
@@ -145,7 +162,7 @@ export default async function BlogPostPage({
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {prevPost ? (
                 <Link
-                  href={prevPost.slug}
+                  href={`/blog/${prevPost.slug}`}
                   className="group flex flex-col gap-1 p-5 rounded-xl border border-border hover:border-foreground/30 hover:shadow-lg transition-all duration-300"
                 >
                   <span className="text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-1">
@@ -161,7 +178,7 @@ export default async function BlogPostPage({
 
               {nextPost ? (
                 <Link
-                  href={nextPost.slug}
+                  href={`/blog/${nextPost.slug}`}
                   className="group flex flex-col gap-1 p-5 rounded-xl border border-border hover:border-foreground/30 hover:shadow-lg transition-all duration-300 sm:text-right"
                 >
                   <span className="text-xs text-muted-foreground uppercase tracking-widest flex items-center gap-1 sm:justify-end">
@@ -192,17 +209,16 @@ export default async function BlogPostPage({
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((rp) => (
                   <Link
-                    key={rp.slug}
-                    href={rp.slug}
+                    key={rp.id}
+                    href={`/blog/${rp.slug}`}
                     className="group flex gap-4 rounded-xl border border-border p-4 hover:border-foreground/30 hover:shadow-lg transition-all duration-300"
                   >
                     <div className="relative shrink-0 w-20 h-20 rounded-lg overflow-hidden">
                       <Image
-                        src={rp.imageUrl}
+                        src={rp.imageUrl || "/placeholder.png"}
                         alt={rp.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        data-ai-hint={rp.aiHint}
                       />
                     </div>
                     <div className="flex flex-col justify-center gap-1 min-w-0">
@@ -212,7 +228,9 @@ export default async function BlogPostPage({
                       <span className="text-sm font-bold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
                         {rp.title}
                       </span>
-                      <span className="text-xs text-muted-foreground">{rp.date}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(rp.publishedAt ?? rp.createdAt)}
+                      </span>
                     </div>
                   </Link>
                 ))}

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { backendFetch, getSessionCookie } from '@/lib/api';
 
+export const maxDuration = 60;
+
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const res = await backendFetch(`/api/receipts/${id}/pdf`, {
