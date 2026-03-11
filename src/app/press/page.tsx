@@ -2,8 +2,9 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Download, Mail, Globe, ImageIcon, FileText, Palette, MapPin } from "lucide-react";
+import { Mail, Globe, ImageIcon, FileText, Palette, MapPin } from "lucide-react";
 import Link from "next/link";
+import { DownloadGate } from "@/components/press/DownloadGate";
 
 const brandColors = [
   { name: "Primary Blue", hex: "#3B82F6", var: "--primary" },
@@ -28,6 +29,8 @@ const assets = [
     description:
       "Primary logo in PNG and SVG formats. Light and dark variants included.",
     action: "Download Logos",
+    fileName: "Logo_Package.pdf",
+    downloadName: "CHS_Logo_Package.pdf",
   },
   {
     icon: Palette,
@@ -35,6 +38,8 @@ const assets = [
     description:
       "Color palette, typography, and usage rules for representing Code Heaven Studio accurately.",
     action: "Download Brand Guide",
+    fileName: "Brand_Guidelines.pdf",
+    downloadName: "CHS_Brand_Guidelines.pdf",
   },
   {
     icon: FileText,
@@ -42,6 +47,8 @@ const assets = [
     description:
       "One-page summary of our company, mission, services, and key statistics.",
     action: "Download Fact Sheet",
+    fileName: "Company_Fact_Sheet.pdf",
+    downloadName: "CHS_Company_Fact_Sheet.pdf",
   },
 ];
 
@@ -207,19 +214,12 @@ export default function PressPage() {
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
                       {asset.description}
                     </p>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="rounded-full w-fit"
-                      onClick={undefined}
-                    >
-                      <a
-                        href="mailto:codeheavenstudio@gmail.com"
-                        className="flex items-center gap-2"
-                      >
-                        <Download className="h-4 w-4" /> {asset.action}
-                      </a>
-                    </Button>
+                    <DownloadGate
+                      label={asset.action}
+                      fileName={asset.fileName}
+                      downloadName={asset.downloadName}
+                      assetName={asset.title}
+                    />
                   </div>
                 );
               })}
