@@ -82,9 +82,9 @@ const services = [
 
 const navLinks = [
   { href: "/projects", label: "Projects" },
-  { href: "/codeheavenpricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const socialLinks = [
