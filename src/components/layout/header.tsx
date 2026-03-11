@@ -26,6 +26,7 @@ import {
   Palette,
   PenLine,
   Layers,
+  ArrowLeftRight,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -41,6 +42,12 @@ const services = [
     label: "Small Business Websites",
     desc: "Fast, custom sites built to convert",
     icon: Monitor,
+  },
+  {
+    href: "/services/wix-to-custom",
+    label: "Wix to Custom Website",
+    desc: "Escape Wix. Own your site 100%.",
+    icon: ArrowLeftRight,
   },
   {
     href: "/services/website-redesign",

@@ -3,6 +3,7 @@ import Header from "@/components/layout/header";
 import HeroSection from "@/components/sections/hero";
 
 const FreeDemoSection = dynamic(() => import("@/components/sections/free-demo"));
+const WixRedesignHighlight = dynamic(() => import("@/components/sections/wix-redesign-highlight"));
 const PreviousProjectsSection = dynamic(() => import("@/components/sections/previous-projects"));
 const ProcessSection = dynamic(() => import("@/components/sections/process"));
 const WhyUsSection = dynamic(() => import("@/components/sections/why-us"));
@@ -45,7 +46,8 @@ export default function Home() {
           </div>
         </div>
 
-        <FreeDemoSection />
+        {/* <FreeDemoSection /> */}
+        <WixRedesignHighlight />
         <PreviousProjectsSection />
         <ProcessSection />
         <WhyUsSection />
@@ -56,7 +58,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
           <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
 
-          <div className="relative container mx-auto px-4 text-center max-w-3xl">
+          <div className="relative container mx-auto max-w-7xl px-4 text-center">
             <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-4">
               Ready to Start?
             </p>

@@ -35,7 +35,7 @@ export default function WhyUsSection() {
       id="why-us"
       className="bg-secondary text-secondary-foreground py-20 sm:py-32"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
           <div className="lg:sticky lg:top-32">
