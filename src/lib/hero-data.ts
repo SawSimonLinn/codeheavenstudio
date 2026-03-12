@@ -1,8 +1,6 @@
 export const heroContent = {
-  badge: "Open for new projects",
-  headingLine1: "Websites that",
-  headingHighlight: "work as hard",
-  headingLine3: "as you do.",
+  badge: "Design. Develop. Deliver.",
+  heading: "Where Ideas Become Software",
   description:
     "Code Heaven Studio builds fast, modern, and SEO-optimized websites. You focus on your business. We handle the digital growth.",
   primaryCta: { label: "Get a Free Demo", href: "#free-demo" },

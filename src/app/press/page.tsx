@@ -146,7 +146,7 @@ export default function PressPage() {
                 },
                 {
                   name: "Mia Truong",
-                  role: "Co-Founder & Developer",
+                  role: "Co-Founder & Software Engineer",
                   location: "San Diego, CA",
                   avatar: "/avatars/mia.jpg",
                   hint: "female developer",

@@ -10,7 +10,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Saw Simon Linn – Co-Founder of Code Heaven Studio",
   description:
-    "Saw Simon Linn is the Co-Founder and Software Engineer at Code Heaven Studio. He builds modern, SEO-optimized websites for restaurants and small businesses in Los Angeles, California.",
+    "Saw Simon Linn is the Co-Founder and Developer at Code Heaven Studio. He builds modern, SEO-optimized websites for restaurants and small businesses in Los Angeles, California.",
   alternates: {
     canonical: "https://www.codeheavenstudio.com/founder/saw-simon-linn",
   },
@@ -62,7 +62,7 @@ export default function SawSimonLinnPage() {
                   Saw Simon Linn
                 </h1>
                 <p className="text-lg text-primary font-semibold mb-2">
-                  Co-Founder &amp; Software Engineer
+                  Co-Founder &amp; Developer
                 </p>
                 <div className="flex items-center gap-1 text-sm text-secondary-foreground/60 mb-5">
                   <MapPin className="h-4 w-4" />
@@ -140,12 +140,12 @@ export default function SawSimonLinnPage() {
           <div className="container mx-auto max-w-4xl px-4">
             <h2 className="text-2xl font-bold tracking-tight mb-6 font-headline">Role at Code Heaven Studio</h2>
             <div className="flex flex-wrap gap-2 mb-6">
-              {["Co-Founder", "Software Engineer", "Full Stack Developer", "Next.js", "React", "TypeScript", "SEO", "UI/UX"].map((tag) => (
+              {["Co-Founder", "Developer", "Full Stack Developer", "Next.js", "React", "TypeScript", "SEO", "UI/UX"].map((tag) => (
                 <Badge key={tag} variant="secondary">{tag}</Badge>
               ))}
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              As Co-Founder and Software Engineer, Saw Simon Linn is responsible for the full product
+              As Co-Founder and Developer, Saw Simon Linn is responsible for the full product
               lifecycle at Code Heaven Studio, from initial client consultation and design, through
               development and deployment, to ongoing maintenance and SEO strategy. He ensures every
               website ships fast, ranks on Google, and converts visitors into customers.

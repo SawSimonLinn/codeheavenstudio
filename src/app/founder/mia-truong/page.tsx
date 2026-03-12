@@ -8,9 +8,9 @@ import { Linkedin, Github, Globe, MapPin, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Mia Truong – Co-Founder & Developer at Code Heaven Studio",
+  title: "Mia Truong – Co-Founder & Software Engineer at Code Heaven Studio",
   description:
-    "Mia Truong is the Co-Founder and Developer at Code Heaven Studio, focusing on web development, business development, partnerships, and client success for restaurants and small businesses in San Diego, California.",
+    "Mia Truong is the Co-Founder and Software Engineer at Code Heaven Studio, focusing on web development, business development, partnerships, and client success for restaurants and small businesses in San Diego, California.",
   alternates: {
     canonical: "https://www.codeheavenstudio.com/founder/mia-truong",
   },
@@ -62,7 +62,7 @@ export default function MiaTruongPage() {
                   Mia Truong
                 </h1>
                 <p className="text-lg text-primary font-semibold mb-2">
-                  Co-Founder & Developer
+                  Co-Founder & Software Engineer
                 </p>
                 <div className="flex items-center gap-1 text-sm text-secondary-foreground/60 mb-5">
                   <MapPin className="h-4 w-4" />
@@ -115,8 +115,8 @@ export default function MiaTruongPage() {
             <h2 className="text-2xl font-bold tracking-tight mb-6 font-headline">About Mia Truong</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Mia Truong co-founded Code Heaven Studio and works as both a developer and the
-                lead for business development, partnerships, and client success. She is dedicated
+                Mia Truong co-founded Code Heaven Studio and works as a software engineer and
+                the lead for business development, partnerships, and client success. She is dedicated
                 to making sure every client gets the attention, guidance, and results they deserve,
                 from the first conversation to the final website launch.
               </p>
@@ -140,15 +140,15 @@ export default function MiaTruongPage() {
           <div className="container mx-auto max-w-4xl px-4">
             <h2 className="text-2xl font-bold tracking-tight mb-6 font-headline">Role at Code Heaven Studio</h2>
             <div className="flex flex-wrap gap-2 mb-6">
-              {["Co-Founder", "Developer", "Business Development", "Client Success", "Partnerships", "Strategy", "Project Management"].map((tag) => (
+              {["Co-Founder", "Software Engineer", "Business Development", "Client Success", "Partnerships", "Strategy", "Project Management"].map((tag) => (
                 <Badge key={tag} variant="secondary">{tag}</Badge>
               ))}
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              As Co-Founder and Developer, Mia Truong contributes to building websites and leads
-              business development, client relations, and partnership strategy at Code Heaven Studio.
-              She works directly with restaurant owners and small business clients to understand their
-              goals, and ensures every project is delivered with care and quality.
+              As Co-Founder and Software Engineer, Mia Truong builds websites and leads business
+              development, client relations, and partnership strategy at Code Heaven Studio. She works
+              directly with restaurant owners and small business clients to understand their goals,
+              and ensures every project is delivered with care and quality.
             </p>
           </div>
         </section>

@@ -7,15 +7,14 @@ import { ArrowRight, Star } from "lucide-react";
 import { heroContent, heroMockups, heroStats } from "@/lib/hero-data";
 import { useEffect, useState } from "react";
 
-const rotatingPhrases = [
-  "work as hard",
-  "think as smart",
-  "move as fast",
-  "stand out bold",
+const rotatingHeadings = [
+  "Where Ideas Become Software",
+  "Turning Ideas Into Software",
+  "Engineering Your Digital Future",
 ];
 
 export default function HeroSection() {
-  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [headingIndex, setHeadingIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [mockupIndex, setMockupIndex] = useState(0);
   const [isMockupFading, setIsMockupFading] = useState(false);
@@ -24,7 +23,7 @@ export default function HeroSection() {
     const timer = setInterval(() => {
       setIsFlipping(true);
       setTimeout(() => {
-        setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+        setHeadingIndex((prev) => (prev + 1) % rotatingHeadings.length);
         setIsFlipping(false);
       }, 350);
     }, 2800);
@@ -61,19 +60,20 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}
           <div>
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-8">
+            <div className="group inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-8 cursor-default select-none">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
-              {heroContent.badge}
+              <span className="relative">
+                <span className="transition-opacity duration-500 group-hover:opacity-0">{heroContent.badge}</span>
+                <span className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100">Code. Design. Launch.</span>
+              </span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
-              {heroContent.headingLine1}
-              <br />
+            <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.15] mb-1">
               <span
-                className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent inline-block"
+                className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent inline-block pb-3"
                 style={{
                   transform: isFlipping ? "rotateX(90deg)" : "rotateX(0deg)",
                   opacity: isFlipping ? 0 : 1,
@@ -82,10 +82,8 @@ export default function HeroSection() {
                   perspective: "600px",
                 }}
               >
-                {rotatingPhrases[phraseIndex]}
+                {rotatingHeadings[headingIndex]}
               </span>
-              <br />
-              {heroContent.headingLine3}
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-md mb-8 leading-relaxed">
