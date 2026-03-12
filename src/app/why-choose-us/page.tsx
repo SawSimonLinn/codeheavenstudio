@@ -28,7 +28,7 @@ const benefits = [
   {
     title: "One-Time Pricing",
     description:
-      "No monthly subscriptions, no hidden fees, no surprise invoices. You pay once and your site is live. What you see is what you pay — nothing more.",
+      "No monthly subscriptions, no hidden fees, no surprise invoices. You pay once and your site is live. What you see is what you pay, nothing more.",
     icon: <DollarSign className="h-6 w-6" />,
   },
   {
@@ -40,7 +40,7 @@ const benefits = [
   {
     title: "Performance-Driven",
     description:
-      "Every site is built for speed, SEO, and real-world user experience across all devices. We don't use bloated page builders — we write clean, optimized code.",
+      "Every site is built for speed, SEO, and real-world user experience across all devices. We don't use bloated page builders, we write clean, optimized code.",
     icon: <Gauge className="h-6 w-6" />,
   },
   {
@@ -52,7 +52,7 @@ const benefits = [
   {
     title: "Transparent Process",
     description:
-      "You'll always know where your project stands. We communicate clearly at every step — no guessing, no radio silence, no surprises.",
+      "You'll always know where your project stands. We communicate clearly at every step, no guessing, no radio silence, no surprises.",
     icon: <ShieldCheck className="h-6 w-6" />,
   },
   {
@@ -70,7 +70,7 @@ const benefits = [
   {
     title: "Built to Grow",
     description:
-      "Your site is built with scalability in mind. As your business evolves, your website can evolve too — without starting from scratch.",
+      "Your site is built with scalability in mind. As your business evolves, your website can evolve too, without starting from scratch.",
     icon: <TrendingUp className="h-6 w-6" />,
   },
 ];
@@ -85,7 +85,7 @@ const stats = [
 export const metadata: Metadata = {
   title: "Why Choose Us | Code Heaven Studio",
   description:
-    "Discover why businesses choose Code Heaven Studio — transparent pricing, full code ownership, performance-driven development, and a free demo before you commit.",
+    "Discover why businesses choose Code Heaven Studio, transparent pricing, full code ownership, performance-driven development, and a free demo before you commit.",
 };
 
 export default function WhyChooseUsPage() {
@@ -107,7 +107,7 @@ export default function WhyChooseUsPage() {
             </h1>
             <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-8">
               Transparent, quality-first web development with a process built
-              around your success — not our convenience.
+              around your success, not our convenience.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               {highlights.map((item) => (
@@ -185,7 +185,7 @@ export default function WhyChooseUsPage() {
               Ready to experience the difference?
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-              Start with a free demo — no payment, no commitment. Just a real
+              Start with a free demo, no payment, no commitment. Just a real
               preview of what your site could look like.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

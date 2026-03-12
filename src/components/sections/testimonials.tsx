@@ -29,15 +29,15 @@ const testimonials: {
     name: "Blue Bird Haus Sushi",
     title: "Owner, Blue Bird Haus Sushi",
     quote:
-      "Our new website perfectly captures our restaurant's style and makes it effortless for customers to browse the menu on mobile. Updating content is so simple now — we don't need a developer for every small change.",
+      "Our new website perfectly captures our restaurant's style and makes it effortless for customers to browse the menu on mobile. Updating content is so simple now, we don't need a developer for every small change.",
     icon: UtensilsCrossed,
     rating: 5,
   },
   {
     name: "Dunedin SD",
-    title: "Owner, Dunedin SD — North Park, San Diego",
+    title: "Owner, Dunedin SD, North Park, San Diego",
     quote:
-      "Code Heaven built us a site that finally brings everything together — our menus, reservations, online ordering, and private events all in one place. It feels like us, and our guests love it.",
+      "Code Heaven built us a site that finally brings everything together, our menus, reservations, online ordering, and private events all in one place. It feels like us, and our guests love it.",
     icon: Beef,
     rating: 5,
   },
@@ -53,7 +53,7 @@ const testimonials: {
     name: "Bangkok Soul Alhambra",
     title: "Owner, Bangkok Soul Alhambra",
     quote:
-      "They didn't just build a website — they told our story. The culture page, the editable menu, the whole feel of the site reflects who we are. Our customers keep complimenting it.",
+      "They didn't just build a website, they told our story. The culture page, the editable menu, the whole feel of the site reflects who we are. Our customers keep complimenting it.",
     icon: Soup,
     rating: 5,
   },

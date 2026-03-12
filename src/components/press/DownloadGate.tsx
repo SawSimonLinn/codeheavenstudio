@@ -45,7 +45,7 @@ export function DownloadGate({ label, fileName, downloadName, assetName }: Downl
       return;
     }
     setLoading(true);
-    // Notify the server (fire-and-forget — download proceeds regardless)
+    // Notify the server (fire-and-forget - download proceeds regardless)
     fetch("/api/press/download-request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

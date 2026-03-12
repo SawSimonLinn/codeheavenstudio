@@ -13,7 +13,7 @@ import {
   CheckCircle2,
   ArrowLeftRight,
   RefreshCw,
-  Figma,
+  PenTool,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/header";
@@ -43,7 +43,7 @@ const services = [
     title: "Wix to Custom Website",
     tagline: "Escape Wix. Own your site 100%.",
     description:
-      "Still stuck on Wix? We migrate your site to a fully custom, self-owned website built on modern tech. No more monthly fees, no more limitations — just a site you actually own.",
+      "Still stuck on Wix? We migrate your site to a fully custom, self-owned website built on modern tech. No more monthly fees, no more limitations just a site you actually own.",
     features: ["Full site migration", "Improved performance", "No platform lock-in", "SEO preservation"],
     href: "/services/wix-to-custom",
   },
@@ -52,18 +52,18 @@ const services = [
     title: "Website Redesign",
     tagline: "Modernise and improve your existing site",
     description:
-      "Got an outdated website that's hurting your brand? We redesign it from the ground up — faster, sharper, and built to convert. Same domain, completely new experience.",
+      "Got an outdated website that's hurting your brand? We redesign it from the ground up faster, sharper, and built to convert. Same domain, completely new experience.",
     features: ["Full visual redesign", "Performance improvements", "Better UX & conversion", "Content refresh"],
     href: "/services/website-redesign",
   },
   {
-    icon: Figma,
+    icon: PenTool,
     title: "Figma to Website",
     tagline: "Your design. Built pixel perfect.",
     description:
-      "Already have a Figma design you love? We'll bring it to life exactly as designed — pixel perfect, fully responsive, and production-ready. Hand us the file and we handle the rest.",
+      "Already have a Figma design you love? We'll bring it to life exactly as designed pixel perfect, fully responsive, and production-ready. Hand us the file and we handle the rest.",
     features: ["Pixel-perfect implementation", "Fully responsive", "Clean, production-ready code", "Works with any Figma design"],
-    href: null,
+    href: "/services/figma-to-website",
   },
   {
     icon: ShoppingCart,
@@ -72,7 +72,7 @@ const services = [
     description:
       "From product listings to checkout, we build e-commerce experiences that are simple to manage and easy for your customers to use, so you can focus on running your business.",
     features: ["Product management", "Secure checkout", "Inventory tracking", "Payment integration"],
-    href: null,
+    href: "/services/ecommerce-websites",
   },
   {
     icon: Layout,
@@ -81,7 +81,7 @@ const services = [
     description:
       "Need to launch a campaign, promote a product, or capture leads? We build high-converting landing pages designed with a single focused goal in mind.",
     features: ["Conversion-focused", "A/B test ready", "Lead capture forms", "Fast turnaround"],
-    href: null,
+    href: "/services/landing-pages",
   },
   {
     icon: Search,
@@ -148,7 +148,7 @@ export default function ServicesPage() {
             </span>
           </h1>
           <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-10">
-            From restaurant sites to full e-commerce stores, brand identities to content — we
+            From restaurant sites to full e-commerce stores, brand identities to content we
             build everything your business needs to look great and grow online.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

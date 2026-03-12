@@ -95,7 +95,7 @@ const featureOptions = [
   { name: "Custom Video / Animation", price: 500, display: "$500+", description: "A tailored explainer video or homepage animation for your brand." },
   { name: "AI Features (chatbot, automation)", price: 500, display: "$500+", description: "Integrate a custom AI chatbot or workflow automation tools." },
   { name: "Domain Registration (Additional Year)", price: 40, display: "$40+/yr", description: "Register or renew a custom domain name for your business.", interval: "year" as const },
-  { name: "Hosting Renewal", price: 120, display: "$120/yr", description: "Continue hosting your site after the first free year — includes SSL & backups.", interval: "year" as const },
+  { name: "Hosting Renewal", price: 120, display: "$120/yr", description: "Continue hosting your site after the first free year, includes SSL & backups.", interval: "year" as const },
 ];
 
 export default function PricingPage() {

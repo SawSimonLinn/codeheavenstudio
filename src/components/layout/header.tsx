@@ -27,6 +27,9 @@ import {
   PenLine,
   Layers,
   ArrowLeftRight,
+  PenTool,
+  ShoppingCart,
+  Layout,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -78,6 +81,24 @@ const services = [
     label: "Fullstack Internal Systems",
     desc: "Order systems, dashboards & internal tools",
     icon: Layers,
+  },
+  {
+    href: "/services/figma-to-website",
+    label: "Figma to Website",
+    desc: "Your design built pixel perfect",
+    icon: PenTool,
+  },
+  {
+    href: "/services/ecommerce-websites",
+    label: "E-commerce Websites",
+    desc: "Sell more with a store that works",
+    icon: ShoppingCart,
+  },
+  {
+    href: "/services/landing-pages",
+    label: "Landing Pages",
+    desc: "One page. One goal. Maximum impact.",
+    icon: Layout,
   },
 ];
 

@@ -20,7 +20,7 @@ export const resources: Resource[] = [
     content: `
 ## Why Your Restaurant Needs More Than Just Great Food
 
-In today's world, the first place a potential customer discovers your restaurant isn't your front door—it's Google. If your restaurant doesn't show up online, or if your website leaves a bad impression, you're losing customers before they even taste your food.
+In today's world, the first place a potential customer discovers your restaurant isn't your front door, it's Google. If your restaurant doesn't show up online, or if your website leaves a bad impression, you're losing customers before they even taste your food.
 
 The good news? A few focused changes can make a big difference.
 
@@ -34,7 +34,7 @@ This is the single highest-impact free thing you can do. Your Google Business Pr
 - Claim your listing at [google.com/business](https://business.google.com)
 - Add your correct hours, address, phone number, and website
 - Upload high-quality photos of your food and interior
-- Respond to every review—positive and negative
+- Respond to every review, positive and negative
 - Post weekly specials or events directly on your profile
 
 Restaurants with complete, active Google Business Profiles get significantly more calls and direction requests than those that don't.
@@ -64,7 +64,7 @@ Reviews are the #1 factor people check before trying a new restaurant. More posi
 - Ask satisfied customers directly after a great meal
 - Add a QR code on receipts or table cards linking to your Google review page
 - Train staff to mention reviews during checkout
-- Make it dead simple—the fewer clicks to leave a review, the better
+- Make it dead simple, the fewer clicks to leave a review, the better
 
 Never buy fake reviews. One authentic review is worth ten fake ones.
 
@@ -76,7 +76,7 @@ You don't need to post every day. But a consistent, appealing social presence bu
 
 **What works:**
 - Post mouth-watering food photos (natural light is your best friend)
-- Share behind-the-scenes moments—people love seeing the humans behind the food
+- Share behind-the-scenes moments, people love seeing the humans behind the food
 - Promote weekly specials and seasonal menus
 - Respond to comments and DMs promptly
 
@@ -112,7 +112,7 @@ If you want help building a restaurant website that actually drives customers th
     slug: "why-every-business-needs-a-website",
     title: "Why Every Business Needs a Website in 2025",
     description:
-      "Still relying on social media alone? Here's why a professional website is the foundation of every successful business—and what you're missing without one.",
+      "Still relying on social media alone? Here's why a professional website is the foundation of every successful business, and what you're missing without one.",
     category: "Business",
     date: "February 2025",
     readTime: "5 min read",
@@ -125,7 +125,7 @@ Here's the truth: social media platforms are rented land. A website is something
 
 ---
 
-## 1. You Own Your Website — You Rent Social Media
+## 1. You Own Your Website, You Rent Social Media
 
 When Facebook or Instagram changes its algorithm, your organic reach can disappear overnight. If your account gets hacked, suspended, or the platform shuts down, your entire business presence is gone.
 
@@ -146,9 +146,9 @@ Customers research before they buy. A well-designed website is often the decidin
 
 ---
 
-## 3. You Show Up on Google — Social Media Doesn't (Much)
+## 3. You Show Up on Google, Social Media Doesn't (Much)
 
-When someone searches "plumber in [your city]" or "best coffee shop near me," Google shows websites—not Instagram profiles.
+When someone searches "plumber in [your city]" or "best coffee shop near me," Google shows websites, not Instagram profiles.
 
 A properly built website with basic SEO lets you show up in front of people who are actively looking for what you offer. That's the highest-quality traffic you can get.
 
@@ -168,7 +168,7 @@ On social media, your content competes with every other post in a feed. On your 
 
 ## 6. It Makes You Look Bigger Than You Are
 
-A professional website levels the playing field between a one-person operation and a large company. Customers don't always know how big you are—they judge by how professional you look.
+A professional website levels the playing field between a one-person operation and a large company. Customers don't always know how big you are, they judge by how professional you look.
 
 ---
 
@@ -183,7 +183,7 @@ A professional website levels the playing field between a one-person operation a
 
 ## How Much Does a Business Website Cost?
 
-It doesn't have to be expensive. At Code Heaven Studio, we build professional websites starting from a one-time flat fee—no monthly surprises, no lock-in contracts. You own your site from day one.
+It doesn't have to be expensive. At Code Heaven Studio, we build professional websites starting from a one-time flat fee, with no monthly surprises, no lock-in contracts. You own your site from day one.
 
 [See our pricing](/pricing) or [contact us](/contact) for a free quote tailored to your business.
 
