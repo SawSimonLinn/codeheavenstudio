@@ -100,6 +100,12 @@ const services = [
     desc: "One page. One goal. Maximum impact.",
     icon: Layout,
   },
+  {
+    href: "/services/content-writing",
+    label: "Content Writing",
+    desc: "Words that engage, convert and rank",
+    icon: PenLine,
+  },
 ];
 
 const navLinks = [
