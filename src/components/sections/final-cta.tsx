@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function FinalCtaSection() {
   return (
-    <section className="relative overflow-hidden bg-background text-foreground py-24 sm:py-36">
+    <section className="relative overflow-hidden bg-secondary text-secondary-foreground py-24 sm:py-36">
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
 
@@ -19,7 +19,7 @@ export default function FinalCtaSection() {
             remarkable together.
           </span>
         </h2>
-        <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+        <p className="text-secondary-foreground/70 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
           Transparent pricing, modern design, and websites built to grow with
           your business. Your digital success is our mission.
         </p>

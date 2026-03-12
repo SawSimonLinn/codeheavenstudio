@@ -7,6 +7,7 @@ const WixRedesignHighlight = dynamic(() => import("@/components/sections/wix-red
 const PreviousProjectsSection = dynamic(() => import("@/components/sections/previous-projects"));
 const ProcessSection = dynamic(() => import("@/components/sections/process"));
 const WhyUsSection = dynamic(() => import("@/components/sections/why-us"));
+const IndustriesSection = dynamic(() => import("@/components/sections/industries"));
 const TechStackSection = dynamic(() => import("@/components/sections/tech-stack"));
 const PricingPreview = dynamic(() => import("@/components/sections/pricing-preview"));
 const FreeAuditSection = dynamic(() => import("@/components/sections/free-audit"));
@@ -24,6 +25,7 @@ export default function Home() {
         <PreviousProjectsSection />
         <ProcessSection />
         <WhyUsSection />
+        <IndustriesSection />
         <TechStackSection />
         <PricingPreview />
         <FreeAuditSection />

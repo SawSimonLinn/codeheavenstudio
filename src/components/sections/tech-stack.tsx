@@ -22,7 +22,7 @@ const techStack = [
 
 export default function TechStackSection() {
   return (
-    <section className="bg-background py-16 sm:py-20 border-t border-white/5">
+    <section className="bg-muted/50 py-16 sm:py-20">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary uppercase tracking-widest mb-4">

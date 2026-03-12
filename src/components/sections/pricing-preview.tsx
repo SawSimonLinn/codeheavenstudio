@@ -47,7 +47,7 @@ const plans = [
 
 export default function PricingPreview() {
   return (
-    <section className="relative overflow-hidden border-t py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background pointer-events-none" />
 

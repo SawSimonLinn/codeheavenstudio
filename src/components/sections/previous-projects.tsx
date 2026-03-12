@@ -17,8 +17,9 @@ export default function PreviousProjectsSection() {
   return (
     <section
       id="previous-work"
-      className="container mx-auto max-w-7xl px-4 py-20 sm:py-32"
+      className="bg-background py-20 sm:py-32"
     >
+      <div className="container mx-auto max-w-7xl px-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
         <div>
@@ -119,6 +120,7 @@ export default function PreviousProjectsSection() {
           </Button>
         </div>
       )}
+      </div>
     </section>
   );
 }
