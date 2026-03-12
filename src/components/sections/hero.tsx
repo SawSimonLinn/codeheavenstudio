@@ -26,7 +26,7 @@ export default function HeroSection() {
         setHeadingIndex((prev) => (prev + 1) % rotatingHeadings.length);
         setIsFlipping(false);
       }, 350);
-    }, 2800);
+    }, 3500);
     return () => clearInterval(timer);
   }, []);
 
