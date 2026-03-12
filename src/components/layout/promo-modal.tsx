@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const STORAGE_KEY = "chs_promo_dismissed";
+const SESSION_KEY = "chs_promo_seen";
 
 export default function PromoModal() {
   const [open, setOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function PromoModal() {
   useEffect(() => {
     if (pathname.startsWith("/admin")) return;
     if (localStorage.getItem(STORAGE_KEY) === "true") return;
+    if (sessionStorage.getItem(SESSION_KEY) === "true") return;
     // Show after 30-40 seconds so the user has time to browse first
     const delay = Math.floor(Math.random() * 10_000) + 30_000;
     const t = setTimeout(() => setOpen(true), delay);
@@ -22,6 +24,7 @@ export default function PromoModal() {
   }, [pathname]);
 
   function close() {
+    sessionStorage.setItem(SESSION_KEY, "true");
     if (neverShow) localStorage.setItem(STORAGE_KEY, "true");
     setOpen(false);
   }

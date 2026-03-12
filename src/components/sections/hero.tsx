@@ -7,28 +7,9 @@ import { ArrowRight, Star } from "lucide-react";
 import { heroContent, heroMockups, heroStats } from "@/lib/hero-data";
 import { useEffect, useState } from "react";
 
-const rotatingHeadings = [
-  "Where Ideas Become Software",
-  "Turning Ideas Into Software",
-  "Engineering Your Digital Future",
-];
-
 export default function HeroSection() {
-  const [headingIndex, setHeadingIndex] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
   const [mockupIndex, setMockupIndex] = useState(0);
   const [isMockupFading, setIsMockupFading] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsFlipping(true);
-      setTimeout(() => {
-        setHeadingIndex((prev) => (prev + 1) % rotatingHeadings.length);
-        setIsFlipping(false);
-      }, 350);
-    }, 2800);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -72,17 +53,8 @@ export default function HeroSection() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.15] mb-1">
-              <span
-                className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent inline-block pb-3"
-                style={{
-                  transform: isFlipping ? "rotateX(90deg)" : "rotateX(0deg)",
-                  opacity: isFlipping ? 0 : 1,
-                  transition: "transform 0.35s ease, opacity 0.35s ease",
-                  transformOrigin: "center top",
-                  perspective: "600px",
-                }}
-              >
-                {rotatingHeadings[headingIndex]}
+              <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent inline-block pb-3">
+Where Ideas Become Software
               </span>
             </h1>
 
