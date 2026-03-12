@@ -1,6 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { DollarSign, Award, Gauge, Gift, ArrowRight } from "lucide-react";
+import { DollarSign, Award, Gauge, Gift, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const highlights = [
+  "SEO-optimized websites",
+  "Fast loading (under 1s)",
+  "Mobile-first design",
+  "Custom-built (not templates)",
+  "Full ownership",
+];
 
 const benefits = [
   {
@@ -47,19 +55,42 @@ export default function WhyUsSection() {
               <br />
               Advantage.
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-sm">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-6 max-w-sm">
               Transparent, quality-first web development with a process built
               around your success, not our convenience.
             </p>
-            <Button
-              size="lg"
-              asChild
-              className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
-            >
-              <Link href="/contact">
-                Start a Project <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {highlights.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary"
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
+              >
+                <Link href="/contact">
+                  Start a Project <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="rounded-full px-8 border-white/30 text-white bg-transparent hover:bg-white/10 hover:text-white"
+              >
+                <Link href="/why-choose-us">
+                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
 
           {/* Right: benefit list */}

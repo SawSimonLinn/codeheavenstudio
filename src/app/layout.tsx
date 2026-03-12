@@ -48,7 +48,7 @@ export default function RootLayout({
       {
         "@type": "Person",
         name: "Mia Truong",
-        jobTitle: "Co-Founder",
+        jobTitle: "Co-Founder & Developer",
         url: "https://www.codeheavenstudio.com/founder/mia-truong",
         sameAs: [
           "https://www.linkedin.com/in/trangmtruong/",

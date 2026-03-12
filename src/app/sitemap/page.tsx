@@ -26,8 +26,7 @@ const sitemapSections = [
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Templates", href: "/templates" },
-      { label: "Free Resources", href: "/resources" },
+{ label: "Free Resources", href: "/resources" },
       { label: "How It Works", href: "/how-it-works" },
     ],
   },

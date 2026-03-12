@@ -13,7 +13,16 @@ import {
   Headphones,
   TrendingUp,
   ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
+
+const highlights = [
+  "SEO-optimized websites",
+  "Fast loading (under 1s)",
+  "Mobile-first design",
+  "Custom-built (not templates)",
+  "Full ownership",
+];
 
 const benefits = [
   {
@@ -96,10 +105,21 @@ export default function WhyChooseUsPage() {
                 Advantage.
               </span>
             </h1>
-            <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-10">
+            <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-8">
               Transparent, quality-first web development with a process built
               around your success — not our convenience.
             </p>
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {highlights.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary"
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </div>
             <Button
               asChild
               size="lg"

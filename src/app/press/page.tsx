@@ -146,14 +146,14 @@ export default function PressPage() {
                 },
                 {
                   name: "Mia Truong",
-                  role: "Co-Founder",
+                  role: "Co-Founder & Developer",
                   location: "San Diego, CA",
                   avatar: "/avatars/mia.jpg",
                   hint: "female developer",
                   initials: "MT",
                   page: "/founder/mia-truong",
                   linkedin: "https://www.linkedin.com/in/trangmtruong/",
-                  bio: "Mia Truong focuses on business development, partnerships, and client success at Code Heaven Studio.",
+                  bio: "Mia Truong is a developer and co-founder at Code Heaven Studio, focusing on web development, business development, partnerships, and client success.",
                 },
               ].map((founder) => (
                 <div key={founder.name} className="rounded-2xl border bg-card p-8 flex flex-col gap-4">

@@ -35,11 +35,11 @@ const founders = [
   },
   {
     name: "Mia Truong",
-    role: "Co-Founder",
+    role: "Co-Founder & Developer",
     location: "San Diego, CA",
     avatar: "/avatars/mia.jpg",
     aiHint: "female developer",
-    bio: "Mia co-founded Code Heaven Studio and focuses on business development, partnerships, and client success. She spent years in beauty and hospitality before pivoting to tech, a background that gave her a sharp eye for detail and a natural instinct for what makes an experience feel right.",
+    bio: "Mia co-founded Code Heaven Studio and works as both a developer and the lead for business development, partnerships, and client success. She spent years in beauty and hospitality before pivoting to tech, a background that gave her a sharp eye for detail and a natural instinct for what makes an experience feel right.",
     linkedin: "https://www.linkedin.com/in/trangmtruong/",
     github: "https://github.com/trangmtruong",
     portfolio: "https://www.miatruong.com/",

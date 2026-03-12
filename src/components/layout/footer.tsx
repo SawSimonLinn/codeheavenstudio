@@ -118,11 +118,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/templates" className="hover:text-primary">
-                  Templates
-                </Link>
-              </li>
-              <li>
                 <Link href="/resources" className="hover:text-primary">
                   Free Resources
                 </Link>
