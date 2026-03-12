@@ -74,12 +74,6 @@ const services = [
     icon: Palette,
   },
   {
-    href: "/services/content-writing",
-    label: "Content Writing",
-    desc: "Copy that connects and converts",
-    icon: PenLine,
-  },
-  {
     href: "/services/fullstack-internal-websites",
     label: "Fullstack Internal Systems",
     desc: "Order systems, dashboards & internal tools",

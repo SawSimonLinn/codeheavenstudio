@@ -11,6 +11,9 @@ import {
   Layers,
   ArrowRight,
   CheckCircle2,
+  ArrowLeftRight,
+  RefreshCw,
+  Figma,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/header";
@@ -19,8 +22,8 @@ import Footer from "@/components/layout/footer";
 const services = [
   {
     icon: Monitor,
-    title: "Website Development",
-    tagline: "Custom-built websites that perform",
+    title: "Small Business Websites",
+    tagline: "Fast, custom sites built to convert",
     description:
       "We design and develop fast, responsive websites tailored to your brand. Every site is built with clean code, great UX, and a focus on converting visitors into customers.",
     features: ["Mobile-first design", "SEO-ready structure", "Fast load times", "CMS integration"],
@@ -34,6 +37,33 @@ const services = [
       "We specialize in websites for restaurants: menus, reservations, Google Maps integration, and photo galleries that make people want to visit before they even walk in the door.",
     features: ["Online menu display", "Reservation links", "Google Maps embed", "Mobile optimized"],
     href: "/services/restaurant-websites",
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "Wix to Custom Website",
+    tagline: "Escape Wix. Own your site 100%.",
+    description:
+      "Still stuck on Wix? We migrate your site to a fully custom, self-owned website built on modern tech. No more monthly fees, no more limitations — just a site you actually own.",
+    features: ["Full site migration", "Improved performance", "No platform lock-in", "SEO preservation"],
+    href: "/services/wix-to-custom",
+  },
+  {
+    icon: RefreshCw,
+    title: "Website Redesign",
+    tagline: "Modernise and improve your existing site",
+    description:
+      "Got an outdated website that's hurting your brand? We redesign it from the ground up — faster, sharper, and built to convert. Same domain, completely new experience.",
+    features: ["Full visual redesign", "Performance improvements", "Better UX & conversion", "Content refresh"],
+    href: "/services/website-redesign",
+  },
+  {
+    icon: Figma,
+    title: "Figma to Website",
+    tagline: "Your design. Built pixel perfect.",
+    description:
+      "Already have a Figma design you love? We'll bring it to life exactly as designed — pixel perfect, fully responsive, and production-ready. Hand us the file and we handle the rest.",
+    features: ["Pixel-perfect implementation", "Fully responsive", "Clean, production-ready code", "Works with any Figma design"],
+    href: null,
   },
   {
     icon: ShoppingCart,
