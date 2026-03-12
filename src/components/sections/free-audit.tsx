@@ -15,9 +15,6 @@ export default function FreeAuditSection() {
       <div className="container mx-auto max-w-5xl px-4">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
           <div className="max-w-xl">
-            <span className="inline-block mb-4 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
-              New
-            </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4">
               Free Website Audit
             </h2>
