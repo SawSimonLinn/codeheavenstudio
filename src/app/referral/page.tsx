@@ -113,7 +113,7 @@ const whoFits = [
 const faqs = [
   {
     q: "How do I refer someone?",
-    a: "Fill out the form below or email us at codeheavenstudio@gmail.com with the referral's name and contact info. We'll take it from there.",
+    a: "Fill out the form below or email us at hello@codeheavenstudio.com with the referral's name and contact info. We'll take it from there.",
   },
   {
     q: "When do I get paid?",

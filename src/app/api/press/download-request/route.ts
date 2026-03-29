@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   const smtpUser = process.env.SMTP_USER ?? process.env.EMAIL_USER;
   const smtpPass = process.env.SMTP_PASS;
   const smtpFrom = (process.env.SMTP_FROM ?? process.env.EMAIL_FROM ?? smtpUser ?? '').trim();
-  const notifyTo = process.env.PRESS_NOTIFY_EMAIL ?? 'codeheavenstudio@gmail.com';
+  const notifyTo = process.env.PRESS_NOTIFY_EMAIL ?? 'hello@codeheavenstudio.com';
 
   if (!smtpHost || !smtpUser || !smtpPass || !smtpFrom) {
     // SMTP not configured — still allow the download, just skip the notification

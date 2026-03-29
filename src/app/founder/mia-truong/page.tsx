@@ -4,7 +4,7 @@ import Footer from "@/components/layout/footer";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Github, Globe, MapPin, ArrowLeft } from "lucide-react";
+import { Linkedin, Github, Globe, MapPin, ArrowLeft, Mail } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -181,7 +181,9 @@ export default function MiaTruongPage() {
                 size="lg"
                 className="rounded-full bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90"
               >
-                <Link href="/contact">Get in Touch</Link>
+                <a href="mailto:mia@codeheavenstudio.com" className="inline-flex items-center gap-2">
+                  <Mail className="h-4 w-4" /> Email Mia
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full bg-transparent border-white/40 text-white hover:border-white/70 hover:bg-transparent">
                 <Link href="/about">Meet the Team</Link>

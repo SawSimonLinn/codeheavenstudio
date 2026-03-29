@@ -70,10 +70,10 @@ export default function AccessibilityPage() {
                   If you experience any accessibility barriers on our website,
                   please contact us at{" "}
                   <a
-                    href="mailto:codeheavenstudio@gmail.com"
+                    href="mailto:hello@codeheavenstudio.com"
                     className="text-primary hover:underline"
                   >
-                    codeheavenstudio@gmail.com
+                    hello@codeheavenstudio.com
                   </a>
                   . We welcome your feedback and will make every effort to
                   address issues promptly.

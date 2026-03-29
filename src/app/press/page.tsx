@@ -78,7 +78,7 @@ export default function PressPage() {
               size="lg"
               className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
             >
-              <a href="mailto:codeheavenstudio@gmail.com" className="flex items-center gap-2">
+              <a href="mailto:hello@codeheavenstudio.com" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" /> Press Inquiries
               </a>
             </Button>
@@ -273,7 +273,7 @@ export default function PressPage() {
                 size="lg"
                 className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
               >
-                <a href="mailto:codeheavenstudio@gmail.com" className="flex items-center gap-2">
+                <a href="mailto:hello@codeheavenstudio.com" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" /> Contact Press Team
                 </a>
               </Button>

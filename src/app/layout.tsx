@@ -30,7 +30,7 @@ export default function RootLayout({
     logo: "https://www.codeheavenstudio.com/logo.png",
     contactPoint: {
       "@type": "ContactPoint",
-      email: "codeheavenstudio@gmail.com",
+      email: "hello@codeheavenstudio.com",
       contactType: "customer service",
     },
     founder: [

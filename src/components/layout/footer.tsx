@@ -205,8 +205,8 @@ export default function Footer() {
             in Los Angeles / San Diego, California.
           </p>
           <p>
-            <a href="mailto:codeheavenstudio@gmail.com" className="hover:text-primary">
-              codeheavenstudio@gmail.com
+            <a href="mailto:hello@codeheavenstudio.com" className="hover:text-primary">
+              hello@codeheavenstudio.com
             </a>
           </p>
         </div>
