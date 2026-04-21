@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Referral Partner Program — Earn 10–15% Commission",
+  description:
+    "Refer a client to Code Heaven Studio and earn 10% commission per project. Refer 3+ clients and earn 15% on every deal. No cap — earnings stack with every referral.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/referral" },
+  openGraph: {
+    title: "Referral Partner Program | Code Heaven Studio",
+    description:
+      "Refer a client and earn 10% commission. Refer 3+ clients and unlock 15% on every project. No cap on referrals.",
+    url: "https://www.codeheavenstudio.com/referral",
+  },
+};
+
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";

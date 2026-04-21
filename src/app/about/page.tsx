@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Meet the team behind Code Heaven Studio. We build custom, fast, and SEO-optimized websites with a free demo and free consulting before you commit.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/about" },
+  openGraph: {
+    title: "About Us | Code Heaven Studio",
+    description:
+      "Meet the team behind Code Heaven Studio. We build custom, fast, and SEO-optimized websites with a free demo and free consulting before you commit.",
+    url: "https://www.codeheavenstudio.com/about",
+  },
+};
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";

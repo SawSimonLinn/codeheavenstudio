@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ — Common Questions Answered",
+  description:
+    "Answers to the most common questions about working with Code Heaven Studio — pricing, free demos, timelines, code ownership, and how we build websites.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/faq" },
+  openGraph: {
+    title: "FAQ | Code Heaven Studio",
+    description:
+      "Common questions about pricing, free demos, timelines, and code ownership answered.",
+    url: "https://www.codeheavenstudio.com/faq",
+  },
+};
+
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';

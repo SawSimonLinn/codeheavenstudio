@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Web Design & Development Services",
+  description:
+    "Custom Next.js websites, AI-powered web apps, UI/UX design, SEO, and performance optimization. Free consultation and free demo — no commitment required.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/services" },
+  openGraph: {
+    title: "Web Design & Development Services | Code Heaven Studio",
+    description:
+      "Custom Next.js websites, AI-powered web apps, UI/UX design, SEO, and performance optimization. Free consultation and free demo — no commitment required.",
+    url: "https://www.codeheavenstudio.com/services",
+  },
+};
 import {
   Bot,
   Monitor,

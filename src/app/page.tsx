@@ -53,16 +53,15 @@ function Hero() {
 
         {/* Headline */}
         <h1 style={{ fontSize: "clamp(52px,8.5vw,128px)", fontWeight: 900, lineHeight: 0.95, letterSpacing: "-0.04em", color: HI, margin: 0, maxWidth: 960, ...fade(0.1) }}>
-          We build<br />
-          <em style={{ fontStyle: "normal", color: BLUE }}>websites</em><br />
-          that work.
+          Engineering<br />
+          <em style={{ fontStyle: "normal", color: BLUE }}>Your Digital</em><br />
+          Future.
         </h1>
 
         {/* Sub row */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginTop: 56, flexWrap: "wrap", gap: 32, ...fade(0.2) }}>
           <p style={{ fontSize: "clamp(15px,1.6vw,18px)", color: MID, lineHeight: 1.7, maxWidth: 440, margin: 0 }}>
-            Custom Next.js sites. Fast delivery, one-time pricing,
-            and full code ownership — no subscriptions, no lock-in.
+            Code Heaven Studio builds fast, modern, and SEO-optimized websites. You focus on your business. We handle the digital growth.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 32px", background: HI, color: "#0C0C0C", borderRadius: 4, fontWeight: 700, fontSize: 15, textDecoration: "none", letterSpacing: "-0.01em" }}>
@@ -388,6 +387,62 @@ function CTASection() {
   );
 }
 
+// ─── REFERRAL ─────────────────────────────────────────────────────────────────
+function ReferralSection() {
+  const { ref, visible } = useReveal(0.15);
+  return (
+    <section ref={ref} style={{ background: BG2, borderTop: `1px solid ${LINE}`, borderBottom: `1px solid ${LINE}` }}>
+      <div style={{ maxWidth: 1360, margin: "0 auto", padding: "clamp(60px,8vw,100px) clamp(16px,4vw,40px)", opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(32px)", transition: "all 0.8s ease" }}>
+
+        {/* Header row */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 40 }}>
+          <span style={{ width: 32, height: 1, background: BLUE, display: "block" }} />
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", color: BLUE, textTransform: "uppercase" }}>Referral Partner Program</span>
+        </div>
+
+        <div className="ch-why-grid">
+          {/* Left — headline */}
+          <div>
+            <h2 style={{ fontSize: "clamp(32px,4.5vw,60px)", fontWeight: 900, letterSpacing: "-0.04em", color: HI, margin: "0 0 20px", lineHeight: 1 }}>
+              More referrals.<br />
+              <span style={{ color: BLUE }}>More earnings.</span>
+            </h2>
+            <p style={{ fontSize: 15, color: MID, lineHeight: 1.8, maxWidth: 380, marginBottom: 36 }}>
+              Earn 10% on every project you refer. Bring 3+ clients and you move to 15% — meaning 3 referrals alone puts 45% total commission in your pocket. No cap, no ceiling.
+            </p>
+            <Link
+              href="/referral"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 32px", background: BLUE, color: "#fff", borderRadius: 4, fontWeight: 700, fontSize: 15, textDecoration: "none", letterSpacing: "-0.01em" }}
+            >
+              See the Program <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          {/* Right — steps */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: `1px solid ${LINE}` }}>
+            {[
+              { n: "01", title: "Refer a client", desc: "Send them our way with your referral link or just make an email intro." },
+              { n: "02", title: "We close the deal", desc: "We handle the sales call, proposal, and onboarding — no selling on your end." },
+              { n: "03", title: "You earn commission", desc: "Once the project is signed and the first payment clears, we send your cut fast." },
+            ].map((step, i) => (
+              <div key={step.n} style={{ display: "flex", alignItems: "flex-start", gap: 20, padding: "24px 0", borderBottom: `1px solid ${LINE}`, opacity: visible ? 1 : 0, transform: visible ? "none" : "translateX(28px)", transition: `all 0.65s ease ${i * 0.1 + 0.2}s` }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: BLUE, letterSpacing: "0.1em", marginTop: 3, flexShrink: 0, minWidth: 24 }}>{step.n}</span>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: HI, marginBottom: 4, letterSpacing: "-0.02em" }}>{step.title}</div>
+                  <div style={{ fontSize: 13, color: MID, lineHeight: 1.65 }}>{step.desc}</div>
+                </div>
+              </div>
+            ))}
+            <p style={{ fontSize: 12, color: DIM, marginTop: 16, lineHeight: 1.6 }}>
+              1 client = 10% · 3+ clients = 15% each · Agency partners = custom rate. Earnings stack with every referral.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── PAGE ──────────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
@@ -403,6 +458,7 @@ export default function Home() {
         <WhyUsSection />
         <TestimonialsSection />
         <CTASection />
+        <ReferralSection />
       </main>
       <Footer />
     </div>

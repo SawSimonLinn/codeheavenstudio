@@ -18,6 +18,87 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "linna-mvp",
+    title: "Linna",
+    shortDescription:
+      "A project-aware AI assistant for indie developers that keeps context across sessions and helps them launch faster.",
+    overview:
+      "Linna is an AI project assistant for solo builders. Users set project context once by adding their README, tech stack, goals, blockers, and target user, then every conversation stays grounded in that context.",
+    challenge:
+      "Indie developers lose momentum when tools forget project context and give generic advice that does not match what they are actually building.",
+    solution:
+      "We built an open-source MVP with context-aware chat, persistent session memory, project dashboards, and a launch assistant for go-to-market copy.",
+    imageUrl: "/previousWorks/linna.png",
+    imageHint: "ai project dashboard",
+    category: "AI SaaS MVP",
+    timeline: "4 weeks",
+    services: [
+      "Product Strategy",
+      "UI/UX Design",
+      "Full-Stack Development",
+      "AI Integration",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Anthropic Claude API",
+      "Supabase",
+      "Clerk",
+      "Stripe",
+    ],
+    outcomes: [
+      "Project-aware responses tailored to each product context",
+      "Persistent memory across sessions without restart overhead",
+      "Launch copy generation for Product Hunt, Reddit, and X",
+      "Open-source distribution with hosted freemium monetization",
+    ],
+    liveUrl: "https://linna-one.vercel.app/",
+    repoUrl: "https://github.com/SawSimonLinn/linna",
+  },
+  {
+    slug: "mono-commerce",
+    title: "MonoCommerce",
+    shortDescription:
+      "A minimalist full-stack e-commerce platform for architectural objects and essential goods with a strict monochrome design language.",
+    overview:
+      "MonoCommerce is a full-stack storefront built with Next.js 15 and Supabase, covering product discovery, cart, checkout, user accounts, wishlists, and an admin dashboard in a precision-driven monochrome aesthetic.",
+    challenge:
+      "The project needed a complete modern commerce experience while preserving a strict minimalist visual system and maintaining fast, scalable full-stack architecture.",
+    solution:
+      "We built an end-to-end commerce platform with editorial storefront pages, persistent cart and checkout flows, Supabase-backed auth and data, role-based admin tooling, and AI-ready integrations for intelligent product features.",
+    imageUrl: "/previousWorks/mono.png",
+    imageHint: "minimal ecommerce storefront",
+    category: "E-commerce Platform",
+    timeline: "MVP build",
+    services: [
+      "Product Strategy",
+      "UI/UX Design",
+      "Full-Stack Development",
+      "Authentication",
+      "Admin Dashboard",
+    ],
+    techStack: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Supabase",
+      "PostgreSQL",
+      "Zustand",
+      "Genkit",
+      "Google Gemini",
+    ],
+    outcomes: [
+      "Launched a complete commerce flow from catalog browsing to checkout",
+      "Implemented social auth, profile management, and order history",
+      "Enabled admin operations for products, orders, analytics, and reviews",
+      "Maintained a distinctive monochrome brand system across the product",
+    ],
+    liveUrl: "https://www.monochromerce.com/",
+    repoUrl: "https://github.com/SawSimonLinn/MonoCommerce",
+  },
+  {
     slug: "the-archive-ai",
     title: "The Archive AI",
     shortDescription:
@@ -92,48 +173,6 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/SawSimonLinn/ai-content-engine",
   },
   {
-    slug: "mono-commerce",
-    title: "MonoCommerce",
-    shortDescription:
-      "A minimalist full-stack e-commerce platform for architectural objects and essential goods with a strict monochrome design language.",
-    overview:
-      "MonoCommerce is a full-stack storefront built with Next.js 15 and Supabase, covering product discovery, cart, checkout, user accounts, wishlists, and an admin dashboard in a precision-driven monochrome aesthetic.",
-    challenge:
-      "The project needed a complete modern commerce experience while preserving a strict minimalist visual system and maintaining fast, scalable full-stack architecture.",
-    solution:
-      "We built an end-to-end commerce platform with editorial storefront pages, persistent cart and checkout flows, Supabase-backed auth and data, role-based admin tooling, and AI-ready integrations for intelligent product features.",
-    imageUrl: "/previousWorks/mono.png",
-    imageHint: "minimal ecommerce storefront",
-    category: "E-commerce Platform",
-    timeline: "MVP build",
-    services: [
-      "Product Strategy",
-      "UI/UX Design",
-      "Full-Stack Development",
-      "Authentication",
-      "Admin Dashboard",
-    ],
-    techStack: [
-      "Next.js 15",
-      "TypeScript",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "Supabase",
-      "PostgreSQL",
-      "Zustand",
-      "Genkit",
-      "Google Gemini",
-    ],
-    outcomes: [
-      "Launched a complete commerce flow from catalog browsing to checkout",
-      "Implemented social auth, profile management, and order history",
-      "Enabled admin operations for products, orders, analytics, and reviews",
-      "Maintained a distinctive monochrome brand system across the product",
-    ],
-    liveUrl: "https://www.monochromerce.com/",
-    repoUrl: "https://github.com/SawSimonLinn/MonoCommerce",
-  },
-  {
     slug: "sui-at-home",
     title: "Sui At Home",
     shortDescription:
@@ -171,45 +210,6 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://www.suiathome.com/",
     repoUrl: "https://github.com/SawSimonLinn/suiathome",
-  },
-  {
-    slug: "linna-mvp",
-    title: "Linna",
-    shortDescription:
-      "A project-aware AI assistant for indie developers that keeps context across sessions and helps them launch faster.",
-    overview:
-      "Linna is an AI project assistant for solo builders. Users set project context once by adding their README, tech stack, goals, blockers, and target user, then every conversation stays grounded in that context.",
-    challenge:
-      "Indie developers lose momentum when tools forget project context and give generic advice that does not match what they are actually building.",
-    solution:
-      "We built an open-source MVP with context-aware chat, persistent session memory, project dashboards, and a launch assistant for go-to-market copy.",
-    imageUrl: "/previousWorks/linna.png",
-    imageHint: "ai project dashboard",
-    category: "AI SaaS MVP",
-    timeline: "4 weeks",
-    services: [
-      "Product Strategy",
-      "UI/UX Design",
-      "Full-Stack Development",
-      "AI Integration",
-    ],
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Anthropic Claude API",
-      "Supabase",
-      "Clerk",
-      "Stripe",
-    ],
-    outcomes: [
-      "Project-aware responses tailored to each product context",
-      "Persistent memory across sessions without restart overhead",
-      "Launch copy generation for Product Hunt, Reddit, and X",
-      "Open-source distribution with hosted freemium monetization",
-    ],
-    liveUrl: "https://linna-one.vercel.app/",
-    repoUrl: "https://github.com/SawSimonLinn/linna",
   },
   {
     slug: "blue-bird-haus-sushi",

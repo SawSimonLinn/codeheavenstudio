@@ -24,40 +24,35 @@ export default function ProjectsPage() {
 
       <main className="flex-1">
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden border-b border-border">
-          {/* giant background number */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none text-[22vw] font-black leading-none text-muted/30 pr-4"
-          >
-            {String(projects.length).padStart(2, "0")}
-          </span>
-
-          <div className="container mx-auto px-4 py-20 sm:py-32 relative z-10">
-            <p className="text-primary font-semibold uppercase tracking-[0.25em] text-xs sm:text-sm mb-6">
-              Selected Work
-            </p>
-
-            {/* Outlined + filled title combo */}
-            <div className="pb-3">
-              <h1
-                className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter"
-                style={{ lineHeight: "0.92" }}
-              >
-                <span className="block text-foreground">Our</span>
-                <span className="block text-primary">Projects</span>
-              </h1>
+        <section className="border-b border-border">
+          <div className="container mx-auto px-4 py-16 sm:py-24">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+              <div>
+                <p className="text-primary font-semibold uppercase tracking-[0.25em] text-xs mb-4">
+                  Selected Work
+                </p>
+                <h1 className="text-5xl sm:text-7xl font-black tracking-tighter leading-[0.9]">
+                  Our<br />
+                  <span className="text-primary">Projects</span>
+                </h1>
+              </div>
+              <div className="sm:text-right">
+                <p className="text-4xl sm:text-5xl font-black text-muted/40 leading-none">
+                  {String(projects.length).padStart(2, "0")}
+                </p>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">
+                  Total projects
+                </p>
+              </div>
             </div>
-
-            <p className="mt-8 max-w-md text-muted-foreground text-base sm:text-lg leading-relaxed">
-              End-to-end digital products from concept to launch. Real clients,
-              real results.
+            <p className="mt-8 max-w-lg text-muted-foreground text-base leading-relaxed">
+              End-to-end digital products from concept to launch. Real clients, real results.
             </p>
           </div>
         </section>
 
         {/* ── Filter pills ─────────────────────────────────────── */}
-        <section className="sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border">
+        <section className="sticky top-0 z-30 bg-background/90 backdrop-blur border-b border-border">
           <div className="container mx-auto px-4">
             <div className="flex gap-2 py-3 overflow-x-auto scrollbar-hide">
               {categories.map((cat) => (
@@ -65,7 +60,7 @@ export default function ProjectsPage() {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   aria-pressed={activeCategory === cat}
-                  className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200 border ${
+                  className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 border ${
                     activeCategory === cat
                       ? "bg-foreground text-background border-foreground"
                       : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
@@ -78,27 +73,23 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* ── Projects list ─────────────────────────────────────── */}
-        <section className="container mx-auto px-4 py-12 sm:py-20">
+        {/* ── Projects grid ─────────────────────────────────────── */}
+        <section className="container mx-auto px-4 py-12 sm:py-16">
           {filtered.length === 0 && (
             <p className="text-center text-muted-foreground py-24">
               No projects in this category yet.
             </p>
           )}
 
-          <div className="flex flex-col gap-4 sm:gap-6">
-            {filtered.map((project, i) => {
-              const isWide = i % 3 === 0; // every 3rd card is featured / wide
-              return (
-                <ProjectCard
-                  key={project.slug}
-                  project={project}
-                  index={projects.indexOf(project)}
-                  wide={isWide}
-                  priority={i === 0}
-                />
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+            {filtered.map((project, i) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={projects.indexOf(project)}
+                priority={i < 3}
+              />
+            ))}
           </div>
         </section>
 
@@ -113,7 +104,7 @@ export default function ProjectsPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-xs text-background/60 uppercase tracking-widest">
                   {label}
                 </p>
               </div>
@@ -131,12 +122,10 @@ export default function ProjectsPage() {
 function ProjectCard({
   project,
   index,
-  wide,
   priority = false,
 }: {
   project: (typeof projects)[number];
   index: number;
-  wide: boolean;
   priority?: boolean;
 }) {
   const num = String(index + 1).padStart(2, "0");
@@ -153,91 +142,81 @@ function ProjectCard({
           router.push(`/projects/${project.slug}`);
         }
       }}
-      className="group relative overflow-hidden rounded-2xl bg-card border border-border flex flex-col sm:flex-row sm:h-[300px] transition-all duration-500 hover:border-foreground/30 hover:shadow-2xl cursor-pointer"
+      className="group relative bg-card flex flex-col cursor-pointer transition-colors duration-300 hover:bg-card/80"
     >
-      {/* Image panel */}
-      <div className="relative overflow-hidden shrink-0 h-56 sm:h-full sm:w-[45%]">
+      {/* Image */}
+      <div className="relative overflow-hidden aspect-[16/9] w-full bg-muted">
         <Image
           src={project.imageUrl}
           alt={project.title}
           fill
-          sizes="(max-width: 640px) 100vw, 45vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           data-ai-hint={project.imageHint}
           priority={priority}
         />
-        {/* Index watermark over image */}
+        {/* number overlay */}
         <span
           aria-hidden
-          className="absolute top-4 left-5 text-5xl sm:text-6xl font-black text-white/20 leading-none select-none"
+          className="absolute top-3 left-4 text-4xl font-black text-white/25 leading-none select-none"
         >
           {num}
         </span>
-        {/* Subtle color overlay on hover */}
-        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
+        {/* category pill */}
+        <span className="absolute top-3 right-3 rounded-full bg-background/90 backdrop-blur text-foreground text-[10px] font-bold uppercase tracking-widest px-2.5 py-1">
+          {project.category}
+        </span>
       </div>
 
-      {/* Content panel */}
-      <div className="flex flex-col justify-between p-6 sm:p-8 flex-1 relative">
-        {/* Top row */}
-        <div>
-          <div className="flex items-start justify-between gap-3 mb-4">
-            <span className="inline-block rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-3 py-1">
-              {project.category}
-            </span>
-            <span className="text-xs text-muted-foreground font-medium shrink-0 mt-0.5">
-              {project.timeline}
-            </span>
-          </div>
-
-          <h2
-            className={`font-black tracking-tight text-foreground leading-tight ${
-              wide ? "text-2xl sm:text-4xl" : "text-xl sm:text-2xl"
-            }`}
-          >
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        {/* Title row */}
+        <div className="flex items-start justify-between gap-2">
+          <h2 className="text-lg font-black tracking-tight leading-tight text-foreground group-hover:text-primary transition-colors duration-200">
             {project.title}
           </h2>
-
-          <p className="mt-3 text-muted-foreground text-sm sm:text-base leading-relaxed line-clamp-2">
-            {project.shortDescription}
-          </p>
+          <span className="shrink-0 inline-flex h-7 w-7 items-center justify-center rounded-full border border-border group-hover:bg-primary group-hover:border-primary transition-all duration-300 group-hover:rotate-45 mt-0.5">
+            <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-background transition-colors duration-200" />
+          </span>
         </div>
 
-        {/* Bottom row */}
-        <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
-          {/* Tech stack chips */}
-          <div className="flex flex-wrap gap-1.5">
+        {/* Description */}
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          {project.shortDescription}
+        </p>
+
+        {/* Footer row */}
+        <div className="mt-auto pt-3 border-t border-border flex items-center justify-between gap-3">
+          {/* Tech stack */}
+          <div className="flex flex-wrap gap-1">
             {project.techStack.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground border border-border rounded px-2 py-0.5"
+                className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground border border-border rounded px-1.5 py-0.5"
               >
                 {tech}
               </span>
             ))}
+            {project.techStack.length > 3 && (
+              <span className="text-[10px] font-semibold text-muted-foreground px-1 py-0.5">
+                +{project.techStack.length - 3}
+              </span>
+            )}
           </div>
 
-          {/* CTA */}
-          <div className="flex items-center gap-3">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Live site
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            )}
-            <span className="flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-              View project
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-foreground text-background group-hover:bg-primary transition-all duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </span>
-            </span>
-          </div>
+          {/* Live link */}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="shrink-0 flex items-center gap-1 text-[10px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Live
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          )}
         </div>
       </div>
     </div>

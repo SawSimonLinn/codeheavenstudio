@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "How It Works — Free Demo First",
+  description:
+    "See how Code Heaven Studio works: free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/how-it-works" },
+  openGraph: {
+    title: "How It Works — Free Demo First | Code Heaven Studio",
+    description:
+      "Free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+    url: "https://www.codeheavenstudio.com/how-it-works",
+  },
+};
 import {
   MessageSquare,
   Paintbrush2,

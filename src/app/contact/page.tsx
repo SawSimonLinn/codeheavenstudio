@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Get Your Free Demo",
+  description:
+    "Request a free website demo in 48 hours — no upfront cost, no commitment. Free audit and consulting included. Start your project with Code Heaven Studio today.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/contact" },
+  openGraph: {
+    title: "Get Your Free Demo | Code Heaven Studio",
+    description:
+      "Request a free website demo in 48 hours — no upfront cost, no commitment. Free audit and consulting included.",
+    url: "https://www.codeheavenstudio.com/contact",
+  },
+};
+
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import ContactSection from '@/components/sections/contact';
