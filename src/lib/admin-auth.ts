@@ -1,34 +1,18 @@
-import { Account, Client } from 'node-appwrite';
 import { createHmac, timingSafeEqual } from 'crypto';
 import { ADMIN_SESSION_COOKIE } from '@/lib/admin-auth-constants';
+import { createSupabaseAuthClient } from '@/lib/supabase-server';
 
 export { ADMIN_SESSION_COOKIE };
 
-function getAuthConfig() {
-  const endpoint = process.env.APPWRITE_ENDPOINT ?? process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
-  const projectId = process.env.APPWRITE_PROJECT_ID ?? process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID;
-
-  if (!endpoint || !projectId) {
-    throw new Error('Missing APPWRITE_ENDPOINT or APPWRITE_PROJECT_ID for admin auth.');
-  }
-
-  return { endpoint, projectId };
-}
-
-function createBaseClient() {
-  const { endpoint, projectId } = getAuthConfig();
-  return new Client().setEndpoint(endpoint).setProject(projectId);
-}
-
 function getOptionalAdminEmail() {
-  const configured = (process.env.APPWRITE_ADMIN_EMAIL ?? '').trim().toLowerCase();
+  const configured = (process.env.SUPABASE_ADMIN_EMAIL ?? process.env.ADMIN_EMAIL ?? '').trim().toLowerCase();
   return configured || null;
 }
 
 function getAdminAuthSecret() {
-  const secret = (process.env.ADMIN_AUTH_SECRET ?? process.env.APPWRITE_API_KEY ?? '').trim();
+  const secret = (process.env.ADMIN_AUTH_SECRET ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? '').trim();
   if (!secret) {
-    throw new Error('Missing ADMIN_AUTH_SECRET (or APPWRITE_API_KEY fallback) for admin auth sessions.');
+    throw new Error('Missing ADMIN_AUTH_SECRET (or SUPABASE_SERVICE_ROLE_KEY fallback) for admin auth sessions.');
   }
   return secret;
 }
@@ -99,9 +83,15 @@ export function getCookieFromRequest(request: Request, cookieName: string): stri
 
 export async function createAdminSession(email: string, password: string): Promise<string> {
   const normalizedEmail = email.trim().toLowerCase();
-  const client = createBaseClient();
-  const account = new Account(client);
-  await account.createEmailPasswordSession(normalizedEmail, password);
+  const supabase = createSupabaseAuthClient();
+  const { error } = await supabase.auth.signInWithPassword({
+    email: normalizedEmail,
+    password,
+  });
+
+  if (error) {
+    throw new Error(error.message || 'Login failed');
+  }
 
   const allowedEmail = getOptionalAdminEmail();
   if (allowedEmail && normalizedEmail !== allowedEmail) {

@@ -145,7 +145,7 @@ export default function ContactSection() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5">
             Get in{" "}
-            <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="text-primary">
               Touch
             </span>
           </h1>
@@ -160,7 +160,7 @@ export default function ContactSection() {
           <div className="lg:col-span-3">
             <div className="relative rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm shadow-2xl overflow-hidden">
               {/* Top accent bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-primary via-blue-400 to-purple-500" />
+              <div className="h-1 w-full bg-primary" />
 
               <div className="p-8 sm:p-10">
                 {submitted ? (
@@ -326,7 +326,7 @@ export default function ContactSection() {
                           type="submit"
                           disabled={submitting}
                           size="lg"
-                          className="w-full rounded-full bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity font-semibold"
+                          className="w-full rounded-full bg-primary text-white hover:opacity-90 transition-opacity font-semibold"
                         >
                           {submitting ? (
                             "Sending..."

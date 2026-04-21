@@ -8,7 +8,7 @@ A web agency website built with Next.js 15. Showcases services, projects, blog p
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS, Radix UI
 - **AI:** Google Genkit (Gemini)
-- **Database:** Firebase
+- **Database:** Supabase (Postgres + Auth)
 - **Forms:** React Hook Form + Zod
 - **Analytics:** Vercel Analytics
 
@@ -69,12 +69,45 @@ npm run genkit:dev
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory. You will need:
+Copy `env.example` to `.env.local` and fill in values. You will need:
 
 - A Google AI API key for Genkit
-- Firebase project credentials
+- Supabase project credentials
+- SMTP credentials for sending receipt emails
 
-Refer to the Genkit and Firebase documentation for the required variable names.
+Required Supabase variables:
+
+```bash
+SUPABASE_URL=...
+SUPABASE_ANON_KEY=...
+SUPABASE_PUBLISHABLE_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+SUPABASE_ADMIN_EMAIL=admin@example.com
+ADMIN_AUTH_SECRET=...
+```
+
+Optional table/RPC overrides:
+
+```bash
+SUPABASE_RECEIPTS_TABLE=receipts
+SUPABASE_ADMIN_AUDIT_TABLE=admin_audit_logs
+SUPABASE_NEXT_RECEIPT_COUNTER_RPC=next_receipt_counter
+```
+
+Set up schema objects in Supabase by running:
+
+```sql
+-- from file: supabase/schema.sql
+```
+
+Migrate existing Appwrite data (receipts, counters, admin audit logs):
+
+```bash
+npm run migrate:appwrite-to-supabase
+```
+
+The migration script reads these Appwrite vars if you still have existing data:
+`APPWRITE_ENDPOINT`, `APPWRITE_PROJECT_ID`, `APPWRITE_API_KEY`, `APPWRITE_DATABASE_ID`, `APPWRITE_RECEIPTS_COLLECTION_ID`, `APPWRITE_COUNTERS_COLLECTION_ID`, `APPWRITE_ADMIN_AUDIT_COLLECTION_ID`.
 
 ## Notes
 

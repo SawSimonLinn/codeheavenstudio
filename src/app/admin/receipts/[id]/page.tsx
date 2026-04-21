@@ -94,7 +94,7 @@ export default function ReceiptDetailPage() {
 
   if (loading) {
     return (
-      <div className="p-8 text-center text-sm text-gray-400 animate-pulse">
+      <div className="p-8 text-center text-sm text-[#6F7790]">
         Loading receipt...
       </div>
     );
@@ -103,8 +103,12 @@ export default function ReceiptDetailPage() {
   if (!receipt) {
     return (
       <div className="p-8 text-center">
-        <p className="text-gray-500">Receipt not found.</p>
-        <Button asChild className="mt-4" variant="outline">
+        <p className="text-[#8A92A8]">Receipt not found.</p>
+        <Button
+          asChild
+          className="mt-4 border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white"
+          variant="outline"
+        >
           <Link href="/admin/receipts">Back to Receipts</Link>
         </Button>
       </div>
@@ -112,30 +116,40 @@ export default function ReceiptDetailPage() {
   }
 
   return (
-    <div className="p-4 sm:p-6 md:p-8">
-      {/* Header */}
+    <div className="mx-auto max-w-7xl p-4 sm:p-6 md:p-8">
       <div className="mb-6 flex flex-col gap-4">
         <div>
           <Link
             href="/admin/receipts"
-            className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-2 w-fit"
+            className="mb-2 inline-flex w-fit items-center gap-1.5 text-sm text-[#8A93A8] transition-colors hover:text-[#C9D0DE]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Receipts
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">{receipt.receiptNumber}</h1>
-          <p className="text-sm text-gray-500 mt-0.5">
+          <h1 className="text-2xl font-black tracking-tight text-[#F4F5F7]">{receipt.receiptNumber}</h1>
+          <p className="mt-0.5 text-sm text-[#8A92A8]">
             {receipt.clientName} · {receipt.clientEmail}
           </p>
         </div>
+
         <div className="flex flex-wrap items-center gap-2 print:hidden">
-          <Button asChild variant="outline" size="sm" className="flex-1 sm:flex-none">
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="flex-1 border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white sm:flex-none"
+          >
             <a href={`/api/receipts/${receipt.id}/pdf`} target="_blank" rel="noopener noreferrer">
               <Eye className="h-3.5 w-3.5" />
               Preview PDF
             </a>
           </Button>
-          <Button asChild variant="outline" size="sm" className="flex-1 sm:flex-none">
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="flex-1 border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white sm:flex-none"
+          >
             <a href={`/api/receipts/${receipt.id}/pdf`} download>
               <Download className="h-3.5 w-3.5" />
               Download PDF
@@ -144,7 +158,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 sm:flex-none"
+            className="flex-1 border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white sm:flex-none"
             onClick={() => setEditing(!editing)}
           >
             <Edit2 className="h-3.5 w-3.5" />
@@ -153,7 +167,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 sm:flex-none text-blue-600 border-blue-200 hover:bg-blue-50"
+            className="flex-1 border-[#2E3F73] bg-[#131E3C] text-[#A6BEFF] hover:bg-[#172751] hover:text-[#C7D6FF] sm:flex-none"
             onClick={() => setSendDialogOpen(true)}
           >
             <Send className="h-3.5 w-3.5" />
@@ -162,7 +176,7 @@ export default function ReceiptDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 sm:flex-none text-red-500 border-red-200 hover:bg-red-50"
+            className="flex-1 border-[#5C2934] bg-[#2A151B] text-[#F7A7B3] hover:bg-[#3A1B23] hover:text-[#FFD1D8] sm:flex-none"
             onClick={handleDelete}
           >
             <Trash2 className="h-3.5 w-3.5" />
@@ -172,7 +186,7 @@ export default function ReceiptDetailPage() {
       </div>
 
       {editing ? (
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
           <div>
             <ReceiptForm
               defaultValues={receipt}
@@ -183,37 +197,34 @@ export default function ReceiptDetailPage() {
             />
           </div>
           <div className="xl:sticky xl:top-8 xl:self-start">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Live Preview</p>
-            <ReceiptPreview
-              data={previewData}
-              receiptNumber={receipt.receiptNumber}
-              receiptId={receipt.id}
-            />
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#7782A0]">Live Preview</p>
+            <ReceiptPreview data={previewData} receiptNumber={receipt.receiptNumber} receiptId={receipt.id} />
           </div>
         </div>
       ) : (
-        <ReceiptPreview
-          data={receipt}
-          receiptNumber={receipt.receiptNumber}
-          receiptId={receipt.id}
-        />
+        <ReceiptPreview data={receipt} receiptNumber={receipt.receiptNumber} receiptId={receipt.id} />
       )}
 
-      {/* Send Email Dialog */}
       <Dialog open={sendDialogOpen} onOpenChange={(open) => !open && setSendDialogOpen(false)}>
-        <DialogContent>
+        <DialogContent className="border-[#27304A] bg-[#0F131D] text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Send className="h-5 w-5 text-blue-500" />
+            <DialogTitle className="flex items-center gap-2 text-[#F4F5F7]">
+              <Send className="h-5 w-5 text-[#8EA8FF]" />
               Send Receipt via Email
             </DialogTitle>
-            <DialogDescription>
-              This will send <span className="font-mono font-semibold">{receipt.receiptNumber}</span> to{' '}
-              <span className="font-semibold">{receipt.clientEmail}</span>.
+            <DialogDescription className="text-[#9AA3B9]">
+              This will send <span className="font-mono font-semibold text-[#DCE3F4]">{receipt.receiptNumber}</span> to{' '}
+              <span className="font-semibold text-[#DCE3F4]">{receipt.clientEmail}</span>.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-end gap-3 pt-2">
-            <Button variant="outline" onClick={() => setSendDialogOpen(false)}>Cancel</Button>
+            <Button
+              variant="outline"
+              onClick={() => setSendDialogOpen(false)}
+              className="border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white"
+            >
+              Cancel
+            </Button>
             <Button onClick={handleSendEmail} disabled={sending}>
               {sending ? 'Sending...' : 'Send Email'}
             </Button>

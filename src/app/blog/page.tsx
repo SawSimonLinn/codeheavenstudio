@@ -45,20 +45,13 @@ export default function BlogPage() {
             <p className="text-primary font-semibold uppercase tracking-[0.25em] text-xs sm:text-sm mb-6">
               Insights & Ideas
             </p>
-            <div className="overflow-hidden">
+            <div className="pb-3">
               <h1
-                className="text-[13vw] sm:text-[10vw] lg:text-[8vw] font-black leading-[0.88] tracking-tighter uppercase"
+                className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter"
+                style={{ lineHeight: "0.92" }}
               >
                 <span className="block text-foreground">Our</span>
-                <span
-                  className="block"
-                  style={{
-                    WebkitTextStroke: "2px hsl(var(--foreground))",
-                    color: "transparent",
-                  }}
-                >
-                  Blog
-                </span>
+                <span className="block text-primary">Blog</span>
               </h1>
             </div>
             <p className="mt-8 max-w-md text-muted-foreground text-base sm:text-lg leading-relaxed">
@@ -160,7 +153,7 @@ export default function BlogPage() {
         </section>
 
         {/* ── Stats strip ───────────────────────────────────────── */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: `${blogPosts.length}+`, label: "Articles published" },
@@ -170,7 +163,7 @@ export default function BlogPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-primary-foreground/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

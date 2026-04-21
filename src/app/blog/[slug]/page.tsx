@@ -118,8 +118,8 @@ export default async function BlogPostPage({
             </p>
 
             {/* Content */}
-            <div className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-black prose-headings:tracking-tight
+            <div className="prose prose-lg dark:prose-invert max-w-none font-body
+              prose-headings:font-black prose-headings:tracking-tight prose-headings:font-body
               prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
               prose-p:text-muted-foreground prose-p:leading-relaxed
               prose-li:text-muted-foreground prose-li:leading-relaxed

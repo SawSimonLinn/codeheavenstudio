@@ -1,89 +1,93 @@
-import { AppwriteException, Client, Databases, ID, Models, Query } from 'node-appwrite';
-import type { Receipt, CreateReceiptData, ReceiptStatus } from '@/types/receipt';
+import type { CreateReceiptData, Receipt, ReceiptStatus } from '@/types/receipt';
+import { createSupabaseAdminClient } from '@/lib/supabase-server';
 
-type ReceiptDoc = {
-  receiptNumber: string;
-  clientName: string;
-  clientEmail: string;
-  companyName?: string | null;
-  issueDate: string;
-  dueDate?: string | null;
-  items: string;
-  subtotal: number;
-  tax: number;
-  discount: number;
-  total: number;
-  notes: string;
+type ReceiptRow = {
+  id: string;
+  receipt_number: string;
+  client_name: string;
+  client_email: string;
+  company_name: string | null;
+  issue_date: string;
+  due_date: string | null;
+  items: unknown;
+  subtotal: number | string;
+  tax: number | string;
+  discount: number | string;
+  total: number | string;
+  notes: string | null;
   status: ReceiptStatus;
+  created_at: string;
 };
 
-type CounterDoc = {
-  name: string;
-  count: number;
+type ReceiptUpdateRow = {
+  client_name?: string;
+  client_email?: string;
+  company_name?: string | null;
+  issue_date?: string;
+  due_date?: string | null;
+  items?: unknown;
+  subtotal?: number;
+  tax?: number;
+  discount?: number;
+  total?: number;
+  notes?: string;
+  status?: ReceiptStatus;
 };
 
-type ReceiptDocument = Models.Document & ReceiptDoc;
-type CounterDocument = Models.Document & CounterDoc;
+const RECEIPTS_TABLE = (process.env.SUPABASE_RECEIPTS_TABLE ?? 'receipts').trim();
+const NEXT_RECEIPT_COUNTER_RPC = (process.env.SUPABASE_NEXT_RECEIPT_COUNTER_RPC ?? 'next_receipt_counter').trim();
 
-function getAppwriteContext() {
-  const endpoint = process.env.APPWRITE_ENDPOINT;
-  const projectId = process.env.APPWRITE_PROJECT_ID;
-  const apiKey = process.env.APPWRITE_API_KEY;
-  const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const receiptsCollectionId = process.env.APPWRITE_RECEIPTS_COLLECTION_ID;
-  const countersCollectionId = process.env.APPWRITE_COUNTERS_COLLECTION_ID;
-
-  if (!endpoint || !projectId || !apiKey || !databaseId || !receiptsCollectionId || !countersCollectionId) {
-    throw new Error(
-      'Missing Appwrite env vars. Required: APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID, APPWRITE_API_KEY, APPWRITE_DATABASE_ID, APPWRITE_RECEIPTS_COLLECTION_ID, APPWRITE_COUNTERS_COLLECTION_ID.'
-    );
+function parseItems(raw: unknown): Receipt['items'] {
+  if (Array.isArray(raw)) {
+    return raw as Receipt['items'];
   }
 
-  const client = new Client().setEndpoint(endpoint).setProject(projectId).setKey(apiKey);
-  const databases = new Databases(client);
-
-  return { databases, databaseId, receiptsCollectionId, countersCollectionId };
-}
-
-function parseItems(raw: string): Receipt['items'] {
-  try {
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed as Receipt['items'];
-  } catch {
-    return [];
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? (parsed as Receipt['items']) : [];
+    } catch {
+      return [];
+    }
   }
+
+  return [];
 }
 
-function toReceipt(document: ReceiptDocument): Receipt {
+function toNumber(value: unknown): number {
+  const normalized = typeof value === 'number' ? value : Number(value ?? 0);
+  return Number.isFinite(normalized) ? normalized : 0;
+}
+
+function toReceipt(row: ReceiptRow): Receipt {
   return {
-    id: document.$id,
-    receiptNumber: document.receiptNumber,
-    clientName: document.clientName,
-    clientEmail: document.clientEmail,
-    companyName: document.companyName ?? '',
-    issueDate: document.issueDate,
-    dueDate: document.dueDate ?? '',
-    items: parseItems(document.items),
-    subtotal: document.subtotal,
-    tax: document.tax,
-    discount: document.discount,
-    total: document.total,
-    notes: document.notes,
-    status: document.status,
-    createdAt: document.$createdAt,
+    id: row.id,
+    receiptNumber: row.receipt_number,
+    clientName: row.client_name,
+    clientEmail: row.client_email,
+    companyName: row.company_name ?? '',
+    issueDate: row.issue_date,
+    dueDate: row.due_date ?? '',
+    items: parseItems(row.items),
+    subtotal: toNumber(row.subtotal),
+    tax: toNumber(row.tax),
+    discount: toNumber(row.discount),
+    total: toNumber(row.total),
+    notes: row.notes ?? '',
+    status: row.status,
+    createdAt: row.created_at,
   };
 }
 
-function toReceiptPayload(data: Partial<Receipt>): Partial<ReceiptDoc> {
-  const payload: Partial<ReceiptDoc> = {};
+function toReceiptPayload(data: Partial<Receipt>): ReceiptUpdateRow {
+  const payload: ReceiptUpdateRow = {};
 
-  if (data.clientName !== undefined) payload.clientName = data.clientName;
-  if (data.clientEmail !== undefined) payload.clientEmail = data.clientEmail;
-  if (data.companyName !== undefined) payload.companyName = data.companyName;
-  if (data.issueDate !== undefined) payload.issueDate = data.issueDate;
-  if (data.dueDate !== undefined) payload.dueDate = data.dueDate;
-  if (data.items !== undefined) payload.items = JSON.stringify(data.items);
+  if (data.clientName !== undefined) payload.client_name = data.clientName;
+  if (data.clientEmail !== undefined) payload.client_email = data.clientEmail;
+  if (data.companyName !== undefined) payload.company_name = data.companyName || null;
+  if (data.issueDate !== undefined) payload.issue_date = data.issueDate;
+  if (data.dueDate !== undefined) payload.due_date = data.dueDate || null;
+  if (data.items !== undefined) payload.items = data.items;
   if (data.subtotal !== undefined) payload.subtotal = data.subtotal;
   if (data.tax !== undefined) payload.tax = data.tax;
   if (data.discount !== undefined) payload.discount = data.discount;
@@ -95,26 +99,26 @@ function toReceiptPayload(data: Partial<Receipt>): Partial<ReceiptDoc> {
 }
 
 async function generateReceiptNumber(): Promise<string> {
-  const { databases, databaseId, countersCollectionId } = getAppwriteContext();
+  const supabase = createSupabaseAdminClient();
   const year = new Date().getFullYear();
   const counterName = `receipts-${year}`;
 
-  const existing = await databases.listDocuments<CounterDocument>(databaseId, countersCollectionId, [
-    Query.equal('name', counterName),
-    Query.limit(1),
-  ]);
+  const { data, error } = await supabase.rpc(NEXT_RECEIPT_COUNTER_RPC, {
+    counter_name: counterName,
+  });
 
-  const counter = existing.documents[0]
-    ? existing.documents[0]
-    : await databases.createDocument<CounterDocument>(databaseId, countersCollectionId, ID.unique(), {
-        name: counterName,
-        count: 0,
-      });
+  if (error) {
+    throw new Error(
+      `Failed to generate receipt number. Ensure Supabase RPC \"${NEXT_RECEIPT_COUNTER_RPC}\" exists. ${error.message}`
+    );
+  }
 
-  const next = counter.count + 1;
-  await databases.updateDocument(databaseId, countersCollectionId, counter.$id, { count: next });
+  const next = Number(data);
+  if (!Number.isFinite(next) || next < 1) {
+    throw new Error('Failed to generate a valid receipt number counter.');
+  }
 
-  return `RCPT-${year}-${String(next).padStart(4, '0')}`;
+  return `RCPT-${year}-${String(Math.trunc(next)).padStart(4, '0')}`;
 }
 
 function calcTotals(items: Receipt['items'], tax: number, discount: number) {
@@ -125,56 +129,64 @@ function calcTotals(items: Receipt['items'], tax: number, discount: number) {
 }
 
 export async function createReceipt(data: CreateReceiptData): Promise<Receipt> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
+  const supabase = createSupabaseAdminClient();
   const receiptNumber = await generateReceiptNumber();
   const { subtotal, total } = calcTotals(data.items, data.tax, data.discount);
 
-  const receiptData: ReceiptDoc = {
-    ...data,
-    receiptNumber,
-    companyName: data.companyName ?? '',
-    dueDate: data.dueDate ?? '',
-    items: JSON.stringify(data.items),
+  const payload = {
+    receipt_number: receiptNumber,
+    client_name: data.clientName,
+    client_email: data.clientEmail,
+    company_name: data.companyName || null,
+    issue_date: data.issueDate,
+    due_date: data.dueDate || null,
+    items: data.items,
     subtotal,
+    tax: data.tax,
+    discount: data.discount,
     total,
     notes: data.notes ?? '',
     status: data.status,
   };
 
-  const created = await databases.createDocument<ReceiptDocument>(
-    databaseId,
-    receiptsCollectionId,
-    ID.unique(),
-    receiptData
-  );
+  const { data: created, error } = await supabase.from(RECEIPTS_TABLE).insert(payload).select('*').single();
 
-  return toReceipt(created);
+  if (error) {
+    throw new Error(`Failed to create receipt: ${error.message}`);
+  }
+
+  return toReceipt(created as ReceiptRow);
 }
 
 export async function getReceipts(): Promise<Receipt[]> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
-  const response = await databases.listDocuments<ReceiptDocument>(databaseId, receiptsCollectionId, [
-    Query.orderDesc('$createdAt'),
-    Query.limit(5000),
-  ]);
-  return response.documents.map((doc) => toReceipt(doc));
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from(RECEIPTS_TABLE)
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(5000);
+
+  if (error) {
+    throw new Error(`Failed to fetch receipts: ${error.message}`);
+  }
+
+  return (data ?? []).map((row) => toReceipt(row as ReceiptRow));
 }
 
 export async function getReceipt(id: string): Promise<Receipt | null> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
-  try {
-    const doc = await databases.getDocument<ReceiptDocument>(databaseId, receiptsCollectionId, id);
-    return toReceipt(doc);
-  } catch (error) {
-    if (error instanceof AppwriteException && error.code === 404) {
-      return null;
-    }
-    throw error;
+  const supabase = createSupabaseAdminClient();
+  const { data, error } = await supabase.from(RECEIPTS_TABLE).select('*').eq('id', id).maybeSingle();
+
+  if (error) {
+    throw new Error(`Failed to fetch receipt: ${error.message}`);
   }
+
+  if (!data) return null;
+  return toReceipt(data as ReceiptRow);
 }
 
 export async function updateReceipt(id: string, data: Partial<Receipt>): Promise<void> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
+  const supabase = createSupabaseAdminClient();
   const current = await getReceipt(id);
   if (!current) {
     throw new Error('Receipt not found');
@@ -190,15 +202,29 @@ export async function updateReceipt(id: string, data: Partial<Receipt>): Promise
     updates.total = total;
   }
 
-  await databases.updateDocument(databaseId, receiptsCollectionId, id, toReceiptPayload(updates));
+  const payload = toReceiptPayload(updates);
+  if (Object.keys(payload).length === 0) {
+    return;
+  }
+
+  const { error } = await supabase.from(RECEIPTS_TABLE).update(payload).eq('id', id);
+  if (error) {
+    throw new Error(`Failed to update receipt: ${error.message}`);
+  }
 }
 
 export async function deleteReceipt(id: string): Promise<void> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
-  await databases.deleteDocument(databaseId, receiptsCollectionId, id);
+  const supabase = createSupabaseAdminClient();
+  const { error } = await supabase.from(RECEIPTS_TABLE).delete().eq('id', id);
+  if (error) {
+    throw new Error(`Failed to delete receipt: ${error.message}`);
+  }
 }
 
 export async function updateReceiptStatus(id: string, status: ReceiptStatus): Promise<void> {
-  const { databases, databaseId, receiptsCollectionId } = getAppwriteContext();
-  await databases.updateDocument(databaseId, receiptsCollectionId, id, { status });
+  const supabase = createSupabaseAdminClient();
+  const { error } = await supabase.from(RECEIPTS_TABLE).update({ status }).eq('id', id);
+  if (error) {
+    throw new Error(`Failed to update receipt status: ${error.message}`);
+  }
 }

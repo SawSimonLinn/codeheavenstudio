@@ -39,21 +39,13 @@ export default function ProjectsPage() {
             </p>
 
             {/* Outlined + filled title combo */}
-            <div className="overflow-hidden">
+            <div className="pb-3">
               <h1
-                className="text-[13vw] sm:text-[10vw] lg:text-[8vw] font-black leading-[0.9] tracking-tighter uppercase"
-                style={{ lineHeight: "0.88" }}
+                className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter"
+                style={{ lineHeight: "0.92" }}
               >
                 <span className="block text-foreground">Our</span>
-                <span
-                  className="block"
-                  style={{
-                    WebkitTextStroke: "2px hsl(var(--foreground))",
-                    color: "transparent",
-                  }}
-                >
-                  Projects
-                </span>
+                <span className="block text-primary">Projects</span>
               </h1>
             </div>
 

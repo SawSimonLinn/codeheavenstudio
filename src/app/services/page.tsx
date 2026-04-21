@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  Bot,
   Monitor,
   Utensils,
   ShoppingCart,
@@ -8,13 +9,40 @@ import {
   Wrench,
   ArrowRight,
   CheckCircle2,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-const services = [
+type ServiceItem = {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  href?: string;
+};
+
+const services: ServiceItem[] = [
   {
+    id: "ai-applied-websites",
+    icon: Bot,
+    title: "AI Applied Websites",
+    tagline: "Modern AI-powered experiences built for 2026",
+    description:
+      "We apply the right AI stack, Gemini, OpenAI, and Claude, to create modern websites that do more than display content. From intelligent assistants and dynamic content to lead qualification and internal automation, we design AI features that are practical, secure, and aligned with your business goals.",
+    features: [
+      "Gemini/OpenAI/Claude integration strategy",
+      "AI chat + lead capture workflows",
+      "Personalized content and smart recommendations",
+      "AI-ready SEO, schema, and content operations",
+    ],
+    href: "/services/ai-applied-websites",
+  },
+  {
+    id: "website-development",
     icon: Monitor,
     title: "Website Development",
     tagline: "Custom-built websites that perform",
@@ -23,6 +51,7 @@ const services = [
     features: ["Mobile-first design", "SEO-ready structure", "Fast load times", "CMS integration"],
   },
   {
+    id: "restaurant-websites",
     icon: Utensils,
     title: "Restaurant Websites",
     tagline: "Hungry customers deserve a great first impression",
@@ -31,6 +60,7 @@ const services = [
     features: ["Online menu display", "Reservation links", "Google Maps embed", "Mobile optimized"],
   },
   {
+    id: "ecommerce-websites",
     icon: ShoppingCart,
     title: "E-commerce Websites",
     tagline: "Sell more with a store that works",
@@ -39,6 +69,7 @@ const services = [
     features: ["Product management", "Secure checkout", "Inventory tracking", "Payment integration"],
   },
   {
+    id: "landing-pages",
     icon: Layout,
     title: "Landing Pages",
     tagline: "One page. One goal. Maximum impact.",
@@ -47,6 +78,7 @@ const services = [
     features: ["Conversion-focused", "A/B test ready", "Lead capture forms", "Fast turnaround"],
   },
   {
+    id: "seo-optimization",
     icon: Search,
     title: "SEO Optimization",
     tagline: "Be found by the people searching for you",
@@ -55,6 +87,7 @@ const services = [
     features: ["Keyword research", "On-page SEO", "Local SEO", "Performance audits"],
   },
   {
+    id: "website-maintenance",
     icon: Wrench,
     title: "Website Maintenance",
     tagline: "Keep your site healthy, secure, and up to date",
@@ -75,9 +108,9 @@ export default function ServicesPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
             What We Build
           </p>
-          <h1 className="font-headline text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+          <h1 className="text-5xl sm:text-6xl font-black tracking-tighter leading-[0.95] mb-6">
             Services Built for{" "}
-            <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="text-primary">
               Real Businesses
             </span>
           </h1>
@@ -89,7 +122,7 @@ export default function ServicesPage() {
             <Button
               asChild
               size="lg"
-              className="rounded-full px-8 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
+              className="rounded-full px-8 bg-primary text-white hover:opacity-90 transition-opacity"
             >
               <Link href="/contact">Get a Free Quote</Link>
             </Button>
@@ -109,7 +142,8 @@ export default function ServicesPage() {
               return (
                 <div
                   key={service.title}
-                  className="rounded-2xl border bg-card p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                  id={service.id}
+                  className="scroll-mt-24 rounded-2xl border bg-card p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col"
                 >
                   <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                     <Icon className="h-6 w-6 text-primary" />
@@ -117,10 +151,18 @@ export default function ServicesPage() {
                   <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
                     {service.tagline}
                   </p>
-                  <h2 className="font-headline text-xl font-bold mb-3">{service.title}</h2>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                  <h2 className="text-xl font-bold mb-3">{service.title}</h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1">
                     {service.description}
                   </p>
+                  {service.href ? (
+                    <Link
+                      href={service.href}
+                      className="mb-5 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary hover:opacity-80 transition-opacity"
+                    >
+                      View full details <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ) : null}
                   <ul className="space-y-2">
                     {service.features.map((feat) => (
                       <li key={feat} className="flex items-center gap-2 text-sm">
@@ -140,7 +182,7 @@ export default function ServicesPage() {
       <section className="bg-muted/40 py-16 sm:py-20">
         <div className="container mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tighter mb-2">
               Not sure where to start?
             </h2>
             <p className="text-muted-foreground">
@@ -163,7 +205,7 @@ export default function ServicesPage() {
       {/* CTA */}
       <section className="bg-secondary text-secondary-foreground py-20 sm:py-28">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h2 className="font-headline text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] mb-6">
             Ready to build something great?
           </h2>
           <p className="text-secondary-foreground/70 text-lg max-w-xl mx-auto mb-10">
@@ -172,7 +214,7 @@ export default function ServicesPage() {
           <Button
             asChild
             size="lg"
-            className="rounded-full px-10 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
+            className="rounded-full px-10 bg-primary text-white hover:opacity-90 transition-opacity"
           >
             <Link href="/contact">Book a Free Call</Link>
           </Button>

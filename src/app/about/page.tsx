@@ -189,7 +189,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Skills Section */}
-        <section className="py-16 sm:py-24">
+        <section className="bg-background py-16 sm:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-2xl text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
@@ -216,7 +216,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Values Section */}
-        <section className="py-16 sm:py-24">
+        <section className="bg-background py-16 sm:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-2xl text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
@@ -242,7 +242,7 @@ export default function AboutUsPage() {
           </div>
         </section>
         {/* Stats strip */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "2", label: "Co-founders" },
@@ -252,7 +252,7 @@ export default function AboutUsPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-primary-foreground/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

@@ -29,23 +29,7 @@ export async function GET(request: Request) {
   const requestedLimit = Number(url.searchParams.get('limit') || '50');
   const logs = await listAdminAuditEvents(requestedLimit);
 
-  return NextResponse.json({
-    logs: logs.map((log) => ({
-      id: log.$id,
-      event: log.event,
-      email: log.email,
-      path: log.path,
-      ip: log.ip,
-      userAgent: log.userAgent,
-      deviceType: log.deviceType,
-      browser: log.browser,
-      os: log.os,
-      city: log.city,
-      region: log.region,
-      country: log.country,
-      createdAt: log.createdAt || log.$createdAt,
-    })),
-  });
+  return NextResponse.json({ logs });
 }
 
 export async function POST(request: Request) {
