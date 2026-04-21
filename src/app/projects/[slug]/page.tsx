@@ -68,6 +68,19 @@ export default async function ProjectDetailsPage({
                     </a>
                   </p>
                 ) : null}
+                {project.repoUrl ? (
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    GitHub:{" "}
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      {project.repoUrl}
+                    </a>
+                  </p>
+                ) : null}
                 <div className="mt-6 flex flex-wrap gap-2">
                   {project.services.map((service, index) => (
                     <Badge key={index} variant="secondary">
