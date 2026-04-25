@@ -147,18 +147,20 @@ function ServiceRow({ s, i, visible }: { s: typeof SVCS[0]; i: number; visible: 
       style={{ borderBottom: `1px solid ${LINE}`, cursor: "default", opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(32px)", transition: `opacity 0.65s ease ${i * 0.08 + 0.15}s, transform 0.65s ease ${i * 0.08 + 0.15}s, background 0.25s` }}
     >
       {/* Main row */}
-      <div style={{ display: "flex", alignItems: "center", gap: 40, padding: "36px 0" }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: hov ? BLUE : DIM, letterSpacing: "0.1em", minWidth: 32, transition: "color 0.2s" }}>{s.n}</span>
-        <h3 style={{ fontSize: "clamp(22px,2.8vw,36px)", fontWeight: 800, color: hov ? HI : "#C0C0C0", letterSpacing: "-0.03em", margin: 0, flex: "0 0 auto", minWidth: 200, transition: "color 0.2s" }}>{s.title}</h3>
-        <span style={{ fontSize: 11, fontWeight: 700, color: hov ? "#fff" : BLUE, background: hov ? BLUE : "transparent", border: `1.5px solid ${BLUE}`, borderRadius: 3, padding: "3px 10px", letterSpacing: "0.1em", textTransform: "uppercase", transition: "all 0.2s", flexShrink: 0 }}>{s.tag}</span>
+      <div className="ch-service-main" style={{ display: "flex", alignItems: "center", gap: 40, padding: "36px 0" }}>
+        <div className="ch-service-heading" style={{ display: "flex", alignItems: "center", gap: 40, minWidth: 0, flex: "0 1 auto" }}>
+          <span className="ch-service-number" style={{ fontSize: 12, fontWeight: 700, color: hov ? BLUE : DIM, letterSpacing: "0.1em", minWidth: 32, transition: "color 0.2s" }}>{s.n}</span>
+          <h3 className="ch-service-title" style={{ fontSize: "clamp(22px,2.8vw,36px)", fontWeight: 800, color: hov ? HI : "#C0C0C0", letterSpacing: "-0.03em", margin: 0, flex: "0 1 auto", minWidth: 200, transition: "color 0.2s" }}>{s.title}</h3>
+          <span className="ch-service-tag" style={{ fontSize: 11, fontWeight: 700, color: hov ? "#fff" : BLUE, background: hov ? BLUE : "transparent", border: `1.5px solid ${BLUE}`, borderRadius: 3, padding: "3px 10px", letterSpacing: "0.1em", textTransform: "uppercase", transition: "all 0.2s", flexShrink: 0 }}>{s.tag}</span>
+        </div>
         <p className="ch-service-desc" style={{ fontSize: 14, color: DIM, lineHeight: 1.7, margin: 0, maxWidth: 440, marginLeft: "auto" }}>{s.desc}</p>
-        <ArrowUpRight size={18} color={hov ? BLUE : LINE} style={{ flexShrink: 0, transform: hov ? "rotate(0deg)" : "rotate(-45deg)", transition: "color 0.2s, transform 0.3s ease" }} />
+        <ArrowUpRight className="ch-service-arrow" size={18} color={hov ? BLUE : LINE} style={{ flexShrink: 0, transform: hov ? "rotate(0deg)" : "rotate(-45deg)", transition: "color 0.2s, transform 0.3s ease" }} />
       </div>
 
       {/* Expandable details */}
-      <div style={{ display: "grid", gridTemplateRows: hov ? "1fr" : "0fr", transition: "grid-template-rows 0.35s ease" }}>
+      <div className="ch-service-details" style={{ display: "grid", gridTemplateRows: hov ? "1fr" : "0fr", transition: "grid-template-rows 0.35s ease" }}>
         <div style={{ overflow: "hidden" }}>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", paddingBottom: 28, paddingLeft: 72, opacity: hov ? 1 : 0, transform: hov ? "translateY(0)" : "translateY(-6px)", transition: "opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s" }}>
+          <div className="ch-service-details-content" style={{ display: "flex", gap: 12, flexWrap: "wrap", paddingBottom: 28, paddingLeft: 72, opacity: hov ? 1 : 0, transform: hov ? "translateY(0)" : "translateY(-6px)", transition: "opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s" }}>
             {s.details.map((d) => (
               <span key={d} style={{ fontSize: 12, fontWeight: 600, color: BLUE, background: "rgba(99,102,241,0.08)", border: `1px solid rgba(99,102,241,0.2)`, borderRadius: 4, padding: "5px 12px", letterSpacing: "0.02em" }}>{d}</span>
             ))}

@@ -64,12 +64,23 @@
   * {
     @apply border-border;
   }
+  html,
+  body {
+    overflow-x: clip;
+  }
   body {
     @apply bg-background text-foreground;
   }
   ::selection {
     background: rgba(37, 99, 235, 0.35);
     color: #f1f5f9;
+  }
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
   }
 }
 
@@ -425,13 +436,59 @@
 
 /* Homepage inline-style mobile overrides */
 @media (max-width: 640px) {
-  .ch-service-row {
-    flex-wrap: wrap !important;
-    gap: 12px !important;
+  .ch-service-main {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 28px 0 16px !important;
+  }
+  .ch-service-heading {
+    align-items: start !important;
+    display: grid !important;
+    gap: 10px 12px !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: 100%;
+  }
+  .ch-service-number {
+    color: #0047ff !important;
+    grid-column: 1;
+    letter-spacing: 0 !important;
+    min-width: 0 !important;
+  }
+  .ch-service-title {
+    color: #f5f5f5 !important;
+    font-size: 26px !important;
+    grid-column: 1 / -1;
+    letter-spacing: 0 !important;
+    line-height: 1.1 !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere;
+  }
+  .ch-service-tag {
+    background: #0047ff !important;
+    color: #fff !important;
+    grid-column: 2;
+    justify-self: end;
+    letter-spacing: 0 !important;
   }
   .ch-service-desc {
+    color: #8c8c8c !important;
     margin-left: 0 !important;
     max-width: 100% !important;
+    width: 100%;
+  }
+  .ch-service-arrow {
+    display: none !important;
+  }
+  .ch-service-details {
+    grid-template-rows: 1fr !important;
+  }
+  .ch-service-details-content {
+    gap: 8px !important;
+    opacity: 1 !important;
+    padding-bottom: 28px !important;
+    padding-left: 0 !important;
+    transform: none !important;
   }
   .ch-hero-stats {
     flex-wrap: wrap;
@@ -447,5 +504,28 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .ch-service-number {
+    color: #0047ff !important;
+  }
+  .ch-service-title {
+    color: #f5f5f5 !important;
+  }
+  .ch-service-tag {
+    background: #0047ff !important;
+    color: #fff !important;
+  }
+  .ch-service-arrow {
+    display: none !important;
+  }
+  .ch-service-details {
+    grid-template-rows: 1fr !important;
+  }
+  .ch-service-details-content {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
