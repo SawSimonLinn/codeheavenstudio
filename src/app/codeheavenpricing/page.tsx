@@ -188,7 +188,7 @@ export default function PricingPage() {
                 key={pkg.name}
                 className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 ${
                   pkg.popular
-                    ? "bg-secondary text-secondary-foreground shadow-2xl md:scale-105 z-10"
+                    ? "border border-primary/30 bg-primary/5 text-foreground shadow-2xl md:scale-105 z-10"
                     : "border bg-card shadow-sm hover:shadow-md"
                 }`}
               >
@@ -217,7 +217,7 @@ export default function PricingPage() {
                   {pkg.description}
                 </p>
 
-                <div className={`my-6 border-t ${pkg.popular ? "border-white/10" : "border-border"}`} />
+                <div className={`my-6 border-t ${pkg.popular ? "border-primary/20" : "border-border"}`} />
 
                 <ul className="space-y-3 flex-1">
                   {pkg.features.map((feature, i) => (
@@ -404,15 +404,15 @@ export default function PricingPage() {
         </section>
 
         {/* Countdown */}
-        {isPromotionActive && <section className="bg-muted/40 text-secondary py-16 sm:py-20">
+        {isPromotionActive && <section className="bg-muted/40 py-16 sm:py-20">
           <div className="container mx-auto px-4 text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">
               Limited Time Offer
             </p>
-            <h2 className="text-3xl font-bold sm:text-4xl font-headline">
+            <h2 className="text-3xl font-bold sm:text-4xl font-headline text-foreground">
               25% Off · Offer Ends In
             </h2>
-            <p className="mt-3 text-secondary/60 max-w-lg mx-auto">
+            <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
               Until the end of April, enjoy a 25% discount on any of our web design packages.
             </p>
             <div className="mt-10  flex justify-center gap-8 sm:gap-16">
@@ -423,10 +423,10 @@ export default function PricingPage() {
                 { value: timeLeft.seconds, label: "Seconds" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col items-center">
-                  <span className="text-5xl sm:text-6xl font-bold tabular-nums">
+                  <span className="text-5xl sm:text-6xl font-bold tabular-nums text-foreground">
                     {String(value).padStart(2, "0")}
                   </span>
-                  <span className="mt-2 text-xs uppercase tracking-widest text-secondary/60">
+                  <span className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">
                     {label}
                   </span>
                 </div>
@@ -458,7 +458,7 @@ export default function PricingPage() {
         </section>
 
         {/* Stats strip */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "3", label: "Packages available" },
@@ -468,7 +468,7 @@ export default function PricingPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

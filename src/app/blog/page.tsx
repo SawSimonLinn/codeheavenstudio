@@ -45,20 +45,13 @@ export default function BlogPage() {
             <p className="text-primary font-semibold uppercase tracking-[0.25em] text-xs sm:text-sm mb-6">
               Insights & Ideas
             </p>
-            <div className="overflow-hidden">
+            <div className="pb-3">
               <h1
-                className="text-[13vw] sm:text-[10vw] lg:text-[8vw] font-black leading-[0.88] tracking-tighter uppercase"
+                className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter"
+                style={{ lineHeight: "0.92" }}
               >
                 <span className="block text-foreground">Our</span>
-                <span
-                  className="block"
-                  style={{
-                    WebkitTextStroke: "2px hsl(var(--foreground))",
-                    color: "transparent",
-                  }}
-                >
-                  Blog
-                </span>
+                <span className="block text-primary">Blog</span>
               </h1>
             </div>
             <p className="mt-8 max-w-md text-muted-foreground text-base sm:text-lg leading-relaxed">
@@ -77,7 +70,7 @@ export default function BlogPage() {
                   onClick={() => setActiveTag(tag)}
                   className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200 border ${
                     activeTag === tag
-                      ? "bg-foreground text-background border-foreground"
+                      ? "bg-primary text-white border-primary"
                       : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
                   }`}
                 >
@@ -160,7 +153,7 @@ export default function BlogPage() {
         </section>
 
         {/* ── Stats strip ───────────────────────────────────────── */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: `${blogPosts.length}+`, label: "Articles published" },
@@ -170,7 +163,7 @@ export default function BlogPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-primary-foreground/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>
@@ -241,7 +234,7 @@ function PostCard({
         <div className="mt-4 flex items-center justify-between">
           <span className="flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
             Read more
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background group-hover:bg-primary transition-all duration-300 group-hover:rotate-45">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white transition-all duration-300 group-hover:rotate-45">
               <ArrowUpRight className="h-3 w-3" />
             </span>
           </span>

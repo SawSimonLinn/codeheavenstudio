@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "How It Works — Free Demo First",
+  description:
+    "See how Code Heaven Studio works: free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/how-it-works" },
+  openGraph: {
+    title: "How It Works — Free Demo First | Code Heaven Studio",
+    description:
+      "Free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+    url: "https://www.codeheavenstudio.com/how-it-works",
+  },
+};
 import {
   MessageSquare,
   Paintbrush2,
@@ -84,9 +98,9 @@ export default function HowItWorksPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
             Our Process
           </p>
-          <h1 className="font-headline text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+          <h1 className="text-5xl sm:text-6xl font-black tracking-tighter leading-[0.95] mb-6">
             From Idea to{" "}
-            <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="text-primary">
               Live Website
             </span>
           </h1>
@@ -123,7 +137,7 @@ export default function HowItWorksPage() {
                         {step.number}
                       </span>
                     </div>
-                    <h2 className="font-headline text-2xl font-bold mb-3">{step.title}</h2>
+                    <h2 className="text-2xl font-bold mb-3">{step.title}</h2>
                     <p className="text-muted-foreground leading-relaxed mb-3">
                       {step.description}
                     </p>
@@ -141,7 +155,7 @@ export default function HowItWorksPage() {
       {/* FAQ */}
       <section className="bg-muted/40 py-20 sm:py-28">
         <div className="container mx-auto max-w-3xl px-4">
-          <h2 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-center mb-12">
             Common Questions
           </h2>
           <div className="grid grid-cols-1 gap-6">
@@ -158,7 +172,7 @@ export default function HowItWorksPage() {
       {/* CTA */}
       <section className="bg-secondary text-secondary-foreground py-20 sm:py-28">
         <div className="container mx-auto max-w-7xl px-4 text-center">
-          <h2 className="font-headline text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] mb-6">
             Let&apos;s start with a conversation
           </h2>
           <p className="text-secondary-foreground/70 text-lg max-w-xl mx-auto mb-10">
@@ -169,7 +183,7 @@ export default function HowItWorksPage() {
             <Button
               asChild
               size="lg"
-              className="rounded-full px-10 bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity"
+              className="rounded-full px-10 bg-primary text-white hover:opacity-90 transition-opacity"
             >
               <Link href="/contact">Book a Free Call</Link>
             </Button>
@@ -177,7 +191,7 @@ export default function HowItWorksPage() {
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full px-8 border-white text-white bg-transparent hover:bg-white/10 hover:text-white"
+              className="rounded-full px-8 border-primary/30 bg-white/50 text-primary hover:bg-primary/10 hover:text-primary"
             >
               <Link href="/services" className="flex items-center gap-2">
                 View Services <ArrowRight className="h-4 w-4" />

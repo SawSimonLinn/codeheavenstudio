@@ -249,21 +249,21 @@ export default function ReceiptForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Client Info */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Client Information</h3>
+      <section className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-6">
+        <h3 className="mb-4 font-semibold text-[#F4F5F7]">Client Information</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="clientName">Client Name *</Label>
             <Input id="clientName" {...form.register('clientName')} placeholder="John Doe" />
             {form.formState.errors.clientName && (
-              <p className="text-xs text-red-500">{form.formState.errors.clientName.message}</p>
+              <p className="text-xs text-[#FFB3BE]">{form.formState.errors.clientName.message}</p>
             )}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="clientEmail">Client Email *</Label>
             <Input id="clientEmail" type="email" {...form.register('clientEmail')} placeholder="john@example.com" />
             {form.formState.errors.clientEmail && (
-              <p className="text-xs text-red-500">{form.formState.errors.clientEmail.message}</p>
+              <p className="text-xs text-[#FFB3BE]">{form.formState.errors.clientEmail.message}</p>
             )}
           </div>
           <div className="space-y-1.5 sm:col-span-2">
@@ -274,14 +274,14 @@ export default function ReceiptForm({
       </section>
 
       {/* Receipt Details */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Receipt Details</h3>
+      <section className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-6">
+        <h3 className="mb-4 font-semibold text-[#F4F5F7]">Receipt Details</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="issueDate">Issue Date *</Label>
             <Input id="issueDate" type="date" {...form.register('issueDate')} />
             {form.formState.errors.issueDate && (
-              <p className="text-xs text-red-500">{form.formState.errors.issueDate.message}</p>
+              <p className="text-xs text-[#FFB3BE]">{form.formState.errors.issueDate.message}</p>
             )}
           </div>
           <div className="space-y-1.5">
@@ -290,10 +290,10 @@ export default function ReceiptForm({
               value={dueDatePreset}
               onValueChange={(value) => setDueDatePreset(value as DueDatePreset)}
             >
-              <SelectTrigger id="dueDatePreset" className="mb-2">
+              <SelectTrigger id="dueDatePreset" className="mb-2 border-[#2A3040] bg-[#0C1017] text-[#DEE4EF]">
                 <SelectValue placeholder="Custom" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="border-[#2A3040] bg-[#111722] text-[#DEE4EF]">
                 <SelectItem value="custom">Custom date</SelectItem>
                 <SelectItem value="1w">1 week after issue date</SelectItem>
                 <SelectItem value="2w">2 weeks after issue date</SelectItem>
@@ -316,10 +316,10 @@ export default function ReceiptForm({
               defaultValue={defaultValues?.status ?? 'draft'}
               onValueChange={(v) => form.setValue('status', v as 'draft' | 'sent' | 'paid')}
             >
-              <SelectTrigger id="status">
+              <SelectTrigger id="status" className="border-[#2A3040] bg-[#0C1017] text-[#DEE4EF]">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="border-[#2A3040] bg-[#111722] text-[#DEE4EF]">
                 <SelectItem value="draft">Draft</SelectItem>
                 <SelectItem value="sent">Sent</SelectItem>
                 <SelectItem value="paid">Paid</SelectItem>
@@ -330,26 +330,32 @@ export default function ReceiptForm({
       </section>
 
       {/* Services */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
+      <section className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-gray-900">Services</h3>
-          <Button type="button" variant="outline" size="sm" onClick={() => append(newItem())}>
+          <h3 className="font-semibold text-[#F4F5F7]">Services</h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white"
+            onClick={() => append(newItem())}
+          >
             <PlusCircle className="h-3.5 w-3.5" />
             Add Service
           </Button>
         </div>
 
-        <div className="mb-5 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <div className="mb-5 space-y-4 rounded-xl border border-[#252C3B] bg-[#0E131F] p-4">
           <div className="space-y-1.5">
             <Label>Select Plan</Label>
             <Select
               value={selectedPlanName || 'none'}
               onValueChange={handleSelectPlan}
             >
-              <SelectTrigger>
+              <SelectTrigger className="border-[#2A3040] bg-[#0C1017] text-[#DEE4EF]">
                 <SelectValue placeholder="Choose a plan" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="border-[#2A3040] bg-[#111722] text-[#DEE4EF]">
                 <SelectItem value="none">No plan selected</SelectItem>
                 {planOptions.map((plan) => (
                   <SelectItem key={plan.name} value={plan.name}>
@@ -371,18 +377,18 @@ export default function ReceiptForm({
                 return (
                   <label
                     key={addOn.name}
-                    className="flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm"
+                    className="flex items-center justify-between gap-3 rounded-md border border-[#2A3040] bg-[#10151F] px-3 py-2 text-sm text-[#DDE3ED]"
                   >
                     <span className="flex items-center gap-2">
                       <input
                         type="checkbox"
                         checked={checked}
                         onChange={() => handleToggleAddOn(addOn)}
-                        className="h-4 w-4"
+                        className="h-4 w-4 accent-[#0047FF]"
                       />
                       <span>{addOn.name}</span>
                     </span>
-                    <span className="font-medium text-gray-600">{displayPrice}</span>
+                    <span className="font-medium text-[#9AA3B9]">{displayPrice}</span>
                   </label>
                 );
               })}
@@ -391,12 +397,12 @@ export default function ReceiptForm({
         </div>
 
         {form.formState.errors.items?.root && (
-          <p className="text-xs text-red-500 mb-3">{form.formState.errors.items.root.message}</p>
+          <p className="mb-3 text-xs text-[#FFB3BE]">{form.formState.errors.items.root.message}</p>
         )}
 
         <div className="space-y-4">
           {fields.map((field, index) => (
-            <div key={field.id} className="grid grid-cols-12 gap-3 items-start p-4 bg-gray-50 rounded-lg">
+            <div key={field.id} className="grid grid-cols-12 items-start gap-3 rounded-xl border border-[#252C3B] bg-[#0E131F] p-4">
               <div className="col-span-12 sm:col-span-4 space-y-1">
                 <Label className="text-xs">Service Name *</Label>
                 <Input
@@ -404,7 +410,7 @@ export default function ReceiptForm({
                   placeholder="Web Design"
                 />
                 {form.formState.errors.items?.[index]?.serviceName && (
-                  <p className="text-xs text-red-500">
+                  <p className="text-xs text-[#FFB3BE]">
                     {form.formState.errors.items[index]?.serviceName?.message}
                   </p>
                 )}
@@ -438,7 +444,7 @@ export default function ReceiptForm({
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="h-9 w-9 text-red-400 hover:text-red-600 hover:bg-red-50"
+                  className="h-9 w-9 text-[#F49AA6] hover:bg-[#3B1C25] hover:text-[#FFD1D8]"
                   onClick={() => remove(index)}
                   disabled={fields.length === 1}
                 >
@@ -451,8 +457,8 @@ export default function ReceiptForm({
       </section>
 
       {/* Financial Summary */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Financial Summary</h3>
+      <section className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-6">
+        <h3 className="mb-4 font-semibold text-[#F4F5F7]">Financial Summary</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="tax">Tax (%)</Label>
@@ -464,20 +470,20 @@ export default function ReceiptForm({
           </div>
         </div>
 
-        <div className="mt-6 space-y-2 border-t pt-4">
-          <div className="flex justify-between text-sm text-gray-600">
+        <div className="mt-6 space-y-2 border-t border-[#1E222C] pt-4">
+          <div className="flex justify-between text-sm text-[#9AA3B9]">
             <span>Subtotal</span>
             <span>${subtotal.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-[#9AA3B9]">
             <span>Tax ({tax}%)</span>
             <span>${taxAmt.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-[#9AA3B9]">
             <span>Discount</span>
             <span>-${discount.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between font-bold text-gray-900 text-base border-t pt-2">
+          <div className="flex justify-between border-t border-[#1E222C] pt-2 text-base font-bold text-[#F4F5F7]">
             <span>Total</span>
             <span>${total.toFixed(2)}</span>
           </div>
@@ -485,8 +491,8 @@ export default function ReceiptForm({
       </section>
 
       {/* Notes */}
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Notes</h3>
+      <section className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-6">
+        <h3 className="mb-4 font-semibold text-[#F4F5F7]">Notes</h3>
         <Textarea
           {...form.register('notes')}
           placeholder="Additional notes or payment instructions for the client..."

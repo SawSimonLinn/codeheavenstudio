@@ -1,8 +1,28 @@
-import { Client, Databases, ID, Models, Query } from 'node-appwrite';
+import { createSupabaseAdminClient } from '@/lib/supabase-server';
 
 type AuditEventType = 'login' | 'logout' | 'visit';
 
-type AuditDoc = {
+type AuditInsertRow = {
+  event: AuditEventType;
+  email: string;
+  path: string;
+  ip: string;
+  user_agent: string;
+  device_type: string;
+  browser: string;
+  os: string;
+  city: string;
+  region: string;
+  country: string;
+};
+
+type AuditRow = AuditInsertRow & {
+  id: string;
+  created_at: string;
+};
+
+export type AdminAuditEvent = {
+  id: string;
   event: AuditEventType;
   email: string;
   path: string;
@@ -14,25 +34,18 @@ type AuditDoc = {
   city: string;
   region: string;
   country: string;
+  createdAt: string;
 };
 
-type AuditDocument = Models.Document & AuditDoc;
+const ADMIN_AUDIT_TABLE = (process.env.SUPABASE_ADMIN_AUDIT_TABLE ?? 'admin_audit_logs').trim();
 
-function getAuditContext() {
-  const endpoint = process.env.APPWRITE_ENDPOINT;
-  const projectId = process.env.APPWRITE_PROJECT_ID;
-  const apiKey = process.env.APPWRITE_API_KEY;
-  const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const auditCollectionId = process.env.APPWRITE_ADMIN_AUDIT_COLLECTION_ID;
-
-  if (!endpoint || !projectId || !apiKey || !databaseId || !auditCollectionId) {
+function getAuditClient() {
+  try {
+    return createSupabaseAdminClient();
+  } catch (error) {
+    console.warn('Admin audit logging disabled:', error instanceof Error ? error.message : error);
     return null;
   }
-
-  const client = new Client().setEndpoint(endpoint).setProject(projectId).setKey(apiKey);
-  const databases = new Databases(client);
-
-  return { databases, databaseId, auditCollectionId };
 }
 
 function pickFirstForwardedIp(forwardedFor: string | null) {
@@ -89,14 +102,32 @@ function getLocationFromHeaders(request: Request) {
   return { city, region, country };
 }
 
+function toAdminAuditEvent(row: AuditRow): AdminAuditEvent {
+  return {
+    id: row.id,
+    event: row.event,
+    email: row.email,
+    path: row.path,
+    ip: row.ip,
+    userAgent: row.user_agent,
+    deviceType: row.device_type,
+    browser: row.browser,
+    os: row.os,
+    city: row.city,
+    region: row.region,
+    country: row.country,
+    createdAt: row.created_at,
+  };
+}
+
 export async function logAdminAuditEvent(options: {
   request: Request;
   event: AuditEventType;
   email?: string;
   path?: string;
 }) {
-  const ctx = getAuditContext();
-  if (!ctx) return;
+  const supabase = getAuditClient();
+  if (!supabase) return;
 
   const { request, event } = options;
   const email = (options.email ?? '').trim().toLowerCase();
@@ -106,13 +137,13 @@ export async function logAdminAuditEvent(options: {
   const ip = pickFirstForwardedIp(getHeader(request, 'x-forwarded-for')) || getHeader(request, 'x-real-ip');
   const { city, region, country } = getLocationFromHeaders(request);
 
-  const payload: AuditDoc = {
+  const payload: AuditInsertRow = {
     event,
     email,
     path,
     ip,
-    userAgent,
-    deviceType: parseDeviceType(userAgent),
+    user_agent: userAgent,
+    device_type: parseDeviceType(userAgent),
     browser: parseBrowser(userAgent),
     os: parseOs(userAgent),
     city,
@@ -120,30 +151,27 @@ export async function logAdminAuditEvent(options: {
     country,
   };
 
-  try {
-    await ctx.databases.createDocument<AuditDocument>(
-      ctx.databaseId,
-      ctx.auditCollectionId,
-      ID.unique(),
-      payload
-    );
-  } catch (error) {
-    console.warn('Failed to write admin audit log:', error);
+  const { error } = await supabase.from(ADMIN_AUDIT_TABLE).insert(payload);
+  if (error) {
+    console.warn('Failed to write admin audit log:', error.message);
   }
 }
 
 export async function listAdminAuditEvents(limit = 50) {
-  const ctx = getAuditContext();
-  if (!ctx) return [] as Array<AuditDocument>;
+  const supabase = getAuditClient();
+  if (!supabase) return [] as Array<AdminAuditEvent>;
+  const safeLimit = Math.min(Math.max(limit, 1), 200);
 
-  try {
-    const response = await ctx.databases.listDocuments<AuditDocument>(ctx.databaseId, ctx.auditCollectionId, [
-      Query.orderDesc('$createdAt'),
-      Query.limit(Math.min(Math.max(limit, 1), 200)),
-    ]);
-    return response.documents;
-  } catch (error) {
-    console.warn('Failed to read admin audit logs:', error);
-    return [] as Array<AuditDocument>;
+  const { data, error } = await supabase
+    .from(ADMIN_AUDIT_TABLE)
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(safeLimit);
+
+  if (error) {
+    console.warn('Failed to read admin audit logs:', error.message);
+    return [] as Array<AdminAuditEvent>;
   }
+
+  return (data ?? []).map((row) => toAdminAuditEvent(row as AuditRow));
 }

@@ -31,7 +31,9 @@ export default function ReceiptsPage() {
       .finally(() => setLoading(false));
   }, [toast]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleSendEmail = async () => {
     if (!emailTarget) return;
@@ -50,11 +52,12 @@ export default function ReceiptsPage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 md:p-8">
-      <div className="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mx-auto max-w-7xl p-4 sm:p-6 md:p-8">
+      <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Receipts</h1>
-          <p className="text-sm text-gray-500 mt-1">Manage all client receipts</p>
+          <p className="text-xs uppercase tracking-[0.14em] text-[#7782A0]">Billing Workspace</p>
+          <h1 className="mt-1 text-2xl font-black tracking-tight text-[#F4F5F7]">Receipts</h1>
+          <p className="mt-1 text-sm text-[#8A92A8]">Manage all client receipts</p>
         </div>
         <Button asChild className="w-full sm:w-auto">
           <Link href="/admin/receipts/new">
@@ -65,33 +68,34 @@ export default function ReceiptsPage() {
       </div>
 
       {loading ? (
-        <div className="bg-white rounded-xl border border-gray-200 p-8 text-center text-sm text-gray-400 animate-pulse">
+        <div className="rounded-2xl border border-[#1E222C] bg-[#10131A]/95 p-8 text-center text-sm text-[#707A92]">
           Loading receipts...
         </div>
       ) : (
-        <ReceiptsTable
-          receipts={receipts}
-          onRefresh={load}
-          onSendEmail={setEmailTarget}
-        />
+        <ReceiptsTable receipts={receipts} onRefresh={load} onSendEmail={setEmailTarget} />
       )}
 
-      {/* Send Email Confirmation Dialog */}
       <Dialog open={!!emailTarget} onOpenChange={(open) => !open && setEmailTarget(null)}>
-        <DialogContent>
+        <DialogContent className="border-[#27304A] bg-[#0F131D] text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Send className="h-5 w-5 text-blue-500" />
+            <DialogTitle className="flex items-center gap-2 text-[#F4F5F7]">
+              <Send className="h-5 w-5 text-[#8EA8FF]" />
               Send Receipt via Email
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-[#9AA3B9]">
               This will send receipt{' '}
-              <span className="font-mono font-semibold">{emailTarget?.receiptNumber}</span> to{' '}
-              <span className="font-semibold">{emailTarget?.clientEmail}</span>.
+              <span className="font-mono font-semibold text-[#DCE3F4]">{emailTarget?.receiptNumber}</span> to{' '}
+              <span className="font-semibold text-[#DCE3F4]">{emailTarget?.clientEmail}</span>.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-end gap-3 pt-2">
-            <Button variant="outline" onClick={() => setEmailTarget(null)}>Cancel</Button>
+            <Button
+              variant="outline"
+              onClick={() => setEmailTarget(null)}
+              className="border-[#2A3040] bg-[#121621] text-[#DDE3ED] hover:bg-[#181E2C] hover:text-white"
+            >
+              Cancel
+            </Button>
             <Button onClick={handleSendEmail} disabled={sending}>
               {sending ? 'Sending...' : 'Send Email'}
             </Button>

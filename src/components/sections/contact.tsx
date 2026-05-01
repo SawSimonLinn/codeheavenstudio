@@ -132,11 +132,6 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative w-full py-24 sm:py-32 overflow-hidden bg-background">
-      {/* Decorative blobs */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[600px] rounded-full bg-blue-500/5 blur-3xl" />
-
       <div className="relative container mx-auto max-w-7xl px-4">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
@@ -146,7 +141,7 @@ export default function ContactSection() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5">
             Get in{" "}
-            <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="text-primary">
               Touch
             </span>
           </h1>
@@ -159,9 +154,9 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           {/* Form — takes 3 of 5 cols */}
           <div className="lg:col-span-3">
-            <div className="relative rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm shadow-2xl overflow-hidden">
+            <div className="relative rounded-2xl border border-border/60 bg-card shadow-2xl overflow-hidden">
               {/* Top accent bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-primary via-blue-400 to-purple-500" />
+              <div className="h-1 w-full bg-primary" />
 
               <div className="p-8 sm:p-10">
                 {submitted ? (
@@ -327,7 +322,7 @@ export default function ContactSection() {
                           type="submit"
                           disabled={submitting}
                           size="lg"
-                          className="w-full rounded-full bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity font-semibold"
+                          className="w-full rounded-full bg-primary text-white hover:opacity-90 transition-opacity font-semibold"
                         >
                           {submitting ? (
                             "Sending..."
@@ -403,10 +398,7 @@ export default function ContactSection() {
             {/* Response time badge */}
             <div className="rounded-2xl border border-border/40 bg-muted/30 p-5 text-center">
               <div className="flex justify-center mb-2">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
-                </span>
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </div>
               <p className="text-sm font-semibold text-foreground">
                 Avg. response time: under 24 hours

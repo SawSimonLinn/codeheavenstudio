@@ -89,10 +89,6 @@ export default function CareersPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-secondary py-20 sm:py-32 text-secondary-foreground overflow-hidden">
-          {/* Gradient orbs */}
-          <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
-
           <div className="container mx-auto px-4 relative">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-4">
@@ -221,7 +217,7 @@ export default function CareersPage() {
         </section>
 
         {/* Values strip */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "100%", label: "Remote Work" },
@@ -231,7 +227,7 @@ export default function CareersPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

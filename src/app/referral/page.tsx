@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Referral Partner Program — Earn 10–15% Commission",
+  description:
+    "Refer a client to Code Heaven Studio and earn 10% commission per project. Refer 3+ clients and earn 15% on every deal. No cap — earnings stack with every referral.",
+  alternates: { canonical: "https://www.codeheavenstudio.com/referral" },
+  openGraph: {
+    title: "Referral Partner Program | Code Heaven Studio",
+    description:
+      "Refer a client and earn 10% commission. Refer 3+ clients and unlock 15% on every project. No cap on referrals.",
+    url: "https://www.codeheavenstudio.com/referral",
+  },
+};
+
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
@@ -169,7 +184,7 @@ export default function ReferralPartnerPage() {
         </section>
 
         {/* Stats strip */}
-        <section className="border-b border-border bg-foreground text-background">
+        <section className="border-b border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "10–15%", label: "Commission rate" },
@@ -179,7 +194,7 @@ export default function ReferralPartnerPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

@@ -13,9 +13,204 @@ export type Project = {
   techStack: string[];
   outcomes: string[];
   liveUrl?: string;
+  repoUrl?: string;
 };
 
 export const projects: Project[] = [
+  {
+    slug: "linna-mvp",
+    title: "Linna",
+    shortDescription:
+      "A project-aware AI assistant for indie developers that keeps context across sessions and helps them launch faster.",
+    overview:
+      "Linna is an AI project assistant for solo builders. Users set project context once by adding their README, tech stack, goals, blockers, and target user, then every conversation stays grounded in that context.",
+    challenge:
+      "Indie developers lose momentum when tools forget project context and give generic advice that does not match what they are actually building.",
+    solution:
+      "We built an open-source MVP with context-aware chat, persistent session memory, project dashboards, and a launch assistant for go-to-market copy.",
+    imageUrl: "/previousWorks/linna.png",
+    imageHint: "ai project dashboard",
+    category: "AI SaaS MVP",
+    timeline: "4 weeks",
+    services: [
+      "Product Strategy",
+      "UI/UX Design",
+      "Full-Stack Development",
+      "AI Integration",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Anthropic Claude API",
+      "Supabase",
+      "Clerk",
+      "Stripe",
+    ],
+    outcomes: [
+      "Project-aware responses tailored to each product context",
+      "Persistent memory across sessions without restart overhead",
+      "Launch copy generation for Product Hunt, Reddit, and X",
+      "Open-source distribution with hosted freemium monetization",
+    ],
+    liveUrl: "https://linna-one.vercel.app/",
+    repoUrl: "https://github.com/SawSimonLinn/linna",
+  },
+  {
+    slug: "mono-commerce",
+    title: "MonoCommerce",
+    shortDescription:
+      "A minimalist full-stack e-commerce platform for architectural objects and essential goods with a strict monochrome design language.",
+    overview:
+      "MonoCommerce is a full-stack storefront built with Next.js 15 and Supabase, covering product discovery, cart, checkout, user accounts, wishlists, and an admin dashboard in a precision-driven monochrome aesthetic.",
+    challenge:
+      "The project needed a complete modern commerce experience while preserving a strict minimalist visual system and maintaining fast, scalable full-stack architecture.",
+    solution:
+      "We built an end-to-end commerce platform with editorial storefront pages, persistent cart and checkout flows, Supabase-backed auth and data, role-based admin tooling, and AI-ready integrations for intelligent product features.",
+    imageUrl: "/previousWorks/mono.png",
+    imageHint: "minimal ecommerce storefront",
+    category: "E-commerce Platform",
+    timeline: "MVP build",
+    services: [
+      "Product Strategy",
+      "UI/UX Design",
+      "Full-Stack Development",
+      "Authentication",
+      "Admin Dashboard",
+    ],
+    techStack: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Supabase",
+      "PostgreSQL",
+      "Zustand",
+      "Genkit",
+      "Google Gemini",
+    ],
+    outcomes: [
+      "Launched a complete commerce flow from catalog browsing to checkout",
+      "Implemented social auth, profile management, and order history",
+      "Enabled admin operations for products, orders, analytics, and reviews",
+      "Maintained a distinctive monochrome brand system across the product",
+    ],
+    liveUrl: "https://www.monochromerce.com/",
+    repoUrl: "https://github.com/SawSimonLinn/MonoCommerce",
+  },
+  {
+    slug: "the-archive-ai",
+    title: "The Archive AI",
+    shortDescription:
+      "A RAG-powered web system that retrieves relevant knowledge before generation to improve answer accuracy and reduce hallucinations.",
+    overview:
+      "The Archive AI is a retrieval-augmented generation platform built to connect user questions with structured data sources before LLM response generation.",
+    challenge:
+      "Base LLM responses were often too generic or inaccurate when operating without external context and grounded retrieval.",
+    solution:
+      "We implemented a RAG pipeline with embeddings and vector search so answers are generated from relevant retrieved data instead of ungrounded model output.",
+    imageUrl: "/previousWorks/the-archive.png",
+    imageHint: "rag retrieval dashboard",
+    category: "RAG System",
+    timeline: "MVP build",
+    services: [
+      "AI Architecture",
+      "RAG Pipeline Development",
+      "Data Retrieval Design",
+      "Accuracy Optimization",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Embeddings",
+      "Vector Search",
+      "RAG",
+    ],
+    outcomes: [
+      "Retrieved relevant context before answer generation",
+      "Improved response accuracy by grounding outputs in real data",
+      "Reduced generic and hallucinated responses",
+      "Created a reusable retrieval foundation for future AI features",
+    ],
+    liveUrl: "https://the-archive-ai-eosin.vercel.app/",
+    repoUrl: "https://github.com/SawSimonLinn/the-archive-ai",
+  },
+  {
+    slug: "ai-content-engine",
+    title: "AI Content Engine",
+    shortDescription:
+      "A multi-step AI agent workflow that automates content generation across scripts, captions, hashtags, and structured plans.",
+    overview:
+      "AI Content Engine is an automation-focused web system that orchestrates chained prompts and agent-like steps to speed up repetitive content production.",
+    challenge:
+      "Manual content production across platforms was repetitive, time-consuming, and difficult to scale consistently.",
+    solution:
+      "We built a workflow orchestration system with prompt chaining that generates content assets end-to-end, inspired by AutoGPT-style multi-step automation thinking.",
+    imageUrl: "/previousWorks/ai-content-engine.png",
+    imageHint: "ai workflow automation",
+    category: "AI Agent Workflow",
+    timeline: "MVP build",
+    services: [
+      "Workflow Architecture",
+      "Prompt Engineering",
+      "Automation System Design",
+      "Full-Stack Development",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "AI Agents",
+      "Prompt Chaining",
+      "Workflow Automation",
+    ],
+    outcomes: [
+      "Automated repetitive multi-platform content creation tasks",
+      "Generated scripts, captions, hashtags, and content plans in sequence",
+      "Demonstrated system-level orchestration and agent workflow design",
+      "Reduced manual effort and turnaround time for content operations",
+    ],
+    liveUrl: "https://ai-content-engine-beryl.vercel.app/",
+    repoUrl: "https://github.com/SawSimonLinn/ai-content-engine",
+  },
+  {
+    slug: "sui-at-home",
+    title: "Sui At Home",
+    shortDescription:
+      "A warm, food-first recipe platform that helps a home cook creator turn Instagram viewers into a loyal community.",
+    overview:
+      "Sui At Home is a personal recipe-sharing platform where Sui publishes traditional homemade recipes while visitors browse, save, favorite, and comment. It also includes a dedicated community feed where users share their own cooking photos and captions.",
+    challenge:
+      "Social platforms alone were not enough to build a lasting audience relationship. The project needed an owned content hub with structured recipes, community engagement, and admin control over publishing and moderation.",
+    solution:
+      "We designed and built an MVP with recipe discovery, authentication, save/favorite/comment flows, a community feed, and an admin dashboard for content management and analytics.",
+    imageUrl: "/previousWorks/sui-at-home.png",
+    imageHint: "recipe community platform",
+    category: "Recipe Community Platform",
+    timeline: "MVP v1 (2025)",
+    services: [
+      "Product Strategy",
+      "UI/UX Design",
+      "Full-Stack Development",
+      "Supabase Integration",
+      "Admin Dashboard",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "Vercel",
+    ],
+    outcomes: [
+      "Converted social traffic into an owned recipe and community platform",
+      "Enabled save, favorite, and comment experiences for registered users",
+      "Launched a community feed for user-generated cooking posts",
+      "Gave admin full control over recipes, moderation, and performance analytics",
+    ],
+    liveUrl: "https://www.suiathome.com/",
+    repoUrl: "https://github.com/SawSimonLinn/suiathome",
+  },
   {
     slug: "blue-bird-haus-sushi",
     title: "Blue Bird Haus Sushi",

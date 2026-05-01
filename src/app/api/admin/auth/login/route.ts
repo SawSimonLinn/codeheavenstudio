@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { AppwriteException } from 'node-appwrite';
 import { ADMIN_SESSION_COOKIE, createAdminSession } from '@/lib/admin-auth';
 import { logAdminAuditEvent } from '@/lib/admin-audit';
 
@@ -37,25 +36,16 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('POST /api/admin/auth/login:', error);
 
-    if (error instanceof AppwriteException) {
-      const message = error.message || 'Login failed';
-      const status = error.code >= 400 && error.code < 600 ? error.code : 401;
-      return NextResponse.json(
-        {
-          error: message,
-          code: error.code,
-          type: error.type,
-        },
-        { status }
-      );
-    }
-
     const message = error instanceof Error ? error.message : 'Login failed';
-    const status = /Missing APPWRITE_ENDPOINT|APPWRITE_PROJECT_ID/.test(message)
+    const status =
+      /Missing required env var: SUPABASE_URL|Missing required env var: SUPABASE_ANON_KEY|Missing required env var: SUPABASE_PUBLISHABLE_KEY|Missing required env var: SUPABASE_SERVICE_ROLE_KEY|Missing ADMIN_AUTH_SECRET/i.test(
+        message
+      )
       ? 500
       : /not allowed to access admin/i.test(message)
       ? 403
       : 401;
+
     return NextResponse.json({ error: message }, { status });
   }
 }

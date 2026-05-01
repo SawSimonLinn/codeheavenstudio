@@ -173,10 +173,7 @@ export default function Header() {
 
   const handleServicesMenuBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     const nextFocusedElement = event.relatedTarget as Node | null;
-    if (
-      !nextFocusedElement ||
-      !event.currentTarget.contains(nextFocusedElement)
-    ) {
+    if (!nextFocusedElement || !event.currentTarget.contains(nextFocusedElement)) {
       setIsServicesMenuOpen(false);
     }
   };
@@ -191,10 +188,7 @@ export default function Header() {
               <Sparkles className="h-3 w-3 shrink-0 hidden sm:block" />
               <span>
                 Limited offer: Get a{" "}
-                <Link
-                  href="/contact"
-                  className="underline underline-offset-2 font-bold hover:opacity-80"
-                >
+                <Link href="/contact" className="underline underline-offset-2 font-bold hover:opacity-80">
                   free website audit
                 </Link>{" "}
                 + 10% off your first project. Book now!
@@ -249,7 +243,7 @@ export default function Header() {
                     <ChevronDown
                       className={cn(
                         "h-3.5 w-3.5 transition-transform duration-200",
-                        isServicesMenuOpen && "rotate-180",
+                        isServicesMenuOpen && "rotate-180"
                       )}
                     />
                   </Link>
@@ -257,9 +251,7 @@ export default function Header() {
                   <div
                     className={cn(
                       "absolute left-1/2 top-full z-50 w-[min(94vw,56rem)] -translate-x-1/2 pt-3 transition-all duration-200",
-                      isServicesMenuOpen
-                        ? "visible opacity-100"
-                        : "pointer-events-none invisible opacity-0",
+                      isServicesMenuOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
                     )}
                   >
                     <div className="overflow-hidden rounded-2xl border border-border bg-card/95 text-card-foreground shadow-xl backdrop-blur-md">
@@ -282,8 +274,7 @@ export default function Header() {
                             key={row.map((service) => service.title).join("-")}
                             className={cn(
                               "grid grid-cols-1 md:grid-cols-2",
-                              rowIndex !== servicesDropdownRows.length - 1 &&
-                                "border-b border-border",
+                              rowIndex !== servicesDropdownRows.length - 1 && "border-b border-border"
                             )}
                           >
                             {row.map((service, colIndex) => {
@@ -295,16 +286,14 @@ export default function Header() {
                                   onClick={() => setIsServicesMenuOpen(false)}
                                   className={cn(
                                     "group flex items-start gap-3.5 px-5 py-4 transition-colors hover:bg-muted/45 md:px-6",
-                                    service.highlight &&
-                                      "bg-primary/[0.06] hover:bg-primary/[0.12]",
-                                    colIndex === 0 &&
-                                      "md:border-r md:border-border",
+                                    service.highlight && "bg-primary/[0.06] hover:bg-primary/[0.12]",
+                                    colIndex === 0 && "md:border-r md:border-border"
                                   )}
                                 >
                                   <span
                                     className={cn(
                                       "mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary",
-                                      service.highlight && "bg-primary/15",
+                                      service.highlight && "bg-primary/15"
                                     )}
                                   >
                                     <ServiceIcon className="h-5 w-5" />
@@ -313,7 +302,7 @@ export default function Header() {
                                     <span
                                       className={cn(
                                         "block text-base font-semibold leading-tight tracking-tight text-foreground",
-                                        service.highlight && "text-primary",
+                                        service.highlight && "text-primary"
                                       )}
                                     >
                                       {service.title}
@@ -342,9 +331,7 @@ export default function Header() {
                       </div>
 
                       <div className="flex flex-col gap-2 border-t border-border bg-muted/30 px-5 py-3.5 md:flex-row md:items-center md:justify-between md:px-6">
-                        <p className="text-sm text-muted-foreground">
-                          Not sure what you need?
-                        </p>
+                        <p className="text-sm text-muted-foreground">Not sure what you need?</p>
                         <Link
                           href="/contact"
                           onClick={() => setIsServicesMenuOpen(false)}
@@ -364,7 +351,7 @@ export default function Header() {
                 >
                   {item.label}
                 </Link>
-              ),
+              )
             )}
             <Link
               href="/contact"
@@ -406,9 +393,7 @@ export default function Header() {
                         height={28}
                         priority
                       />
-                      <span className="text-sm font-semibold">
-                        Code Heaven Studio
-                      </span>
+                      <span className="text-sm font-semibold">Code Heaven Studio</span>
                     </Link>
                   </div>
                   <nav className="flex flex-col gap-1 p-4 flex-1">
