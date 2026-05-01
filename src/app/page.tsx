@@ -166,7 +166,7 @@ function Hero() {
         className="z-0 object-cover"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(56,151,239,0.18)_0%,rgba(255,255,255,0.30)_48%,rgba(246,250,255,0.95)_84%,#F6FAFF_100%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(56,151,239,0.08)_0%,rgba(255,255,255,0.15)_48%,rgba(246,250,255,0.8)_84%,#F6FAFF_100%)]" />
 
       <div className="relative z-20 mx-auto flex min-h-[calc(100svh-92px)] max-w-7xl flex-col items-center justify-center px-4 pb-16 pt-24 text-center sm:pt-28">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/30 px-5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-md">
