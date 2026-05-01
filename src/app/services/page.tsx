@@ -21,9 +21,15 @@ import {
   Layout,
   Search,
   Wrench,
+  Palette,
+  PenLine,
+  Layers,
   ArrowRight,
   CheckCircle2,
   type LucideIcon,
+  ArrowLeftRight,
+  RefreshCw,
+  PenTool,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/header";
@@ -58,11 +64,12 @@ const services: ServiceItem[] = [
   {
     id: "website-development",
     icon: Monitor,
-    title: "Website Development",
-    tagline: "Custom-built websites that perform",
+    title: "Small Business Websites",
+    tagline: "Fast, custom sites built to convert",
     description:
       "We design and develop fast, responsive websites tailored to your brand. Every site is built with clean code, great UX, and a focus on converting visitors into customers.",
     features: ["Mobile-first design", "SEO-ready structure", "Fast load times", "CMS integration"],
+    href: "/services/small-business-websites",
   },
   {
     id: "restaurant-websites",
@@ -72,6 +79,34 @@ const services: ServiceItem[] = [
     description:
       "We specialize in websites for restaurants: menus, reservations, Google Maps integration, and photo galleries that make people want to visit before they even walk in the door.",
     features: ["Online menu display", "Reservation links", "Google Maps embed", "Mobile optimized"],
+    href: "/services/restaurant-websites",
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "Wix to Custom Website",
+    tagline: "Escape Wix. Own your site 100%.",
+    description:
+      "Still stuck on Wix? We migrate your site to a fully custom, self-owned website built on modern tech. No more monthly fees, no more limitations just a site you actually own.",
+    features: ["Full site migration", "Improved performance", "No platform lock-in", "SEO preservation"],
+    href: "/services/wix-to-custom",
+  },
+  {
+    icon: RefreshCw,
+    title: "Website Redesign",
+    tagline: "Modernise and improve your existing site",
+    description:
+      "Got an outdated website that's hurting your brand? We redesign it from the ground up faster, sharper, and built to convert. Same domain, completely new experience.",
+    features: ["Full visual redesign", "Performance improvements", "Better UX & conversion", "Content refresh"],
+    href: "/services/website-redesign",
+  },
+  {
+    icon: PenTool,
+    title: "Figma to Website",
+    tagline: "Your design. Built pixel perfect.",
+    description:
+      "Already have a Figma design you love? We'll bring it to life exactly as designed pixel perfect, fully responsive, and production-ready. Hand us the file and we handle the rest.",
+    features: ["Pixel-perfect implementation", "Fully responsive", "Clean, production-ready code", "Works with any Figma design"],
+    href: "/services/figma-to-website",
   },
   {
     id: "ecommerce-websites",
@@ -81,6 +116,7 @@ const services: ServiceItem[] = [
     description:
       "From product listings to checkout, we build e-commerce experiences that are simple to manage and easy for your customers to use, so you can focus on running your business.",
     features: ["Product management", "Secure checkout", "Inventory tracking", "Payment integration"],
+    href: "/services/ecommerce-websites",
   },
   {
     id: "landing-pages",
@@ -90,6 +126,7 @@ const services: ServiceItem[] = [
     description:
       "Need to launch a campaign, promote a product, or capture leads? We build high-converting landing pages designed with a single focused goal in mind.",
     features: ["Conversion-focused", "A/B test ready", "Lead capture forms", "Fast turnaround"],
+    href: "/services/landing-pages",
   },
   {
     id: "seo-optimization",
@@ -99,6 +136,7 @@ const services: ServiceItem[] = [
     description:
       "We improve your site's visibility in Google search results through technical SEO, content structure, keyword targeting, and local SEO strategies for your area.",
     features: ["Keyword research", "On-page SEO", "Local SEO", "Performance audits"],
+    href: "/services/seo-optimization",
   },
   {
     id: "website-maintenance",
@@ -108,6 +146,34 @@ const services: ServiceItem[] = [
     description:
       "Websites need ongoing care. We handle updates, security patches, content changes, and performance monitoring so your site stays fast and reliable month after month.",
     features: ["Security updates", "Content updates", "Performance monitoring", "Priority support"],
+    href: "/services/website-maintenance",
+  },
+  {
+    icon: Palette,
+    title: "Logo Design & Business Kit",
+    tagline: "A brand identity that means business",
+    description:
+      "We create cohesive brand identities that make your business look professional everywhere. From your logo to your business card, every element is designed to work together and leave a lasting impression.",
+    features: ["Logo design", "Custom icons", "Letterhead design", "Business card design"],
+    href: "/services/logo-design-business-kit",
+  },
+  {
+    icon: PenLine,
+    title: "Content Writing",
+    tagline: "Words that connect, inform, and convert",
+    description:
+      "Great design needs great words. We write clear, engaging content for your website, landing pages, and marketing materials, tailored to your audience and optimized for search engines.",
+    features: ["Website copywriting", "Landing page copy", "Blog & article writing", "SEO-friendly content"],
+    href: "/services/content-writing",
+  },
+  {
+    icon: Layers,
+    title: "Fullstack Internal Web Systems",
+    tagline: "Custom tools built for your team",
+    description:
+      "We build custom web applications for internal use: order management systems, staff dashboards, booking tools, and more. Built fullstack, tailored to your workflow, and designed for real teams.",
+    features: ["Online order systems", "Admin & staff dashboards", "Role-based access control", "Inventory & reporting tools"],
+    href: "/services/fullstack-internal-websites",
   },
 ];
 
@@ -129,8 +195,8 @@ export default function ServicesPage() {
             </span>
           </h1>
           <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-10">
-            From restaurant sites to full e-commerce stores, we build websites that look great,
-            load fast, and help you grow.
+            From restaurant sites to full e-commerce stores, brand identities to content we
+            build everything your business needs to look great and grow online.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -185,6 +251,13 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
+                  {service.href && (
+                    <Button asChild variant="outline" size="sm" className="rounded-full mt-auto w-full">
+                      <Link href={service.href} className="flex items-center justify-center gap-1.5">
+                        Learn More <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               );
             })}

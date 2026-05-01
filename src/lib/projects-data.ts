@@ -239,9 +239,9 @@ export const projects: Project[] = [
     slug: "dunedin-sd",
     title: "Dunedin SD",
     shortDescription:
-      "A New Zealand-rooted burger bar in North Park, San Diego — featuring full menus for diner, brunch, happy hour, and dessert, plus online ordering, reservations, and private events.",
+      "A New Zealand-rooted burger bar in North Park, San Diego, featuring full menus for diner, brunch, happy hour, and dessert, plus online ordering, reservations, and private events.",
     overview:
-      "Dunedin SD is a casual, dog-friendly New Zealand-inspired restaurant in North Park with a full bar, rotating craft beers, and a menu spanning breakfast through dinner. They needed a site that matched their laid-back atmosphere while handling all the logistics — reservations, online orders, private events, and a Burger of the Month Club.",
+      "Dunedin SD is a casual, dog-friendly New Zealand-inspired restaurant in North Park with a full bar, rotating craft beers, and a menu spanning breakfast through dinner. They needed a site that matched their laid-back atmosphere while handling all the logistics: reservations, online orders, private events, and a Burger of the Month Club.",
     challenge:
       "The restaurant offers a wide range of dining experiences and services but had no unified online presence to showcase their menus, handle bookings, and drive online orders from a single destination.",
     solution:
@@ -299,7 +299,7 @@ export const projects: Project[] = [
     shortDescription:
       "A Thai restaurant website bringing authentic Thai culture to the USA, featuring an editable menu via CMS and a dedicated culture page.",
     overview:
-      "Bangkok Soul Alhambra wanted a website that goes beyond a typical restaurant site — one that reflects Thai heritage, tells the story behind the food, and gives staff full control over menu content without needing a developer.",
+      "Bangkok Soul Alhambra wanted a website that goes beyond a typical restaurant site, one that reflects Thai heritage, tells the story behind the food, and gives staff full control over menu content without needing a developer.",
     challenge:
       "The restaurant needed a site that balanced cultural storytelling with practical functionality, while keeping menu updates simple for non-technical staff.",
     solution:
@@ -366,6 +366,34 @@ export const projects: Project[] = [
       "Reduced manual booking errors",
       "Streamlined reservation handling for staff",
       "Better booking experience for customers",
+    ],
+  },
+  {
+    slug: "about-time-cafe",
+    title: "About Time Cafe",
+    shortDescription:
+      "A co-working station cafe in Koreatown, LA, blending specialty coffee culture with a productive work-friendly environment.",
+    overview:
+      "About Time Cafe is a co-working station cafe in Ktown, Los Angeles. They needed a landing page that communicates the dual identity of the space: a quality coffee shop and a focused work environment for creatives and remote workers.",
+    challenge:
+      "The cafe had no digital presence to attract remote workers and freelancers in the area, and needed a way to communicate their co-working amenities, vibe, and location clearly.",
+    solution:
+      "We built a visually driven small business landing page that leads with atmosphere, showcasing the space, menu highlights, and co-working perks with a warm, modern design that drives foot traffic and bookings.",
+    imageUrl: "/previousWorks/previous-work_07.png",
+    imageHint: "cafe co-working space",
+    category: "Small Business Landing Page",
+    timeline: "3 weeks",
+    services: [
+      "UI/UX Design",
+      "Frontend Development",
+      "Brand Identity",
+      "Content Strategy",
+    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    outcomes: [
+      "Clear digital presence for local discovery and foot traffic",
+      "Co-working perks and amenities communicated at a glance",
+      "Warm visual brand that matches the cafe's atmosphere",
     ],
   },
 ];

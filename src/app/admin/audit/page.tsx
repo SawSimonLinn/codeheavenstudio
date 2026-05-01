@@ -18,7 +18,10 @@ type AuditLog = {
 };
 
 function formatLocation(log: AuditLog) {
-  return [log.city, log.region, log.country].filter(Boolean).join(', ') || 'Unknown location';
+  return [log.city, log.region, log.country]
+    .filter(Boolean)
+    .map((s) => decodeURIComponent(s))
+    .join(', ') || 'Unknown location';
 }
 
 export default function AuditPage() {

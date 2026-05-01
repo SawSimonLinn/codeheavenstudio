@@ -36,26 +36,28 @@ import {
 
 const founders = [
   {
-    name: "Simon",
-    role: "Co-Founder & Developer",
+    name: "Saw Simon Linn",
+    role: "Co-Founder & Software Engineer",
     location: "Los Angeles, CA",
     avatar: "/avatars/simon.jpg",
     aiHint: "male developer",
-    bio: "Before writing code, Simon spent years as a sushi chef and worked in the startup world. That mix of precision craft and fast-paced hustle carried right into building software. He trained at TripleTen and now co-runs Code Heaven Studio, turning ideas into polished digital products.",
+    bio: "Saw Simon Linn co-founded Code Heaven Studio to help restaurants and small businesses build modern, SEO-optimized websites that drive real customers. Before writing code, Simon spent years as a sushi chef and worked in the startup world, a mix of precision craft and fast-paced hustle that carried right into building software.",
     linkedin: "https://www.linkedin.com/in/sawsimonlinn/",
     github: "https://github.com/SawSimonLinn",
     portfolio: "https://simonlinn.dev/",
+    founderPage: "/founder/saw-simon-linn",
   },
   {
-    name: "Mia",
-    role: "Co-Founder & Developer",
+    name: "Mia Truong",
+    role: "Co-Founder & Software Engineer",
     location: "San Diego, CA",
     avatar: "/avatars/mia.jpg",
     aiHint: "female developer",
-    bio: "Mia spent years in beauty and hospitality before making the switch to tech. That background gave her a sharp eye for detail and a natural instinct for what makes an experience feel right. She brings that same care to every line of code, and co-runs Code Heaven Studio with a focus on building things people actually enjoy using.",
+    bio: "Mia co-founded Code Heaven Studio and works as a software engineer alongside leading business development, partnerships, and client success. She spent years in beauty and hospitality before pivoting to tech, a background that gave her a sharp eye for detail and a natural instinct for what makes an experience feel right.",
     linkedin: "https://www.linkedin.com/in/trangmtruong/",
     github: "https://github.com/trangmtruong",
     portfolio: "https://www.miatruong.com/",
+    founderPage: "/founder/mia-truong",
   },
 ];
 
@@ -180,7 +182,9 @@ export default function AboutUsPage() {
                       />
                       <AvatarFallback>{founder.name.slice(0, 2)}</AvatarFallback>
                     </Avatar>
-                    <h3 className="text-xl font-semibold text-foreground">{founder.name}</h3>
+                    <Link href={founder.founderPage} className="hover:text-primary transition-colors">
+                      <h3 className="text-xl font-semibold text-foreground">{founder.name}</h3>
+                    </Link>
                     <p className="text-sm text-primary font-medium mt-1">{founder.role}</p>
                     <p className="text-xs text-muted-foreground mt-1">{founder.location}</p>
                     <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{founder.bio}</p>
@@ -195,6 +199,9 @@ export default function AboutUsPage() {
                         <Globe className="h-5 w-5" />
                       </Link>
                     </div>
+                    <Link href={founder.founderPage} className="mt-4 text-xs text-primary hover:underline">
+                      View full profile →
+                    </Link>
                   </CardContent>
                 </Card>
               ))}

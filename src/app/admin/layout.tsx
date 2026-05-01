@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
 
+
   if (pathname === '/admin/login') {
     return children;
   }
@@ -35,7 +36,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.refresh();
   };
 
-  const navContent = (
+  const navContent = (onItemClick?: () => void) => (
     <>
       <nav className="flex-1 space-y-2 p-4">
         {navItems.map(({ href, label, icon: Icon, exact }) => {
@@ -47,6 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               key={href}
               href={href}
+              onClick={onItemClick}
               className={cn(
                 'group flex items-center gap-3 rounded-lg border px-3 py-2.5 text-sm font-medium transition-all',
                 isActive

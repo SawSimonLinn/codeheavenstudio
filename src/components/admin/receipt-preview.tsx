@@ -74,7 +74,7 @@ export default function ReceiptPreview({ data, receiptNumber, receiptId }: Props
 
   return (
     <div className="flex flex-col h-full">
-      {/* Print controls — only shown on new receipt page (no receiptId), hidden when printing */}
+      {/* Print controls only shown on new receipt page (no receiptId), hidden when printing */}
       {!receiptId && (
         <div className="flex justify-end mb-4 print:hidden">
           <button
@@ -139,7 +139,7 @@ export default function ReceiptPreview({ data, receiptNumber, receiptId }: Props
               <div className="space-y-1">
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wider">Issue Date</p>
-                  <p className="text-sm font-medium text-gray-900">{(data as Receipt).issueDate || '—'}</p>
+                  <p className="text-sm font-medium text-gray-900">{(data as Receipt).issueDate || '-'}</p>
                 </div>
                 {(data as Receipt).dueDate && (
                   <div>
