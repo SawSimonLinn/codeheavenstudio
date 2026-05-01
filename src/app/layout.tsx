@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
-import Cursor from "@/components/layout/cursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -42,9 +41,9 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/hero-image.png",
+        width: 1920,
+        height: 1080,
         alt: `${SITE_NAME} — Engineering Your Digital Future`,
       },
     ],
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} — Free Demo Website, No Commitment`,
     description: DEFAULT_DESCRIPTION,
-    images: ["/og-image.png"],
+    images: ["/clouds-poster.jpg"],
   },
   alternates: {
     canonical: SITE_URL,
@@ -83,13 +82,12 @@ const jsonLd = {
   ],
   offers: {
     "@type": "Offer",
-    description: "Free website demo, free audit, and free consulting — no commitment required.",
+    description:
+      "Free website demo, free audit, and free consulting — no commitment required.",
     price: "0",
     priceCurrency: "USD",
   },
-  sameAs: [
-    "https://github.com/SawSimonLinn",
-  ],
+  sameAs: ["https://github.com/SawSimonLinn"],
 };
 
 export default function RootLayout({
@@ -109,7 +107,6 @@ export default function RootLayout({
         {children}
         <Analytics />
         <Toaster />
-        <Cursor />
       </body>
     </html>
   );

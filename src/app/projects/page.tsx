@@ -62,7 +62,7 @@ export default function ProjectsPage() {
                   aria-pressed={activeCategory === cat}
                   className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 border ${
                     activeCategory === cat
-                      ? "bg-foreground text-background border-foreground"
+                      ? "bg-primary text-white border-primary"
                       : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
                   }`}
                 >
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
         </section>
 
         {/* ── Stats strip ───────────────────────────────────────── */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "20+", label: "Projects delivered" },
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-xs text-background/60 uppercase tracking-widest">
+                <p className="text-xs text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

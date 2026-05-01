@@ -140,7 +140,7 @@ export default function ServicesPage() {
             >
               <Link href="/contact">Get a Free Quote</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white">
+            <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-primary/30 bg-white/50 text-primary hover:bg-primary/10 hover:text-primary">
               <Link href="/projects">See Our Work</Link>
             </Button>
           </div>

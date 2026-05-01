@@ -70,7 +70,7 @@ export default function BlogPage() {
                   onClick={() => setActiveTag(tag)}
                   className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200 border ${
                     activeTag === tag
-                      ? "bg-foreground text-background border-foreground"
+                      ? "bg-primary text-white border-primary"
                       : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
                   }`}
                 >
@@ -234,7 +234,7 @@ function PostCard({
         <div className="mt-4 flex items-center justify-between">
           <span className="flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
             Read more
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background group-hover:bg-primary transition-all duration-300 group-hover:rotate-45">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white transition-all duration-300 group-hover:rotate-45">
               <ArrowUpRight className="h-3 w-3" />
             </span>
           </span>

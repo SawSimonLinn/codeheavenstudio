@@ -184,7 +184,7 @@ export default function ReferralPartnerPage() {
         </section>
 
         {/* Stats strip */}
-        <section className="border-b border-border bg-foreground text-background">
+        <section className="border-b border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "10–15%", label: "Commission rate" },
@@ -194,7 +194,7 @@ export default function ReferralPartnerPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

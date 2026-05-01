@@ -191,7 +191,7 @@ export default function HowItWorksPage() {
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full px-8 border-white text-white bg-transparent hover:bg-white/10 hover:text-white"
+              className="rounded-full px-8 border-primary/30 bg-white/50 text-primary hover:bg-primary/10 hover:text-primary"
             >
               <Link href="/services" className="flex items-center gap-2">
                 View Services <ArrowRight className="h-4 w-4" />

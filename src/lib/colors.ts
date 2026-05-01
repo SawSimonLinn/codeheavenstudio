@@ -1,11 +1,11 @@
 // ── Main site ──────────────────────────────────────────────────────────────
-export const BG    = "#0F0F0F";
-export const BG2   = "#141414";
-export const LINE  = "#1E1E1E";
-export const HI    = "#F5F5F5";
-export const MID   = "#777777";
-export const DIM   = "#444444";
-export const BLUE  = "#0047FF";
+export const BG    = "#F6FAFF";
+export const BG2   = "#FFFFFF";
+export const LINE  = "#D9E6F5";
+export const HI    = "#0F172A";
+export const MID   = "#475569";
+export const DIM   = "#8A9AAF";
+export const BLUE  = "#0072F5";
 
 // ── 3D cloud scene ─────────────────────────────────────────────────────────
 export const WHITE  = "#ffffff";

@@ -87,7 +87,7 @@ export default function ResourcesPage() {
               <div className="mt-8 flex items-center gap-3">
                 <span className="text-sm font-bold group-hover:text-primary transition-colors flex items-center gap-2">
                   Read the guide
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:rotate-45">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white transition-all duration-300 group-hover:rotate-45">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </span>
@@ -139,7 +139,7 @@ export default function ResourcesPage() {
                     <div className="mt-4 flex items-center justify-between">
                       <span className="flex items-center gap-1.5 text-sm font-bold group-hover:text-primary transition-colors">
                         Read guide
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-background group-hover:bg-primary transition-all duration-300 group-hover:rotate-45">
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white transition-all duration-300 group-hover:rotate-45">
                           <ArrowUpRight className="h-3 w-3" />
                         </span>
                       </span>
@@ -152,7 +152,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Stats strip */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: `${resources.length}+`, label: "Free guides" },
@@ -162,7 +162,7 @@ export default function ResourcesPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>

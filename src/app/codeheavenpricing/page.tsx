@@ -177,7 +177,7 @@ export default function PricingPage() {
                 key={pkg.name}
                 className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 ${
                   pkg.popular
-                    ? "bg-secondary text-secondary-foreground shadow-2xl md:scale-105 z-10"
+                    ? "border border-primary/30 bg-primary/5 text-foreground shadow-2xl md:scale-105 z-10"
                     : "border bg-card shadow-sm hover:shadow-md"
                 }`}
               >
@@ -206,7 +206,7 @@ export default function PricingPage() {
                   {pkg.description}
                 </p>
 
-                <div className={`my-6 border-t ${pkg.popular ? "border-white/10" : "border-border"}`} />
+                <div className={`my-6 border-t ${pkg.popular ? "border-primary/20" : "border-border"}`} />
 
                 <ul className="space-y-3 flex-1">
                   {pkg.features.map((feature, i) => (
@@ -441,7 +441,7 @@ export default function PricingPage() {
         </section>
 
         {/* Stats strip */}
-        <section className="border-t border-border bg-foreground text-background">
+        <section className="border-t border-border bg-primary text-white">
           <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: "3", label: "Packages available" },
@@ -451,7 +451,7 @@ export default function PricingPage() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-3xl sm:text-4xl font-black mb-1">{value}</p>
-                <p className="text-sm text-background/60 uppercase tracking-widest">
+                <p className="text-sm text-white/70 uppercase tracking-widest">
                   {label}
                 </p>
               </div>
