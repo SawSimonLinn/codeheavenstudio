@@ -158,11 +158,12 @@ function Hero() {
       style={{ background: BG, borderBottom: `1px solid ${LINE}` }}
     >
       <Image
-        src="/hero-image.jpg"
+        src="/hero-image.png"
         alt=""
         fill
         priority
         sizes="100vw"
+        unoptimized
         className="z-0 object-cover"
         aria-hidden="true"
       />
