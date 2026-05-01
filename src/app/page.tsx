@@ -174,12 +174,11 @@ function Hero() {
           Web Studio - Est. 2024
         </div>
 
-        <h1 className="mt-9 max-w-5xl text-balance text-5xl font-black leading-none text-white drop-shadow-[0_3px_18px_rgba(15,23,42,0.24)] sm:text-6xl lg:text-7xl">
+        <h1 className="mt-9 max-w-5xl text-balance text-5xl font-black !leading-[1.1]  text-white drop-shadow-[0_3px_18px_rgba(15,23,42,0.24)] sm:text-6xl lg:text-7xl">
           Engineering
           <br />
-          Your Digital
-          <br />
-          Future.
+          Your Digital Future.
+          {/* <br /> */}
         </h1>
         <p className="mt-7 max-w-2xl text-base font-medium leading-relaxed  drop-shadow-[0_2px_10px_rgba(15,23,42,0.18)] sm:text-lg">
           Code Heaven Studio builds fast, modern, and SEO-optimized websites.
@@ -189,7 +188,8 @@ function Hero() {
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-md bg-white px-8 py-4 text-sm font-bold text-slate-950 shadow-[0_18px_50px_-20px_rgba(15,23,42,0.45)] transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-md text-white bg-white px-8 py-4 text-sm font-bold  shadow-[0_18px_50px_-20px_rgba(15,23,42,0.45)] transition-transform hover:-translate-y-0.5"
+            style={{ background: BLUE }}
           >
             Start Free Demo <ArrowRight className="h-4 w-4" />
           </Link>
