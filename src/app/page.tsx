@@ -316,6 +316,7 @@ function ServiceRow({ service }: { service: (typeof services)[number] }) {
   return (
     <div
       className="ch-service-row"
+      tabIndex={0}
       style={{ borderBottom: `1px solid ${LINE}` }}
     >
       <div
