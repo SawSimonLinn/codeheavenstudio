@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
@@ -8,6 +8,9 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useMotionValue,
+  useSpring,
+  useMotionTemplate,
 } from "framer-motion";
 import { BG, LINE, HI, DIM, BLUE } from "@/lib/colors";
 
@@ -24,25 +27,74 @@ function Particles() {
     x: (i * 5.6 + 3) % 100,
     y: (i * 7.3 + 10) % 100,
     size: (i % 3) + 2,
-    dur: 8 + (i % 7),
-    delay: (i * 0.4) % 5,
+    opacity: 0.15 + (i % 4) * 0.06,
   }));
   return (
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
       {items.map((p) => (
-        <motion.div
+        <div
           key={p.id}
-          className="absolute rounded-full bg-white/25"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
-          animate={{ y: [-12, 12, -12], x: [-6, 6, -6], opacity: [0.2, 0.55, 0.2] }}
-          transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute rounded-full bg-white"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+            opacity: p.opacity,
+          }}
         />
       ))}
     </div>
   );
 }
 
+function MagneticButton({
+  children,
+  rm,
+  variants,
+}: {
+  children: React.ReactNode;
+  rm: boolean | null;
+  variants: Parameters<typeof motion.div>[0]["variants"];
+}) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 200, damping: 20 });
+  const sy = useSpring(y, { stiffness: 200, damping: 20 });
+
+  const onMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (rm) return;
+      const r = e.currentTarget.getBoundingClientRect();
+      x.set((e.clientX - r.left - r.width / 2) * 0.28);
+      y.set((e.clientY - r.top - r.height / 2) * 0.28);
+    },
+    [rm, x, y],
+  );
+
+  const onLeave = useCallback(() => {
+    x.set(0);
+    y.set(0);
+  }, [x, y]);
+
+  return (
+    <motion.div
+      variants={variants}
+      style={rm ? {} : { x: sx, y: sy }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 const headlineLines = ["Engineering", "Your Digital Future."];
+
+const btnVariants = {
+  hidden: { opacity: 0, y: 18, scale: 0.94 },
+  show: { opacity: 1, y: 0, scale: 1 },
+} as const;
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
@@ -53,6 +105,23 @@ export default function HeroSection() {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.14]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.97]);
+
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const glowX = useSpring(mouseX, { stiffness: 55, damping: 22 });
+  const glowY = useSpring(mouseY, { stiffness: 55, damping: 22 });
+  const glowBg = useMotionTemplate`radial-gradient(650px circle at ${glowX}px ${glowY}px, rgba(56,151,239,0.13), transparent 70%)`;
+
+  const onMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      if (rm) return;
+      const r = e.currentTarget.getBoundingClientRect();
+      mouseX.set(e.clientX - r.left);
+      mouseY.set(e.clientY - r.top);
+    },
+    [rm, mouseX, mouseY],
+  );
 
   const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -61,6 +130,7 @@ export default function HeroSection() {
       ref={ref}
       className="relative overflow-hidden"
       style={{ background: BG, borderBottom: `1px solid ${LINE}` }}
+      onMouseMove={onMouseMove}
     >
       {/* Parallax hero image */}
       <motion.div
@@ -79,23 +149,29 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Animated gradient overlay */}
-      <motion.div
+      {/* Gradient overlay */}
+      <div
         className="absolute inset-0 z-10"
         style={{
           background:
             "linear-gradient(180deg,rgba(56,151,239,0.06) 0%,rgba(255,255,255,0.10) 48%,rgba(246,250,255,0.5) 84%,rgba(246,250,255,0.7) 100%)",
         }}
-        animate={rm ? {} : { opacity: [1, 0.82, 1] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Mouse-following blue glow */}
+      {!rm && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-[15]"
+          style={{ background: glowBg }}
+        />
+      )}
 
       <Particles />
 
       {/* Content */}
       <motion.div
         className="relative z-20 mx-auto flex min-h-[calc(100svh-92px)] max-w-7xl flex-col items-center justify-center px-4 pb-16 pt-24 text-center sm:pt-28"
-        style={rm ? {} : { y: contentY, opacity: contentOpacity }}
+        style={rm ? {} : { y: contentY, opacity: contentOpacity, scale: contentScale }}
       >
         {/* Badge */}
         <motion.div
@@ -104,15 +180,11 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease }}
           className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/30 px-5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-md"
         >
-          <motion.span
-            className="h-2 w-2 rounded-full bg-white"
-            animate={rm ? {} : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <span className="h-2 w-2 rounded-full bg-white" />
           AI-Ready Web Studio - Est. 2024
         </motion.div>
 
-        {/* Headline — line by line reveal */}
+        {/* Headline */}
         <h1
           className="mt-9 max-w-5xl text-balance text-5xl font-black !leading-[1.1] text-white drop-shadow-[0_3px_18px_rgba(15,23,42,0.24)] sm:text-6xl lg:text-7xl"
           style={{ perspective: "1000px" }}
@@ -143,7 +215,7 @@ export default function HeroSection() {
           business. We handle the digital growth.
         </motion.p>
 
-        {/* CTA buttons — staggered */}
+        {/* CTA buttons */}
         <motion.div
           className="mt-9 flex flex-wrap justify-center gap-3"
           initial="hidden"
@@ -169,11 +241,12 @@ export default function HeroSection() {
               style: {},
             },
           ].map(({ href, label, icon, cls, style }) => (
-            <motion.div
+            <MagneticButton
               key={label}
+              rm={rm}
               variants={{
-                hidden: { opacity: 0, y: 18, scale: 0.94 },
-                show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease } },
+                ...btnVariants,
+                show: { ...btnVariants.show, transition: { duration: 0.5, ease } },
               }}
             >
               <Link
@@ -183,20 +256,18 @@ export default function HeroSection() {
               >
                 {label} {icon}
               </Link>
-            </motion.div>
+            </MagneticButton>
           ))}
         </motion.div>
 
-        {/* Stats card — floats */}
+        {/* Stats card */}
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.95, ease }}
           className="mt-14 w-full"
         >
-          <motion.div
-            animate={rm ? {} : { y: [0, -7, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          <div
             className="ch-hero-stats mx-auto max-w-4xl rounded-lg border border-white/55 bg-white/75 px-4 backdrop-blur"
             style={{ boxShadow: "0 24px 64px -12px rgba(0,114,245,0.18)" }}
           >
@@ -219,7 +290,7 @@ export default function HeroSection() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Scroll indicator */}
@@ -229,19 +300,10 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
         >
-          <motion.span
-            className="text-[10px] font-bold uppercase tracking-widest text-white/60"
-            animate={rm ? {} : { opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2.2, repeat: Infinity }}
-          >
+          <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">
             Scroll
-          </motion.span>
-          <motion.div
-            animate={rm ? {} : { y: [0, 7, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="h-5 w-5 text-white/60" />
-          </motion.div>
+          </span>
+          <ChevronDown className="h-5 w-5 text-white/60" />
         </motion.div>
       </motion.div>
     </section>
