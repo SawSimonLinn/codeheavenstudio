@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Web Design & Development Services",
+  title: "AI Website, Web Design & SEO Services",
   description:
-    "Custom Next.js websites, AI-powered web apps, UI/UX design, SEO, and performance optimization. Free consultation and free demo — no commitment required.",
+    "AI-powered websites, custom Next.js development, UI/UX design, SEO, and AI search optimization. Free consultation and free demo with no commitment.",
   alternates: { canonical: "https://www.codeheavenstudio.com/services" },
   openGraph: {
-    title: "Web Design & Development Services | Code Heaven Studio",
+    title: "AI Website, Web Design & SEO Services | Code Heaven Studio",
     description:
-      "Custom Next.js websites, AI-powered web apps, UI/UX design, SEO, and performance optimization. Free consultation and free demo — no commitment required.",
+      "AI-powered websites, custom Next.js development, UI/UX design, SEO, and AI search optimization. Free consultation and free demo with no commitment.",
     url: "https://www.codeheavenstudio.com/services",
   },
 };
@@ -57,7 +57,7 @@ const services: ServiceItem[] = [
       "Gemini/OpenAI/Claude integration strategy",
       "AI chat + lead capture workflows",
       "Personalized content and smart recommendations",
-      "AI-ready SEO, schema, and content operations",
+      "AI search visibility, schema, and content operations",
     ],
     href: "/services/ai-applied-websites",
   },
@@ -82,6 +82,7 @@ const services: ServiceItem[] = [
     href: "/services/restaurant-websites",
   },
   {
+    id: "wix-to-custom",
     icon: ArrowLeftRight,
     title: "Wix to Custom Website",
     tagline: "Escape Wix. Own your site 100%.",
@@ -91,6 +92,7 @@ const services: ServiceItem[] = [
     href: "/services/wix-to-custom",
   },
   {
+    id: "website-redesign",
     icon: RefreshCw,
     title: "Website Redesign",
     tagline: "Modernise and improve your existing site",
@@ -100,6 +102,7 @@ const services: ServiceItem[] = [
     href: "/services/website-redesign",
   },
   {
+    id: "figma-to-website",
     icon: PenTool,
     title: "Figma to Website",
     tagline: "Your design. Built pixel perfect.",
@@ -131,11 +134,11 @@ const services: ServiceItem[] = [
   {
     id: "seo-optimization",
     icon: Search,
-    title: "SEO Optimization",
-    tagline: "Be found by the people searching for you",
+    title: "SEO & AI Search Optimization",
+    tagline: "Be found across Google and AI-assisted search",
     description:
-      "We improve your site's visibility in Google search results through technical SEO, content structure, keyword targeting, and local SEO strategies for your area.",
-    features: ["Keyword research", "On-page SEO", "Local SEO", "Performance audits"],
+      "We improve your site's visibility with technical SEO, clear content structure, structured data, local search strategy, and stronger signals for AI-assisted discovery.",
+    features: ["Keyword research", "Technical SEO", "Structured data", "AI search visibility"],
     href: "/services/seo-optimization",
   },
   {
@@ -149,6 +152,7 @@ const services: ServiceItem[] = [
     href: "/services/website-maintenance",
   },
   {
+    id: "logo-design-business-kit",
     icon: Palette,
     title: "Logo Design & Business Kit",
     tagline: "A brand identity that means business",
@@ -158,6 +162,7 @@ const services: ServiceItem[] = [
     href: "/services/logo-design-business-kit",
   },
   {
+    id: "content-writing",
     icon: PenLine,
     title: "Content Writing",
     tagline: "Words that connect, inform, and convert",
@@ -167,6 +172,7 @@ const services: ServiceItem[] = [
     href: "/services/content-writing",
   },
   {
+    id: "fullstack-internal-websites",
     icon: Layers,
     title: "Fullstack Internal Web Systems",
     tagline: "Custom tools built for your team",
@@ -195,8 +201,9 @@ export default function ServicesPage() {
             </span>
           </h1>
           <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-10">
-            From restaurant sites to full e-commerce stores, brand identities to content we
-            build everything your business needs to look great and grow online.
+            From AI-powered websites and AI search optimization to e-commerce,
+            brand identity, and content, we build what your business needs to
+            look credible, work smarter, and grow online.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button

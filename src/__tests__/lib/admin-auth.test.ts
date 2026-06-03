@@ -3,28 +3,15 @@
  */
 import { createHmac } from 'crypto';
 
-// node-appwrite uses ESM; mock it so Jest can parse the module without issues
-jest.mock('node-appwrite', () => ({
-  Client: jest.fn().mockImplementation(() => ({
-    setEndpoint: jest.fn().mockReturnThis(),
-    setProject: jest.fn().mockReturnThis(),
-  })),
-  Account: jest.fn().mockImplementation(() => ({
-    createEmailPasswordSession: jest.fn().mockResolvedValue({}),
-  })),
-}));
-
 import { getCookieFromRequest, getAdminUserFromSessionSecret, destroyAdminSession } from '@/lib/admin-auth';
 
 const TEST_SECRET = 'test-secret-key-for-jest';
 
 // Set env vars before any test runs.
-// APPWRITE_ADMIN_EMAIL is cleared to prevent the .env file value from restricting which
+// SUPABASE_ADMIN_EMAIL is cleared to prevent the .env file value from restricting which
 // email addresses are considered valid admin tokens during tests.
 process.env.ADMIN_AUTH_SECRET = TEST_SECRET;
-process.env.APPWRITE_ENDPOINT = 'https://appwrite.example.com/v1';
-process.env.APPWRITE_PROJECT_ID = 'test-project';
-process.env.APPWRITE_ADMIN_EMAIL = '';
+process.env.SUPABASE_ADMIN_EMAIL = '';
 
 function makeToken(payload: object, secret = TEST_SECRET): string {
   const encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
@@ -34,9 +21,7 @@ function makeToken(payload: object, secret = TEST_SECRET): string {
 
 afterAll(() => {
   delete process.env.ADMIN_AUTH_SECRET;
-  delete process.env.APPWRITE_ENDPOINT;
-  delete process.env.APPWRITE_PROJECT_ID;
-  delete process.env.APPWRITE_ADMIN_EMAIL;
+  delete process.env.SUPABASE_ADMIN_EMAIL;
 });
 
 describe('getCookieFromRequest', () => {
@@ -102,21 +87,21 @@ describe('getAdminUserFromSessionSecret', () => {
     await expect(getAdminUserFromSessionSecret('notavalidtoken')).rejects.toThrow('Unauthorized');
   });
 
-  it('throws Unauthorized when email does not match APPWRITE_ADMIN_EMAIL', async () => {
-    process.env.APPWRITE_ADMIN_EMAIL = 'allowed@example.com';
+  it('throws Unauthorized when email does not match SUPABASE_ADMIN_EMAIL', async () => {
+    process.env.SUPABASE_ADMIN_EMAIL = 'allowed@example.com';
     const payload = { email: 'other@example.com', exp: Date.now() + 60_000 };
     const token = makeToken(payload);
     await expect(getAdminUserFromSessionSecret(token)).rejects.toThrow('Unauthorized');
-    delete process.env.APPWRITE_ADMIN_EMAIL;
+    delete process.env.SUPABASE_ADMIN_EMAIL;
   });
 
-  it('succeeds when email matches APPWRITE_ADMIN_EMAIL', async () => {
-    process.env.APPWRITE_ADMIN_EMAIL = 'allowed@example.com';
+  it('succeeds when email matches SUPABASE_ADMIN_EMAIL', async () => {
+    process.env.SUPABASE_ADMIN_EMAIL = 'allowed@example.com';
     const payload = { email: 'allowed@example.com', exp: Date.now() + 60_000 };
     const token = makeToken(payload);
     const user = await getAdminUserFromSessionSecret(token);
     expect(user.email).toBe('allowed@example.com');
-    delete process.env.APPWRITE_ADMIN_EMAIL;
+    delete process.env.SUPABASE_ADMIN_EMAIL;
   });
 });
 
@@ -125,4 +110,3 @@ describe('destroyAdminSession', () => {
     await expect(destroyAdminSession('any-token')).resolves.toBeUndefined();
   });
 });
-

@@ -94,7 +94,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </div>
             </Link>
           </div>
-          {navContent}
+          {navContent()}
         </aside>
 
         <main className="min-w-0 flex-1 overflow-auto">
@@ -120,7 +120,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <SheetTitle className="text-white">Admin Navigation</SheetTitle>
                   <SheetDescription className="text-admin-description">Manage dashboard and receipts</SheetDescription>
                 </SheetHeader>
-                <div className="flex h-[calc(100%-84px)] flex-col">{navContent}</div>
+                <div className="flex h-[calc(100%-84px)] flex-col">{navContent()}</div>
               </SheetContent>
             </Sheet>
           </header>

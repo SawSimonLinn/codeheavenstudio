@@ -2,6 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* ch-hero-stats flex layout */
+.ch-hero-stats {
+  display: flex;
+  align-items: center;
+}
+.ch-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+@media (max-width: 600px) {
+  .ch-hero-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 12px;
+  }
+  .ch-hero-stat {
+    flex: 0 0 calc(50% - 12px);
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
+}
+
+/* ch-why-grid layout */
+.ch-why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .ch-why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ch-service-row hover */
+.ch-service-row { cursor: pointer; }
+@media (max-width: 768px) {
+  .ch-service-main { flex-wrap: wrap; }
+  .ch-service-desc { display: none; }
+  .ch-service-tag  { display: none; }
+}
+@media (max-width: 480px) {
+  .ch-process-step { padding-right: 0 !important; border-right: none !important; }
+}
+
 @layer base {
   :root {
     --background: 210 100% 98%;

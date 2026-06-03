@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 
 const highlights = [
-  "SEO-optimized websites",
+  "AI-ready websites",
+  "SEO & AI search visibility",
   "Fast loading (under 1s)",
   "Mobile-first design",
   "Custom-built (not templates)",
@@ -40,7 +41,7 @@ const benefits = [
   {
     title: "Performance-Driven",
     description:
-      "Every site is built for speed, SEO, and real-world user experience across all devices. We don't use bloated page builders, we write clean, optimized code.",
+      "Every site is built for speed, SEO, AI-assisted discovery, and real-world user experience across all devices. We don't use bloated page builders, we write clean, optimized code.",
     icon: <Gauge className="h-6 w-6" />,
   },
   {
@@ -85,7 +86,7 @@ const stats = [
 export const metadata: Metadata = {
   title: "Why Choose Us | Code Heaven Studio",
   description:
-    "Discover why businesses choose Code Heaven Studio, transparent pricing, full code ownership, performance-driven development, and a free demo before you commit.",
+    "Discover why businesses choose Code Heaven Studio for AI-ready websites, search visibility, transparent pricing, full code ownership, and a free demo first.",
 };
 
 export default function WhyChooseUsPage() {
@@ -106,8 +107,8 @@ export default function WhyChooseUsPage() {
               </span>
             </h1>
             <p className="text-lg text-secondary-foreground/70 max-w-2xl mx-auto mb-8">
-              Transparent, quality-first web development with a process built
-              around your success, not our convenience.
+              Transparent, quality-first web development with practical AI
+              capabilities and search foundations built around your success.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               {highlights.map((item) => (

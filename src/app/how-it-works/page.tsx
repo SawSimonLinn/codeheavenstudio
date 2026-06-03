@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How It Works — Free Demo First",
   description:
-    "See how Code Heaven Studio works: free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+    "See how Code Heaven Studio builds AI-ready websites: free consultation, free demo in 48 hours, search foundations, and full code ownership.",
   alternates: { canonical: "https://www.codeheavenstudio.com/how-it-works" },
   openGraph: {
     title: "How It Works — Free Demo First | Code Heaven Studio",
     description:
-      "Free consultation, free website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
+      "Free consultation, free AI-ready website demo in 48 hours, then you decide. No lock-in, no subscription, full code ownership.",
     url: "https://www.codeheavenstudio.com/how-it-works",
   },
 };
@@ -47,8 +47,8 @@ const steps = [
     icon: Code2,
     title: "Development",
     description:
-      "Once the design is approved, we build your site with clean, fast, and SEO-ready code. We keep you in the loop throughout, no disappearing acts or radio silence.",
-    detail: "Next.js · Mobile-first · Performance optimized",
+      "Once the design is approved, we build your site with clean, fast, AI-ready, and search-friendly code. We keep you in the loop throughout, no disappearing acts or radio silence.",
+    detail: "Next.js · AI-ready · Search optimized",
   },
   {
     number: "04",

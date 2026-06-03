@@ -5,24 +5,34 @@ import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollButtons from "@/components/layout/scroll-buttons";
 import PromoModal from "@/components/layout/promo-modal";
+import LenisProvider from "@/components/layout/lenis-provider";
+import ScrollProgress from "@/components/layout/scroll-progress";
+import MouseGlow from "@/components/layout/mouse-glow";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const SITE_URL = "https://www.codeheavenstudio.com";
 const SITE_NAME = "Code Heaven Studio";
 const DEFAULT_DESCRIPTION =
-  "Code Heaven Studio builds fast, modern, and SEO-optimized websites. Free demo, free audit, free consulting — no commitment until you're ready to start.";
+  "Code Heaven Studio builds AI-powered websites, practical automation, and SEO foundations for visibility across Google and AI-assisted search.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Free Demo Website, No Commitment`,
+    default: `AI-Powered Websites & AI Search SEO | ${SITE_NAME}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
   keywords: [
     "web design agency",
     "custom website development",
+    "AI website development",
+    "AI-powered websites",
+    "AI website features",
+    "AI search optimization",
+    "AI SEO",
+    "Google AI Overviews SEO",
+    "ChatGPT search visibility",
     "free website demo",
     "free website audit",
     "Next.js website",
@@ -37,27 +47,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Free Demo Website, No Commitment`,
+    title: `AI-Powered Websites & AI Search SEO | ${SITE_NAME}`,
     description: DEFAULT_DESCRIPTION,
     images: [
       {
         url: "/hero-image.png",
         width: 1920,
         height: 1080,
-        alt: `${SITE_NAME} — Engineering Your Digital Future`,
+        alt: `${SITE_NAME} — AI-powered websites and search visibility`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Free Demo Website, No Commitment`,
+    title: `AI-Powered Websites & AI Search SEO | ${SITE_NAME}`,
     description: DEFAULT_DESCRIPTION,
     images: ["/clouds-poster.jpg"],
-  },
-  alternates: {
-    canonical: SITE_URL,
   },
   robots: {
     index: true,
@@ -66,30 +72,111 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const siteSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: SITE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  description: DEFAULT_DESCRIPTION,
-  priceRange: "$$",
-  areaServed: "Worldwide",
-  serviceType: [
-    "Web Design",
-    "Web Development",
-    "SEO Optimization",
-    "AI-Powered Websites",
-    "UI/UX Design",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.png`,
+      description: DEFAULT_DESCRIPTION,
+      email: "hello@codeheavenstudio.com",
+      priceRange: "$$",
+      areaServed: "Worldwide",
+      serviceType: [
+        "AI Website Development",
+        "AI Search Optimization",
+        "Web Design",
+        "Web Development",
+        "SEO Optimization",
+        "UI/UX Design",
+      ],
+      knowsAbout: [
+        "AI-powered websites",
+        "AI assistants",
+        "Workflow automation",
+        "Technical SEO",
+        "Structured data",
+        "Google AI Overviews",
+        "ChatGPT search visibility",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "hello@codeheavenstudio.com",
+        contactType: "customer service",
+      },
+      founder: [
+        {
+          "@type": "Person",
+          name: "Saw Simon Linn",
+          jobTitle: "Co-Founder & Software Engineer",
+          url: `${SITE_URL}/founder/saw-simon-linn`,
+          sameAs: [
+            "https://www.linkedin.com/in/sawsimonlinn/",
+            "https://github.com/SawSimonLinn",
+            "https://simonlinn.dev/",
+          ],
+        },
+        {
+          "@type": "Person",
+          name: "Mia Truong",
+          jobTitle: "Co-Founder & Software Engineer",
+          url: `${SITE_URL}/founder/mia-truong`,
+          sameAs: [
+            "https://www.linkedin.com/in/trangmtruong/",
+            "https://github.com/trangmtruong",
+            "https://www.miatruong.com/",
+          ],
+        },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Website and AI Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Applied Websites",
+              url: `${SITE_URL}/services/ai-applied-websites`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "SEO and AI Search Optimization",
+              url: `${SITE_URL}/services/seo-optimization`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Website Development",
+              url: `${SITE_URL}/services`,
+            },
+          },
+        ],
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/codeheavenstudio",
+        "https://github.com/SawSimonLinn",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: DEFAULT_DESCRIPTION,
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+    },
   ],
-  offers: {
-    "@type": "Offer",
-    description:
-      "Free website demo, free audit, and free consulting — no commitment required.",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  sameAs: ["https://github.com/SawSimonLinn"],
 };
 
 export default function RootLayout({
@@ -97,57 +184,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Code Heaven Studio",
-    url: "https://www.codeheavenstudio.com",
-    logo: "https://www.codeheavenstudio.com/logo.png",
-    contactPoint: {
-      "@type": "ContactPoint",
-      email: "hello@codeheavenstudio.com",
-      contactType: "customer service",
-    },
-    founder: [
-      {
-        "@type": "Person",
-        name: "Saw Simon Linn",
-        jobTitle: "Co-Founder & Software Engineer",
-        url: "https://www.codeheavenstudio.com/founder/saw-simon-linn",
-        sameAs: [
-          "https://www.linkedin.com/in/sawsimonlinn/",
-          "https://github.com/SawSimonLinn",
-          "https://simonlinn.dev/",
-        ],
-      },
-      {
-        "@type": "Person",
-        name: "Mia Truong",
-        jobTitle: "Co-Founder & Software Engineer",
-        url: "https://www.codeheavenstudio.com/founder/mia-truong",
-        sameAs: [
-          "https://www.linkedin.com/in/trangmtruong/",
-          "https://github.com/trangmtruong",
-          "https://www.miatruong.com/",
-        ],
-      },
-    ],
-  };
-
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
       </head>
       <body className={`${inter.variable} font-body antialiased`}>
-        {children}
-        <Analytics />
-        <Toaster />
-        <ScrollButtons />
-        <PromoModal />
+        <LenisProvider>
+          <ScrollProgress />
+          <MouseGlow />
+          {children}
+          <Analytics />
+          <Toaster />
+          <ScrollButtons />
+          <PromoModal />
+        </LenisProvider>
       </body>
     </html>
   );

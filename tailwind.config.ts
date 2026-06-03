@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+import animate from "tailwindcss-animate";
 import {
   ADMIN_BG, ADMIN_SURFACE, ADMIN_SURFACE_ALT, ADMIN_SURFACE2,
   ADMIN_CARD, ADMIN_INPUT, ADMIN_BADGE_BG, ADMIN_LOGO_BG,
@@ -151,5 +153,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [animate, typography],
 } satisfies Config;

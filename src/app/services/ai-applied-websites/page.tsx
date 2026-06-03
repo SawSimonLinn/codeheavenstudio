@@ -17,9 +17,9 @@ import { Button } from "@/components/ui/button";
 
 const PAGE_URL = "https://www.codeheavenstudio.com/services/ai-applied-websites";
 const PAGE_TITLE =
-  "AI Applied Website Development 2026 (Gemini, OpenAI, Claude) | Code Heaven Studio";
+  "AI Applied Website Development 2026 (Gemini, OpenAI, Claude)";
 const PAGE_DESCRIPTION =
-  "AI Applied Websites for 2026: Gemini, OpenAI, and Claude integrations for chat, automation, smart content, and SEO-ready growth. Built for speed, conversion, and security.";
+  "AI Applied Websites for 2026: Gemini, OpenAI, and Claude integrations for chat, automation, smart content, and visibility across Google and AI-assisted search.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -33,19 +33,21 @@ export const metadata: Metadata = {
     "Gemini OpenAI Claude website",
     "AI web design 2026",
     "AI website SEO",
+    "AI search optimization",
+    "ChatGPT search visibility",
     "AI chatbot website integration",
     "Code Heaven Studio",
   ],
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: PAGE_TITLE,
+    title: `${PAGE_TITLE} | Code Heaven Studio`,
     description: PAGE_DESCRIPTION,
     siteName: "Code Heaven Studio",
   },
   twitter: {
     card: "summary_large_image",
-    title: PAGE_TITLE,
+    title: `${PAGE_TITLE} | Code Heaven Studio`,
     description: PAGE_DESCRIPTION,
   },
   robots: {
@@ -75,9 +77,9 @@ const aiFeatureBlocks = [
   },
   {
     icon: Search,
-    title: "SEO-First AI Content Engine",
+    title: "SEO & AI Search Visibility",
     description:
-      "Structured service content, schema, and topic clusters designed for rankings, discoverability, and high-intent traffic.",
+      "Clear service content, structured data, and answer-ready pages designed for discoverability across traditional and AI-assisted search.",
   },
 ];
 
@@ -97,11 +99,11 @@ const modelStack = [
 ];
 
 const seoDeliverables = [
-  "Keyword and intent mapping for AI-related service pages",
+  "Keyword, question, and intent mapping for high-value service pages",
   "Page architecture with internal links for crawl depth and topical authority",
-  "JSON-LD schema (Service, FAQ, Breadcrumb) for rich result eligibility",
+  "Relevant JSON-LD schema that matches visible Service, FAQ, and Breadcrumb content",
   "Core Web Vitals optimization and lightweight delivery for fast indexing",
-  "Conversion-first metadata and semantic heading hierarchy",
+  "Conversion-first metadata, crawlable text, and semantic heading hierarchy",
   "High-intent CTA placement and lead path optimization",
 ];
 
@@ -119,7 +121,7 @@ const faqItems = [
   {
     question: "Can this improve SEO performance?",
     answer:
-      "Yes. We build SEO into architecture, metadata, schema, internal linking, and content strategy so your AI website is both useful for users and indexable for search engines.",
+      "Yes. We build SEO into architecture, metadata, structured data, internal linking, and content strategy so your AI website is useful for users and understandable to traditional and AI-assisted search systems.",
   },
   {
     question: "Do you build this for existing websites too?",
@@ -198,7 +200,7 @@ export default function AIAppliedWebsitesPage() {
               We build modern AI-powered websites using{" "}
               <strong>Gemini</strong>, <strong>OpenAI</strong>, and <strong>Claude</strong> for
               practical business outcomes: better lead qualification, smarter user journeys, and
-              stronger SEO performance.
+              stronger visibility across Google and AI-assisted search.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="rounded-full px-8">
@@ -269,12 +271,13 @@ export default function AIAppliedWebsitesPage() {
           <div className="container mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1.25fr_1fr]">
             <div>
               <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-                SEO Framework Built Into Delivery
+                SEO & AI Search Foundations Built Into Delivery
               </h2>
               <p className="mt-3 text-muted-foreground">
-                For this service page and every implementation, we ship SEO-ready foundations from
-                day one: metadata, structured data, internal linking, semantic content blocks, and
-                fast performance.
+                For this service page and every implementation, we ship
+                search-ready foundations from day one: metadata, structured
+                data, internal linking, useful textual content, and fast
+                performance.
               </p>
               <ul className="mt-8 space-y-3">
                 {seoDeliverables.map((item) => (
@@ -298,7 +301,7 @@ export default function AIAppliedWebsitesPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Search className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  Crawl-friendly content and discoverability
+                  Crawl-friendly content for Google and AI search
                 </li>
               </ul>
               <Button asChild className="mt-6 w-full rounded-full">

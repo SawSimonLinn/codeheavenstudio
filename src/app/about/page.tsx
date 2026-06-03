@@ -5,12 +5,12 @@ import Header from "@/components/layout/header";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Meet the team behind Code Heaven Studio. We build custom, fast, and SEO-optimized websites with a free demo and free consulting before you commit.",
+    "Meet the team behind Code Heaven Studio. We build custom AI-powered websites, practical automations, and search-ready digital experiences.",
   alternates: { canonical: "https://www.codeheavenstudio.com/about" },
   openGraph: {
     title: "About Us | Code Heaven Studio",
     description:
-      "Meet the team behind Code Heaven Studio. We build custom, fast, and SEO-optimized websites with a free demo and free consulting before you commit.",
+      "Meet the team behind Code Heaven Studio. We build custom AI-powered websites, practical automations, and search-ready digital experiences.",
     url: "https://www.codeheavenstudio.com/about",
   },
 };
@@ -41,7 +41,7 @@ const founders = [
     location: "Los Angeles, CA",
     avatar: "/avatars/simon.jpg",
     aiHint: "male developer",
-    bio: "Saw Simon Linn co-founded Code Heaven Studio to help restaurants and small businesses build modern, SEO-optimized websites that drive real customers. Before writing code, Simon spent years as a sushi chef and worked in the startup world, a mix of precision craft and fast-paced hustle that carried right into building software.",
+    bio: "Simon co-founded Code Heaven Studio to help restaurants and small businesses build modern, SEO-optimized websites that drive real customers. Before writing code, Simon spent years as a sushi chef and worked in the startup world, a mix of precision craft and fast-paced hustle that carried right into building software.",
     linkedin: "https://www.linkedin.com/in/sawsimonlinn/",
     github: "https://github.com/SawSimonLinn",
     portfolio: "https://simonlinn.dev/",
@@ -81,9 +81,9 @@ const skills = [
     icon: <Paintbrush className="h-8 w-8 text-primary" />,
   },
   {
-    title: "SEO Optimized",
+    title: "SEO & AI Search Ready",
     description:
-      "Every site we ship is structured for search engines from day one, not bolted on as an afterthought.",
+      "Every site we ship is structured for traditional and AI-assisted search from day one, not bolted on as an afterthought.",
     icon: <SearchCheck className="h-8 w-8 text-primary" />,
   },
   {
@@ -150,10 +150,10 @@ export default function AboutUsPage() {
                 Two Developers, One Vision
               </h1>
               <p className="mt-6 text-lg leading-8 text-secondary-foreground/80">
-                We are Simon and Mia, two co-founders and developers who
-                built Code Heaven Studio from the ground up. We thrive on
-                learning new technologies and channeling that knowledge into
-                innovative solutions that make your business better.
+                We are Simon and Mia, two co-founders and developers who built
+                Code Heaven Studio from the ground up. We thrive on learning new
+                technologies and channeling that knowledge into innovative
+                solutions that make your business better.
               </p>
             </div>
           </div>
@@ -180,26 +180,57 @@ export default function AboutUsPage() {
                         alt={founder.name}
                         data-ai-hint={founder.aiHint}
                       />
-                      <AvatarFallback>{founder.name.slice(0, 2)}</AvatarFallback>
+                      <AvatarFallback>
+                        {founder.name.slice(0, 2)}
+                      </AvatarFallback>
                     </Avatar>
-                    <Link href={founder.founderPage} className="hover:text-primary transition-colors">
-                      <h3 className="text-xl font-semibold text-foreground">{founder.name}</h3>
+                    <Link
+                      href={founder.founderPage}
+                      className="hover:text-primary transition-colors"
+                    >
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {founder.name}
+                      </h3>
                     </Link>
-                    <p className="text-sm text-primary font-medium mt-1">{founder.role}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{founder.location}</p>
-                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{founder.bio}</p>
+                    <p className="text-sm text-primary font-medium mt-1">
+                      {founder.role}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {founder.location}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+                      {founder.bio}
+                    </p>
                     <div className="flex gap-4 mt-5">
-                      <Link href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Link
+                        href={founder.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
                         <Linkedin className="h-5 w-5" />
                       </Link>
-                      <Link href={founder.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Link
+                        href={founder.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
                         <Github className="h-5 w-5" />
                       </Link>
-                      <Link href={founder.portfolio} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Link
+                        href={founder.portfolio}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
                         <Globe className="h-5 w-5" />
                       </Link>
                     </div>
-                    <Link href={founder.founderPage} className="mt-4 text-xs text-primary hover:underline">
+                    <Link
+                      href={founder.founderPage}
+                      className="mt-4 text-xs text-primary hover:underline"
+                    >
                       View full profile →
                     </Link>
                   </CardContent>
@@ -217,17 +248,23 @@ export default function AboutUsPage() {
                 What We Work With
               </h2>
               <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                We are full stack engineers who turn ideas into shipped products, with the design instincts to make them shine.
+                We are full stack engineers who turn ideas into shipped
+                products, with the design instincts to make them shine.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {skills.map((skill) => (
-                <Card key={skill.title} className="shadow-lg hover:shadow-xl transition-shadow">
+                <Card
+                  key={skill.title}
+                  className="shadow-lg hover:shadow-xl transition-shadow"
+                >
                   <CardContent className="p-6">
                     <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                       {skill.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{skill.title}</h3>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {skill.title}
+                    </h3>
                     <p className="text-muted-foreground">{skill.description}</p>
                   </CardContent>
                 </Card>
@@ -249,13 +286,20 @@ export default function AboutUsPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 max-w-4xl mx-auto">
               {values.map((value, i) => (
-                <div key={value.title} className="flex gap-6 p-8 border-t border-border last:border-b sm:[&:nth-child(odd)]:border-r">
+                <div
+                  key={value.title}
+                  className="flex gap-6 p-8 border-t border-border last:border-b sm:[&:nth-child(odd)]:border-r"
+                >
                   <span className="text-5xl font-bold text-primary/20 leading-none flex-shrink-0 select-none">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {value.description}
+                    </p>
                   </div>
                 </div>
               ))}

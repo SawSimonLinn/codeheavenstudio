@@ -54,8 +54,9 @@ const industries = [
 const auditItems = [
   {
     icon: Search,
-    title: "SEO Health Check",
-    description: "We review your meta tags, keywords, and search visibility.",
+    title: "SEO & AI Search Health Check",
+    description:
+      "We review your metadata, content structure, and visibility across modern search.",
   },
   {
     icon: Smartphone,
@@ -178,8 +179,8 @@ export default function FreeAuditPage() {
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 We&apos;ll review your existing website and send you a personalized
-                report covering SEO, speed, mobile, and conversion. No cost,
-                no commitment.
+                report covering SEO, AI search visibility, speed, mobile, and
+                conversion. No cost, no commitment.
               </p>
             </div>
 

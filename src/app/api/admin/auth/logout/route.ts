@@ -38,6 +38,16 @@ async function logLogoutIfPossible(request: Request, sessionSecret: string | nul
   });
 }
 
+function getSafeRedirectUrl(url: URL) {
+  const next = url.searchParams.get('next');
+  if (!next || !next.startsWith('/') || next.startsWith('//')) {
+    return new URL('/', url);
+  }
+
+  const redirectUrl = new URL(next, url);
+  return redirectUrl.origin === url.origin ? redirectUrl : new URL('/', url);
+}
+
 export async function POST(request: Request) {
   const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
 
@@ -55,7 +65,6 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const next = url.searchParams.get('next') || '/';
   const sessionSecret = getCookieFromRequest(request, ADMIN_SESSION_COOKIE);
 
   await logLogoutIfPossible(request, sessionSecret);
@@ -64,7 +73,7 @@ export async function GET(request: Request) {
     await destroyAdminSession(sessionSecret).catch(() => undefined);
   }
 
-  const response = NextResponse.redirect(new URL(next, url));
+  const response = NextResponse.redirect(getSafeRedirectUrl(url));
   clearSessionCookie(response);
 
   return response;

@@ -58,9 +58,9 @@ const servicesDropdownRows: ServiceDropdownItem[][] = [
     {
       href: "/services/ai-applied-websites",
       title: "AI Applied Websites",
-      description: "Gemini, OpenAI, Claude for modern sites in 2026",
+      description: "AI chat, automation, and smarter customer journeys",
       icon: Bot,
-      features: ["Gemini", "OpenAI", "Claude", "AI SEO"],
+      features: ["Gemini", "OpenAI", "Claude", "AI Search"],
       highlight: true,
     },
     {
@@ -93,10 +93,11 @@ const servicesDropdownRows: ServiceDropdownItem[][] = [
       icon: RefreshCcw,
     },
     {
-      href: "/services#seo-optimization",
-      title: "SEO Optimization",
-      description: "Rank higher and get found on Google",
+      href: "/services/seo-optimization",
+      title: "SEO & AI Search",
+      description: "Improve visibility on Google and AI search",
       icon: Search,
+      features: ["Technical SEO", "Schema", "AI Overviews"],
     },
   ],
   [
@@ -187,11 +188,13 @@ export default function Header() {
             <div className="flex-1 flex items-center justify-center gap-1.5 text-center leading-snug">
               <Sparkles className="h-3 w-3 shrink-0 hidden sm:block" />
               <span>
-                Limited offer: Get a{" "}
-                <Link href="/contact" className="underline underline-offset-2 font-bold hover:opacity-80">
-                  free website audit
+                New: AI-powered websites + SEO for Google and AI search.{" "}
+                <Link
+                  href="/services/ai-applied-websites"
+                  className="underline underline-offset-2 font-bold hover:opacity-80"
+                >
+                  Explore AI services
                 </Link>{" "}
-                + 10% off your first project. Book now!
               </span>
             </div>
             <button

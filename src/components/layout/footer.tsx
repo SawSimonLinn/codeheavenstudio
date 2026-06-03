@@ -1,7 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Facebook, Instagram, Globe } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  Facebook,
+  Globe,
+  Instagram,
+  Linkedin,
+  Search,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
 import Image from "next/image";
 
 const socialLinks = [
@@ -30,6 +40,74 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-secondary text-secondary-foreground">
+      <div className="border-b border-border bg-primary/[0.06]">
+        <div className="container mx-auto max-w-7xl px-4 py-10 sm:py-12">
+          <div className="grid gap-8 rounded-2xl border border-primary/20 bg-card/80 p-6 shadow-sm sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+            <div>
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <Sparkles className="h-4 w-4" />
+                AI-Ready Web Development
+              </p>
+              <h2 className="mt-3 max-w-xl text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                Make your website useful to customers and understandable to AI
+                search.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                We build practical AI features and strong search foundations:
+                intelligent assistants, workflow automation, answer-ready
+                content, structured data, and fast technical SEO.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild className="rounded-full">
+                  <Link href="/services/ai-applied-websites">
+                    Explore AI Websites <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full bg-background/70">
+                  <Link href="/services/seo-optimization">SEO & AI Search</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                {
+                  icon: Bot,
+                  title: "AI Assistants",
+                  description: "Answer questions and qualify leads.",
+                },
+                {
+                  icon: Workflow,
+                  title: "Automation",
+                  description: "Connect repetitive customer workflows.",
+                },
+                {
+                  icon: Search,
+                  title: "AI Search Visibility",
+                  description: "Strengthen signals for modern discovery.",
+                },
+              ].map((feature) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={feature.title}
+                    className="rounded-xl border border-border bg-background/70 p-4"
+                  >
+                    <Icon className="h-5 w-5 text-primary" />
+                    <h3 className="mt-3 text-sm font-semibold text-foreground">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-12">
         {/* Top section: logo + columns */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
@@ -45,6 +123,10 @@ export default function Footer() {
               />
               <span className="text-sm font-semibold">Code Heaven Studio</span>
             </div>
+            <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
+              AI-powered websites, modern development, and search visibility
+              built for real businesses.
+            </p>
             <div className="flex gap-1">
               {socialLinks.map((social) => (
                 <Button key={social.name} variant="ghost" size="icon" asChild>
@@ -137,6 +219,22 @@ export default function Footer() {
               <li>
                 <Link href="/services" className="hover:text-primary">
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/ai-applied-websites"
+                  className="hover:text-primary"
+                >
+                  AI Applied Websites
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/seo-optimization"
+                  className="hover:text-primary"
+                >
+                  SEO & AI Search
                 </Link>
               </li>
               <li>
